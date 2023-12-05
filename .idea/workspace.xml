@@ -4,37 +4,109 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="" />
+    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v1">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/LoginStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/RateTableStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/RateYear.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/RateYearRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearListModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/UserFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/UserModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/stage/LoginStage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/RateYearConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/LoginStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/RateTableStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/persons.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/programy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2Z5fwwcw7rBn7VapnEFeEpC9lQ8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/reina/IdeaProjects/WaterCompany/src/main/resources/css",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.36666667",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\css" />
+      <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\FXML" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\icon" />
+      <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources" />
+      <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\bundles\icon" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="md.program.modelFX" />
+      <recent name="md.program.database.model" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="md.programy.Main" />
+      <option name="MAIN_CLASS_NAME" value="md.program.Main" />
       <module name="WaterCompany" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="md.programy.*" />
+          <option name="PATTERN" value="md.program.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepository" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="md.program.database.repository.UserRepository" />
+      <module name="WaterCompany" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="md.program.database.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -45,6 +117,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.UserRepository" />
       </list>
     </recent_temporary>
   </component>
@@ -57,6 +130,28 @@
       <option name="presentableId" value="Default" />
       <updated>1701717103927</updated>
     </task>
+    <task id="LOCAL-00001" summary="v1">
+      <option name="closed" value="true" />
+      <created>1701717114317</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701717114317</updated>
+    </task>
+    <task id="LOCAL-00002" summary="v1">
+      <option name="closed" value="true" />
+      <created>1701717183793</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701717183793</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1" />
   </component>
 </project>
