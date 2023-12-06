@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class LoginStageController {
 
 
-    public static final String FXML_MAIN_STAGE_FXML = "/FXML/MainStage.fxml";
+    private static final String FXML_MAIN_STAGE_FXML = "/FXML/MainStage.fxml";
     @FXML
     private Button logInButton;
     @FXML
@@ -84,7 +84,6 @@ public class LoginStageController {
         if(result==true){
             stage.close();
             openMainStage();
-            System.out.println("test");
         }else{
             noLogLabel.setText(Utils.getResourceBundle().getString("log.in.error"));
         }

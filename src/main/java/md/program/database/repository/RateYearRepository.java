@@ -50,4 +50,21 @@ public class RateYearRepository {
         return rateYears;
 
     }
+    public void addRateYear(RateYear rateYear) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Insert into md.rate_year (id,year,rate) values ((Select coalesce(max(id)+1,0) from md.rate_year),?,?)");
+        statement.setInt(1, rateYear.getYear());
+        statement.setDouble(2, rateYear.getRate());
+        statement.executeUpdate();
+        connection.close();
+    }
+    public void deleteRateYearById(RateYear rateYear) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Delete from md.rate_year where id=?");
+        statement.setInt(1,rateYear.getId());
+        statement.executeUpdate();
+        connection.close();
+    }
 }

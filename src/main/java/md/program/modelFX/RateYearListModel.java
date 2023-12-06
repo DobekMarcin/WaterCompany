@@ -16,7 +16,7 @@ public class RateYearListModel {
 
     public void init() throws SQLException {
     List<RateYear> rateYearList = rateYearRepository.getAllRateYear();
-
+    rateYearFXObservableList.clear();
     rateYearList.forEach(item->{
         RateYearFX rateYearFX = RateYearConverter.convertToRateYearFX(item);
         rateYearFXObservableList.add(rateYearFX);
