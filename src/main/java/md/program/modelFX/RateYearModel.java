@@ -25,4 +25,8 @@ public class RateYearModel {
     public void setRateYearFX(RateYearFX rateYearFX) {
         this.rateYearFX = rateYearFX;
     }
+
+    public void updateRateYearGeneratedStatus() throws SQLException {
+        rateYearRepository.updateRateYearGeneratedStatus(RateYearConverter.convertToRateYear(rateYearFX));
+    }
 }

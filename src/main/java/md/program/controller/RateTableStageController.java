@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import md.program.modelFX.PaymentPlanModel;
 import md.program.modelFX.RateYearFX;
 import md.program.modelFX.RateYearListModel;
 import md.program.modelFX.RateYearModel;
@@ -20,7 +22,8 @@ import java.sql.SQLException;
 public class RateTableStageController {
 
     private static final String FXML_RATE_TABLE_ADD_STAGE_FXML = "/FXML/RateTableAddStage.fxml";
-
+    @FXML
+    private TableColumn<RateYearFX, Boolean> planColumn;
     @FXML
     private TableView<RateYearFX> yearRateTable;
     @FXML
@@ -29,7 +32,9 @@ public class RateTableStageController {
     private TableColumn<RateYearFX, Number> rateColumn;
     private Stage thisStage;
     private RateYearListModel rateYearListModel = new RateYearListModel();
-private RateYearModel rateYearModel = new RateYearModel();
+    private RateYearModel rateYearModel = new RateYearModel();
+    private PaymentPlanModel paymentPlanModel = new PaymentPlanModel();
+
     public void initialize() {
         try {
             rateYearListModel.init();
@@ -43,6 +48,8 @@ private RateYearModel rateYearModel = new RateYearModel();
         yearRateTable.setItems(rateYearListModel.getRateYearFXObservableList());
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty());
         rateColumn.setCellValueFactory(cellData -> cellData.getValue().rateProperty());
+        planColumn.setCellValueFactory(cellData -> cellData.getValue().paymentPlanIsGeneratedProperty());
+        planColumn.setCellFactory(CheckBoxTableCell.forTableColumn(planColumn));
     }
 
 
@@ -87,7 +94,7 @@ private RateYearModel rateYearModel = new RateYearModel();
 
     @FXML
     public void deleteRateButtonOnAction() {
-    RateYearFX rateYearFX=yearRateTable.getSelectionModel().getSelectedItem();
+        RateYearFX rateYearFX = yearRateTable.getSelectionModel().getSelectedItem();
         rateYearModel.setRateYearFX(rateYearFX);
         try {
             rateYearModel.deleteRateYear();
@@ -95,5 +102,21 @@ private RateYearModel rateYearModel = new RateYearModel();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void generatePaymentPlanButtonOnAction() {
+        try {
+            paymentPlanModel.generatePaymentPlan(yearRateTable.getSelectionModel().getSelectedItem());
+            RateYearFX rateYearFX = yearRateTable.getSelectionModel().getSelectedItem();
+            rateYearFX.setPaymentPlanIsGenerated(true);
+            rateYearModel.setRateYearFX(rateYearFX);
+            rateYearModel.updateRateYearGeneratedStatus();
+            initialize();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

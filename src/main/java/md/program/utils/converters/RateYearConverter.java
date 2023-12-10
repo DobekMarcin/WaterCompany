@@ -10,6 +10,7 @@ public class RateYearConverter {
         rateYear.setId(rateYearFX.getId());
         rateYear.setYear(rateYearFX.getYear());
         rateYear.setRate(rateYearFX.getRate());
+        rateYear.setPaymentPlanIsGenerated(rateYearFX.isPaymentPlanIsGenerated());
         return rateYear;
     }
 
@@ -18,6 +19,7 @@ public class RateYearConverter {
         rateYearFX.setId(rateYear.getId());
         rateYearFX.setYear(rateYear.getYear());
         rateYearFX.setRate(rateYear.getRate());
+        rateYearFX.setPaymentPlanIsGenerated(rateYear.getPaymentPlanIsGenerated());
         return rateYearFX;
     }
 }

@@ -5,12 +5,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class PartnerFX {
-    private SimpleIntegerProperty id;
-    private SimpleStringProperty name;
-    private SimpleStringProperty surname;
-    private SimpleStringProperty address;
-    private SimpleIntegerProperty peopleCount;
-    private SimpleBooleanProperty archives;
+    private SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private SimpleStringProperty name = new SimpleStringProperty();
+    private SimpleStringProperty surname = new SimpleStringProperty();
+    private SimpleStringProperty address = new SimpleStringProperty();
+    private SimpleIntegerProperty peopleCount = new SimpleIntegerProperty();
+    private SimpleBooleanProperty archives = new SimpleBooleanProperty();
 
     public int getId() {
         return id.get();

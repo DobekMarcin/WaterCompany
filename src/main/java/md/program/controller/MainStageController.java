@@ -13,11 +13,11 @@ import md.program.stage.LoginStage;
 import md.program.utils.Utils;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 public class MainStageController {
     private static final String FXML_RATE_TABLE_STAGE_FXML = "/FXML/RateTableStage.fxml";
-    private static final String FXML_PARTNER_STAGE_FXML = "/FXML/PartnerStage.fxml";
+    private static final String FXML_PARTNER_STAGE_FXML = "/FXML/PartnerTableStage.fxml";
+    private static final String FXML_PAYMENT_PLAN_STAGE_FXML = "/FXML/PaymentPlanTableStage.fxml";
     @FXML
     private BorderPane borderPane;
 
@@ -61,9 +61,24 @@ public class MainStageController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        PartnerStageController partnerStageController = fxmlLoader.getController();
+        PartnerTableStageController partnerStageController = fxmlLoader.getController();
+        partnerStageController.init();
         borderPane.setCenter(bordPane);
+    }
 
+    @FXML
+    public void paymentPlanMenuButtonOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_PAYMENT_PLAN_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
 
+        Pane bordPane = null;
+        try {
+            bordPane = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        PaymentPlanTableStageController paymentPlanTableStageController = fxmlLoader.getController();
+        paymentPlanTableStageController.init();
+        borderPane.setCenter(bordPane);
     }
 }

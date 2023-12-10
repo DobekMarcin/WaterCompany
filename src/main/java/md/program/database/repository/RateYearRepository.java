@@ -1,5 +1,6 @@
 package md.program.database.repository;
 
+import md.program.database.model.Partner;
 import md.program.database.model.RateYear;
 
 import java.sql.*;
@@ -37,13 +38,14 @@ public class RateYearRepository {
         Connection connection = getConnection();
         List<RateYear> rateYears=new ArrayList<>();
         RateYear temp = null;
-        statement = connection.prepareStatement("Select id,year,rate from md.rate_year");
+        statement = connection.prepareStatement("Select id,year,rate,payment_plan_is_generated from md.rate_year order by id");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new RateYear();
             temp.setId(rs.getInt("id"));
             temp.setYear(rs.getInt("year"));
             temp.setRate(rs.getDouble("rate"));
+            temp.setPaymentPlanIsGenerated(rs.getBoolean("payment_plan_is_generated"));
             rateYears.add(temp);
         }
         connection.close();
@@ -53,9 +55,10 @@ public class RateYearRepository {
     public void addRateYear(RateYear rateYear) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        statement = connection.prepareStatement("Insert into md.rate_year (id,year,rate) values ((Select coalesce(max(id)+1,0) from md.rate_year),?,?)");
+        statement = connection.prepareStatement("Insert into md.rate_year (id,year,rate,payment_plan_is_generated) values ((Select coalesce(max(id),0)+1 from md.rate_year),?,?,?)");
         statement.setInt(1, rateYear.getYear());
         statement.setDouble(2, rateYear.getRate());
+        statement.setBoolean(3,false);
         statement.executeUpdate();
         connection.close();
     }
@@ -64,6 +67,16 @@ public class RateYearRepository {
         Connection connection = getConnection();
         statement = connection.prepareStatement("Delete from md.rate_year where id=?");
         statement.setInt(1,rateYear.getId());
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public void updateRateYearGeneratedStatus(RateYear rateYear) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Update md.rate_year set payment_plan_is_generated=? where id=?");
+        statement.setBoolean(1, rateYear.getPaymentPlanIsGenerated());
+        statement.setInt(2,rateYear.getId());
         statement.executeUpdate();
         connection.close();
     }
