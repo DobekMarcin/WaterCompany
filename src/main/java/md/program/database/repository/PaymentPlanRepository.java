@@ -2,6 +2,7 @@ package md.program.database.repository;
 
 import md.program.database.model.Partner;
 import md.program.database.model.PaymentPlan;
+import md.program.database.model.RateYear;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -86,4 +87,47 @@ public class PaymentPlanRepository {
         connection.close();
         return paymentPlanList;
     }
+    public Integer checkPartnerInPaymentPlan(Partner partner) throws SQLException {
+        PreparedStatement statement=null;
+        Connection connection = getConnection();
+        Integer check = 0;
+        statement = connection.prepareStatement("Select count(*) as count from md.payment_plan where partner_id=?;");
+        statement.setInt(1,partner.getId());
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+            check=rs.getInt("count");
+        connection.close();
+        return  check;
+    }
+
+    public void deletePaymnetPlanByYear(RateYear rateYear) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("delete from md.payment_plan where year_id=?");
+        statement.setInt(1,rateYear.getId());
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public void updatePaymentPlan(PaymentPlan paymentPlan) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Update md.payment_plan set m1=?,m2=?,m3=?,m4=?,m5=?,m6=?,m7=?,m8=?,m9=?,m10=?,m11=?,m12=? where id=?");
+        statement.setDouble(1,paymentPlan.getM1());
+        statement.setDouble(2,paymentPlan.getM2());
+        statement.setDouble(3,paymentPlan.getM3());
+        statement.setDouble(4,paymentPlan.getM4());
+        statement.setDouble(5,paymentPlan.getM5());
+        statement.setDouble(6,paymentPlan.getM6());
+        statement.setDouble(7,paymentPlan.getM7());
+        statement.setDouble(8,paymentPlan.getM8());
+        statement.setDouble(9,paymentPlan.getM9());
+        statement.setDouble(10,paymentPlan.getM10());
+        statement.setDouble(11,paymentPlan.getM11());
+        statement.setDouble(12,paymentPlan.getM12());
+        statement.setInt(13,paymentPlan.getId());
+        statement.executeUpdate();
+        connection.close();
+    }
+
 }

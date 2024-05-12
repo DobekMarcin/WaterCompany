@@ -19,12 +19,14 @@
               <menus>
                 <Menu mnemonicParsing="false" text="%menu.file">
                   <items>
+                        <MenuItem mnemonicParsing="false" onAction="#changePasswordOnAction" text="%menu.file.change.password" />
                     <MenuItem mnemonicParsing="false" onAction="#closeOnAction" text="%menu.file.close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%menu.rate">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#rateTableOnAction" text="%menu.rate.rate.Table" />
+                        <MenuItem mnemonicParsing="false" onAction="#counterRateTableOnAction" text="%menu.rate.counter.Table" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%menu.about">

@@ -1,7 +1,5 @@
 package md.program.controller;
 
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import md.program.modelFX.*;
 import md.program.stage.LoginStage;
+import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +23,9 @@ public class PartnerTableStageController {
 
     private static final String FXML_PARTNER_TABLE_ADD_STAGE_FXML = "/FXML/PartnerTableAddStage.fxml";
     private static final String FXML_PARTNER_TABLE_EDIT_STAGE_FXML = "/FXML/PartnerTableEditStage.fxml";
+
+    @FXML
+    private TableColumn<PartnerFX,Boolean> meterColumnPartnerTable;
     @FXML
     private TextField filterTextField;
     @FXML
@@ -36,57 +39,49 @@ public class PartnerTableStageController {
     @FXML
     private TableColumn<PartnerFX, String> addressColumnPartnerTable;
     @FXML
+    private TableColumn<PartnerFX,String> postCodeColumnPartnerTable;
+    @FXML
+    private TableColumn<PartnerFX,String> postColumnPartnerTable;
+    @FXML
+    private TableColumn<PartnerFX,String> nipColumnPartnerTable;
+    @FXML
     private TableColumn<PartnerFX, Number> peopleColumnPartnerTable;
     @FXML
     private TableColumn<PartnerFX, Boolean> archiveColumnPartnerTable;
+    @FXML
+    private TableColumn<PartnerFX,Boolean> companyColumnPartnerTable;
     private Stage mainStage = null;
     private PartnerListModel partnerListModel = new PartnerListModel();
     private PartnerModel partnerModel = new PartnerModel();
 
     public void init() {
         try {
+            partnerListModel.filterProperty().bindBidirectional(filterTextField.textProperty());
             partnerListModel.init();
             tableInit();
-            initFilter();
+            filterTextField.textProperty().addListener(observable -> partnerListModel.filterPartnerList());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    private void initFilter() {
-        FilteredList<PartnerFX> filteredData = new FilteredList<>(partnerListModel.getPartnerFXObservableList(), p->true);
-        filterTextField.textProperty().addListener((observable,oldValue,newValue)->{
-            filteredData.setPredicate(paymentPlan->{
-                if(newValue == null || newValue.isEmpty()) return true;
-                String lowerCaseFilter = newValue.toLowerCase();
-                if(paymentPlan.getName().toLowerCase().contains(lowerCaseFilter)){
-                    return true;
-                }else if (paymentPlan.getSurname().toLowerCase().contains(lowerCaseFilter)){
-                    return true;
-                }else if (String.valueOf(paymentPlan.getAddress()).toLowerCase().contains(lowerCaseFilter)){
-                    return true;
-                }else if (String.valueOf(paymentPlan.getId()).toLowerCase().contains(lowerCaseFilter)){
-                    return true;
-                }else if (String.valueOf(paymentPlan.getPeopleCount()).toLowerCase().contains(lowerCaseFilter)){
-                    return true;
-                }
-                return false;
-            });
-        });
-        SortedList<PartnerFX> sortedList = new SortedList<>(filteredData);
-        sortedList.comparatorProperty().bind(partnerTable.comparatorProperty());
-        partnerTable.setItems(sortedList);
-    }
     private void tableInit() {
         partnerTable.setItems(partnerListModel.getPartnerFXObservableList());
         idColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().idProperty());
         nameColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().nameProperty());
         surnameColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().surnameProperty());
         addressColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().addressProperty());
+        postCodeColumnPartnerTable.setCellValueFactory(cellDate ->cellDate.getValue().postCodeProperty());
+        postColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().postProperty());
+        nipColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().nipProperty());
         peopleColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().peopleCountProperty());
         archiveColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().archivesProperty());
         archiveColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(archiveColumnPartnerTable));
+        companyColumnPartnerTable.setCellValueFactory(cellData->cellData.getValue().companyProperty());
+        companyColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(companyColumnPartnerTable));
+        meterColumnPartnerTable.setCellValueFactory(cellData->cellData.getValue().meterProperty());
+        meterColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(meterColumnPartnerTable));
     }
 
     public Stage getMainStage() {
@@ -116,6 +111,8 @@ public class PartnerTableStageController {
         partnerTableAddStageController.setStage(stage1);
         stage1.showAndWait();
         init();
+        partnerTable.getSelectionModel().selectLast();
+        partnerTable.scrollTo(partnerTable.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -125,18 +122,27 @@ public class PartnerTableStageController {
 
     @FXML
     public void deletePartnerOnAction() {
-        PartnerFX partnerFX = partnerTable.getSelectionModel().getSelectedItem();
-        partnerModel.setPartnerFX(partnerFX);
-        try {
-            partnerModel.deletePartner();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        init();
-    }
+        if(partnerTable.getSelectionModel().getSelectedItem()!=null) {
+            PartnerFX partnerFX = partnerTable.getSelectionModel().getSelectedItem();
+            partnerModel.setPartnerFX(partnerFX);
+            try {
+                Boolean result = partnerModel.deletePartner();
+                if(result==false){
+                    DialogUtil.dialogAboutApplication("dialog.title","dialog.header","dialog.partner.delete");
+                }else{
+                    init();
+                    partnerTable.getSelectionModel().selectLast();
+                    partnerTable.scrollTo(partnerTable.getSelectionModel().getSelectedItem());
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
+        }
+    }
     @FXML
     public void editPartnerOnAction() {
+        if(partnerTable.getSelectionModel().getSelectedItem()!=null){
         PartnerFX partnerFX = partnerTable.getSelectionModel().getSelectedItem();
 
         FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_PARTNER_TABLE_EDIT_STAGE_FXML));
@@ -159,5 +165,17 @@ public class PartnerTableStageController {
         partnerTableEditStageController.setStage(stage1);
         stage1.showAndWait();
         init();
+        partnerTable.getSelectionModel().select(partnerListModel.getPartnerFXObservableList().filtered(partnerFX1 -> partnerFX1.getId()==partnerFX.getId()).get(0));
+            partnerTable.scrollTo(partnerTable.getSelectionModel().getSelectedItem());
+    }}
+
+    public void partnerPrintOnAction() {
+        try {
+            partnerListModel.printPartnerList();
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

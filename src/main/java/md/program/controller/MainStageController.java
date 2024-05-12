@@ -16,8 +16,10 @@ import java.io.IOException;
 
 public class MainStageController {
     private static final String FXML_RATE_TABLE_STAGE_FXML = "/FXML/RateTableStage.fxml";
+    private static final String FXML_COUNTER_RATE_TABLE_STAGE_FXML = "/FXML/CounterTableStage.fxml";
     private static final String FXML_PARTNER_STAGE_FXML = "/FXML/PartnerTableStage.fxml";
     private static final String FXML_PAYMENT_PLAN_STAGE_FXML = "/FXML/PaymentPlanTableStage.fxml";
+    private static final String FXML_CHANGE_PASSWORD_STAGE_FXML = "/FXML/ChangePasswordStage.fxml";
     @FXML
     private BorderPane borderPane;
 
@@ -80,5 +82,45 @@ public class MainStageController {
         PaymentPlanTableStageController paymentPlanTableStageController = fxmlLoader.getController();
         paymentPlanTableStageController.init();
         borderPane.setCenter(bordPane);
+    }
+
+    @FXML
+    public void changePasswordOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_CHANGE_PASSWORD_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("change.password.title"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        ChangePasswordStageController changePasswordStageController = fxmlLoader.getController();
+        changePasswordStageController.setStage(stage1);
+        changePasswordStageController.init();
+        stage1.showAndWait();
+    }
+
+    public void counterRateTableOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COUNTER_RATE_TABLE_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("rate.table.title"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        CounterTableStageController counterTableStageController = fxmlLoader.getController();
+        counterTableStageController.setThisStage(stage1);
+        stage1.showAndWait();
     }
 }

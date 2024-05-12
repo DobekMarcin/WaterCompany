@@ -4,38 +4,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v3">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableAddStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableEditStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PaymentPlanTableStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/PaymentPlan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PaymentPlanRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanFX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanListModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/PaymentPlanConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableAddStage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableEditStage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PaymentPlanTableStage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icon/money.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v4">
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/ChangePasswordStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/CounterTableAddStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/CounterTableStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PaymentPlanEditStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/CounterYear.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/ChangePasswordFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/ChangePasswordModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/CounterYearFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/print/PaymentBillPrint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/print/PaymentPlanPrint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/DialogUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/ChangePasswordStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/CounterTableAddStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/CounterTableStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PaymentPlanTableEditStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/JR_TEMPLATES/partnerList.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/JR_TEMPLATES/paymentBill.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/JR_TEMPLATES/paymentPlanList.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerStageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableAddStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableAddStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableEditStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableEditStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerTableStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PaymentPlanTableStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PaymentPlanTableStageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/RateTableAddStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/RateTableAddStageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/RateTableStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/RateTableStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/model/RateYear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/RateYear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/model/Partner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/Partner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PaymentPlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PaymentPlanRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/RateYearRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/RateYearRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/RateYearModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/RateYearConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/RateYearConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/PartnerConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/PartnerConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PartnerStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableAddStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableAddStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableEditStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableEditStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerTableStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PaymentPlanTableStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PaymentPlanTableStage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/RateTableStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/RateTableStage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
@@ -67,19 +81,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/reina/IdeaProjects/WaterCompany/src/main/resources/FXML",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.36666667",
-    "settings.editor.selected.configurable": "File.Encoding"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/reina/IdeaProjects/WaterCompany/src/main/resources/FXML&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.36666667&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\FXML" />
@@ -171,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701821627886</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="v4">
+      <option name="closed" value="true" />
+      <created>1702245602943</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702245602943</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -190,6 +213,7 @@
     <MESSAGE value="v1" />
     <MESSAGE value="v2" />
     <MESSAGE value="v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="v3" />
+    <MESSAGE value="v4" />
+    <option name="LAST_COMMIT_MESSAGE" value="v4" />
   </component>
 </project>

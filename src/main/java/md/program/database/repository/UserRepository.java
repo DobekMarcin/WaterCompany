@@ -63,4 +63,24 @@ public class UserRepository {
         connection.close();
         return  check;
     }
+    public Integer checkPassword(String password) throws SQLException {
+        PreparedStatement statement=null;
+        Connection connection = getConnection();
+        Integer check = 0;
+        statement = connection.prepareStatement("Select count(*) as count from md.user where id=1 and password=?;");
+        statement.setString(1,password);
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+            check=rs.getInt("count");
+        connection.close();
+        return  check;
+    }
+    public void changePassword(String newPassword) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("UPDATE md.user set password=? where id=1");
+        statement.setString(1, newPassword);
+        statement.executeUpdate();
+        connection.close();
+    }
 }

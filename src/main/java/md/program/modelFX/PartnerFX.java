@@ -9,8 +9,31 @@ public class PartnerFX {
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleStringProperty surname = new SimpleStringProperty();
     private SimpleStringProperty address = new SimpleStringProperty();
+    private SimpleStringProperty postCode = new SimpleStringProperty();
+    private SimpleStringProperty post = new SimpleStringProperty();
+    private SimpleStringProperty nip = new SimpleStringProperty();
     private SimpleIntegerProperty peopleCount = new SimpleIntegerProperty();
     private SimpleBooleanProperty archives = new SimpleBooleanProperty();
+    private SimpleBooleanProperty company = new SimpleBooleanProperty();
+    private SimpleBooleanProperty meter = new SimpleBooleanProperty();
+
+    public PartnerFX(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty address,SimpleStringProperty postCode,SimpleStringProperty post,SimpleStringProperty nip, SimpleIntegerProperty peopleCount, SimpleBooleanProperty archives, SimpleBooleanProperty company,SimpleBooleanProperty meter) {
+
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.postCode = postCode;
+        this.post = post;
+        this.nip = nip;
+        this.peopleCount = peopleCount;
+        this.archives = archives;
+        this.company = company;
+        this.meter = meter;
+    }
+
+    public PartnerFX() {
+    }
 
     public int getId() {
         return id.get();
@@ -60,6 +83,42 @@ public class PartnerFX {
         this.address.set(address);
     }
 
+    public String getPostCode() {
+        return postCode.get();
+    }
+
+    public SimpleStringProperty postCodeProperty() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode.set(postCode);
+    }
+
+    public String getPost() {
+        return post.get();
+    }
+
+    public SimpleStringProperty postProperty() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post.set(post);
+    }
+
+    public String getNip() {
+        return nip.get();
+    }
+
+    public SimpleStringProperty nipProperty() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip.set(nip);
+    }
+
     public int getPeopleCount() {
         return peopleCount.get();
     }
@@ -82,5 +141,29 @@ public class PartnerFX {
 
     public void setArchives(boolean archives) {
         this.archives.set(archives);
+    }
+
+    public boolean isCompany() {
+        return company.get();
+    }
+
+    public SimpleBooleanProperty companyProperty() {
+        return company;
+    }
+
+    public void setCompany(boolean company) {
+        this.company.set(company);
+    }
+
+    public boolean isMeter() {
+        return meter.get();
+    }
+
+    public SimpleBooleanProperty meterProperty() {
+        return meter;
+    }
+
+    public void setMeter(boolean meter) {
+        this.meter.set(meter);
     }
 }

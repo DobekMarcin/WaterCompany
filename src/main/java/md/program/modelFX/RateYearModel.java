@@ -1,5 +1,7 @@
 package md.program.modelFX;
 
+import md.program.database.model.RateYear;
+import md.program.database.repository.PaymentPlanRepository;
 import md.program.database.repository.RateYearRepository;
 import md.program.utils.converters.RateYearConverter;
 
@@ -12,10 +14,20 @@ public class RateYearModel {
     RateYearRepository rateYearRepository = new RateYearRepository();
 
     public void addRateYear() throws SQLException {
-        rateYearRepository.addRateYear(RateYearConverter.convertToRateYear(rateYearFX));
+        RateYear temp = RateYearConverter.convertToRateYear(rateYearFX);
+        temp.setRate(Math.round(temp.getRate() * 100.0) / 100.0);
+        rateYearRepository.addRateYear(temp);
     }
-    public void deleteRateYear() throws SQLException {
-        rateYearRepository.deleteRateYearById(RateYearConverter.convertToRateYear(rateYearFX));
+
+    public Boolean deleteRateYear() throws SQLException {
+        RateYear temp = RateYearConverter.convertToRateYear(rateYearFX);
+        Boolean result = rateYearRepository.checkRateYearGeneratedStatus(temp);
+        if (!result) {
+            rateYearRepository.deleteRateYearById(RateYearConverter.convertToRateYear(rateYearFX));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public RateYearFX getRateYearFX() {
@@ -28,5 +40,14 @@ public class RateYearModel {
 
     public void updateRateYearGeneratedStatus() throws SQLException {
         rateYearRepository.updateRateYearGeneratedStatus(RateYearConverter.convertToRateYear(rateYearFX));
+    }
+
+    public Boolean valid() {
+        if ((Math.round((rateYearFX.getRate() * 100.0) / 100.0)) == 0) return false;
+        if (rateYearFX.getYear() == 0) return false;
+        return true;
+    }
+    public void initYear() throws SQLException {
+        rateYearFX.setYear(rateYearRepository.getNextYear());
     }
 }

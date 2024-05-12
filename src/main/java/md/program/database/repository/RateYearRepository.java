@@ -80,4 +80,27 @@ public class RateYearRepository {
         statement.executeUpdate();
         connection.close();
     }
+    public Boolean checkRateYearGeneratedStatus(RateYear rateYear) throws SQLException {
+        PreparedStatement statement=null;
+        Connection connection = getConnection();
+        Boolean check = false;
+        statement = connection.prepareStatement("Select payment_plan_is_generated as result from md.rate_year where id=?;");
+        statement.setInt(1,rateYear.getId());
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+            check=rs.getBoolean("result");
+        connection.close();
+        return  check;
+    }
+    public Integer getNextYear() throws SQLException {
+        PreparedStatement statement=null;
+        Connection connection = getConnection();
+        Integer check = -1;
+        statement = connection.prepareStatement("Select coalesce(max(year),-1)+1 as year from md.rate_year;");
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+            check=rs.getInt("year");
+        connection.close();
+        return  check;
+    }
 }

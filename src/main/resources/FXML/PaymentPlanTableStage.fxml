@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,26 +10,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.PaymentPlanTableStageController">
    <center>
       <TableView fx:id="paymentTable" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="%payment.table.id" />
-            <TableColumn fx:id="nameColumn" prefWidth="150.0" text="%payment.table.name" />
-            <TableColumn fx:id="surnameColumn" prefWidth="150.0" text="%payment.table.surname" />
-            <TableColumn fx:id="m1Column" text="%payment.table.m1" />
-          <TableColumn fx:id="m2Column" text="%payment.table.m2" />
-          <TableColumn fx:id="m3Column" text="%payment.table.m3" />
-            <TableColumn fx:id="m4Column" text="%payment.table.m4" />
-            <TableColumn fx:id="m5Column" text="%payment.table.m5" />
-            <TableColumn fx:id="m6Column" text="%payment.table.m6" />
-            <TableColumn fx:id="m7Column" text="%payment.table.m7" />
-            <TableColumn fx:id="m8Column" text="%payment.table.m8" />
-            <TableColumn fx:id="m9Column" text="%payment.table.m9" />
-            <TableColumn fx:id="m10Column" text="%payment.table.m10" />
-            <TableColumn fx:id="m11Column" text="%payment.table.m11" />
-            <TableColumn fx:id="m12Column" text="%payment.table.m12" />
+            <TableColumn id="right" fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="%payment.table.id" />
+            <TableColumn id="left" fx:id="nameColumn" prefWidth="150.0" text="%payment.table.name" />
+            <TableColumn id="left" fx:id="surnameColumn" prefWidth="150.0" text="%payment.table.surname" />
+            <TableColumn id="right" fx:id="m1Column" text="%payment.table.m1" />
+          <TableColumn id="right" fx:id="m2Column" text="%payment.table.m2" />
+          <TableColumn id="right" fx:id="m3Column" text="%payment.table.m3" />
+            <TableColumn id="right" fx:id="m4Column" text="%payment.table.m4" />
+            <TableColumn id="right" fx:id="m5Column" text="%payment.table.m5" />
+            <TableColumn id="right" fx:id="m6Column" text="%payment.table.m6" />
+            <TableColumn id="right" fx:id="m7Column" text="%payment.table.m7" />
+            <TableColumn id="right" fx:id="m8Column" text="%payment.table.m8" />
+            <TableColumn id="right" fx:id="m9Column" text="%payment.table.m9" />
+            <TableColumn id="right" fx:id="m10Column" text="%payment.table.m10" />
+            <TableColumn id="right" fx:id="m11Column" text="%payment.table.m11" />
+            <TableColumn id="right" fx:id="m12Column" text="%payment.table.m12" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -41,9 +43,9 @@
    <bottom>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="%partner.table.add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-            <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" text="%partner.table.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" />
-            <Button layoutX="98.0" layoutY="7.0" mnemonicParsing="false" text="%partner.table.edit" />
+            <Button layoutX="98.0" layoutY="7.0" mnemonicParsing="false" onAction="#editPaymentPlanOnAction" text="%partner.table.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+            <Button layoutX="1254.0" layoutY="7.0" mnemonicParsing="false" onAction="#paymentPlanPrintOnAction" text="%payment.table.print" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button layoutX="1121.0" mnemonicParsing="false" onAction="#paymentPlanBillOcAction" text="%payment.table.print.bill" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="0.0" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -57,6 +59,11 @@
             <TextField fx:id="filterTextField" layoutX="901.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
             <Label layoutX="1046.0" layoutY="5.0" prefHeight="35.0" prefWidth="63.0" text="%textfield.filter" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="5.0" />
             <Label layoutX="988.0" layoutY="15.0" prefHeight="35.0" prefWidth="40.0" text="%textfield.year" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0" />
+            <CheckBox fx:id="companyFilter" layoutX="177.0" layoutY="7.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="117.0" stylesheets="@../css/style.css" text="%payment.filter.company" visible="false" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="7.0">
+             <font>
+                 <Font name="Segoe UI Bold" size="13.0" />
+             </font>
+            </CheckBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />

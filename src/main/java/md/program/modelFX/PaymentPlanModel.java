@@ -5,6 +5,7 @@ import md.program.database.model.PaymentPlan;
 import md.program.database.model.RateYear;
 import md.program.database.repository.PartnerRepository;
 import md.program.database.repository.PaymentPlanRepository;
+import md.program.utils.converters.PaymentPlanConverter;
 import md.program.utils.converters.RateYearConverter;
 
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentPlanModel {
+    private PaymentPlanFX paymentPlanFX = new PaymentPlanFX();
     private PartnerRepository partnerRepository = new PartnerRepository();
     private PaymentPlanRepository paymentPlanRepository = new PaymentPlanRepository();
 
@@ -41,6 +43,21 @@ public class PaymentPlanModel {
         for (PaymentPlan item : paymentPlanList) {
             paymentPlanRepository.addPartner(item);
         }
-
     }
+    public void deletePaymentPlanByYear(RateYearFX rateYearFX) throws SQLException {
+        paymentPlanRepository.deletePaymnetPlanByYear(RateYearConverter.convertToRateYear(rateYearFX));
+    }
+
+    public void updatePaymentPlan() throws SQLException {
+        paymentPlanRepository.updatePaymentPlan(PaymentPlanConverter.convertToPaymentPlan(paymentPlanFX));
+    }
+
+    public PaymentPlanFX getPaymentPlanFX() {
+        return paymentPlanFX;
+    }
+
+    public void setPaymentPlanFX(PaymentPlanFX paymentPlanFX) {
+        this.paymentPlanFX = paymentPlanFX;
+    }
+
 }

@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Label?>
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.PartnerTableStageController">
     <top>
         <AnchorPane BorderPane.alignment="CENTER">
@@ -24,12 +24,17 @@
     <center>
       <TableView fx:id="partnerTable" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumnPartnerTable" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="%partner.table.id" />
-          <TableColumn fx:id="nameColumnPartnerTable" minWidth="100.0" prefWidth="100.0" text="%partner.table.name" />
-            <TableColumn fx:id="surnameColumnPartnerTable" minWidth="100.0" prefWidth="100.0" text="%partner.table.surname" />
-            <TableColumn fx:id="addressColumnPartnerTable" minWidth="150.0" prefWidth="150.0" text="%partner.table.address" />
-            <TableColumn fx:id="peopleColumnPartnerTable" minWidth="50.0" prefWidth="50.0" text="%partner.table.people" />
-            <TableColumn fx:id="archiveColumnPartnerTable" minWidth="50.0" prefWidth="75.0" text="%partner.table.archives" />
+          <TableColumn id="right" fx:id="idColumnPartnerTable" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="%partner.table.id" />
+          <TableColumn id="left" fx:id="nameColumnPartnerTable" minWidth="80.0" text="%partner.table.name" />
+            <TableColumn id="left" fx:id="surnameColumnPartnerTable" minWidth="120.0" prefWidth="120.0" text="%partner.table.surname" />
+            <TableColumn id="left" fx:id="addressColumnPartnerTable" minWidth="120.0" prefWidth="120.0" text="%partner.table.address" />
+            <TableColumn id="left" fx:id="postCodeColumnPartnerTable" prefWidth="75.0" text="%partner.table.postCode" />
+            <TableColumn id="left" fx:id="postColumnPartnerTable" prefWidth="75.0" text="%partner.table.post" />
+            <TableColumn id="right" fx:id="peopleColumnPartnerTable" minWidth="60.0" prefWidth="60.0" text="%partner.table.people" />
+            <TableColumn id="center" fx:id="companyColumnPartnerTable" prefWidth="75.0" text="%partner.table.company" />
+            <TableColumn id="left" fx:id="nipColumnPartnerTable" prefWidth="75.0" text="%partner.table.nip" />
+            <TableColumn fx:id="meterColumnPartnerTable" prefWidth="75.0" text="%partner.table.meter" />
+            <TableColumn id="center" fx:id="archiveColumnPartnerTable" minWidth="50.0" prefWidth="75.0" text="%partner.table.archives" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -40,11 +45,12 @@
       </TableView>
    </center>
    <bottom>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="19.0" prefWidth="580.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#addPartnerOnAction" text="%partner.table.add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
             <Button layoutX="200.0" layoutY="7.0" mnemonicParsing="false" onAction="#deletePartnerOnAction" text="%partner.table.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" />
-            <Button layoutX="98.0" layoutY="7.0" mnemonicParsing="false" onAction="#editPartnerOnAction" text="%partner.table.edit" />
+            <Button layoutX="98.0" layoutY="7.0" mnemonicParsing="false" onAction="#editPartnerOnAction" text="%partner.table.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="98.0" />
+            <Button layoutX="514.0" layoutY="7.0" mnemonicParsing="false" onAction="#partnerPrintOnAction" text="%partner.table.print" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
