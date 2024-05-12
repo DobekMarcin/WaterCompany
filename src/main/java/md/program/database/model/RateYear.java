@@ -4,7 +4,6 @@ public class RateYear {
     private Integer id;
     private Integer year;
     private Double rate;
-    private Boolean paymentPlanIsGenerated;
 
     public Integer getId() {
         return id;
@@ -30,11 +29,9 @@ public class RateYear {
         this.rate = rate;
     }
 
-    public Boolean getPaymentPlanIsGenerated() {
-        return paymentPlanIsGenerated;
-    }
-
-    public void setPaymentPlanIsGenerated(Boolean paymentPlanIsGenerated) {
-        this.paymentPlanIsGenerated = paymentPlanIsGenerated;
+    public RateYear() {
+        id=0;
+        year=0;
+        rate=0d;
     }
 }

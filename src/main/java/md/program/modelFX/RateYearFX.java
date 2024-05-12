@@ -9,7 +9,6 @@ public class RateYearFX {
     private SimpleIntegerProperty id = new SimpleIntegerProperty();
     private SimpleIntegerProperty year = new SimpleIntegerProperty();
     private SimpleDoubleProperty rate = new SimpleDoubleProperty();
-    private SimpleBooleanProperty paymentPlanIsGenerated = new SimpleBooleanProperty();
 
     public int getId() {
         return id.get();
@@ -45,18 +44,6 @@ public class RateYearFX {
 
     public void setRate(double rate) {
         this.rate.set(rate);
-    }
-
-    public boolean isPaymentPlanIsGenerated() {
-        return paymentPlanIsGenerated.get();
-    }
-
-    public SimpleBooleanProperty paymentPlanIsGeneratedProperty() {
-        return paymentPlanIsGenerated;
-    }
-
-    public void setPaymentPlanIsGenerated(boolean paymentPlanIsGenerated) {
-        this.paymentPlanIsGenerated.set(paymentPlanIsGenerated);
     }
 
     @Override

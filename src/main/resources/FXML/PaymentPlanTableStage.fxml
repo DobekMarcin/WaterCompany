@@ -46,6 +46,8 @@
             <Button layoutX="98.0" layoutY="7.0" mnemonicParsing="false" onAction="#editPaymentPlanOnAction" text="%partner.table.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
             <Button layoutX="1254.0" layoutY="7.0" mnemonicParsing="false" onAction="#paymentPlanPrintOnAction" text="%payment.table.print" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Button layoutX="1121.0" mnemonicParsing="false" onAction="#paymentPlanBillOcAction" text="%payment.table.print.bill" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="134.0" layoutY="4.0" mnemonicParsing="false" onAction="#generatePaymentPlanOnAction" text="%payment.table.generate" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
+            <Button layoutX="250.0" layoutY="7.0" mnemonicParsing="false" text="%payment.table.generate.one" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="235.0" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />

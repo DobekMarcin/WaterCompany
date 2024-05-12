@@ -1,13 +1,13 @@
 package md.program.database.repository;
 
-import md.program.database.model.Partner;
+import md.program.database.model.CounterYear;
 import md.program.database.model.RateYear;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RateYearRepository {
+public class CounterYearRepository {
 
     private final String url = "jdbc:postgresql://127.0.0.1/water_company";
     private final String user = "postgres";
@@ -33,56 +33,38 @@ public class RateYearRepository {
         return DriverManager.getConnection(url, user, password);
     }
 
-    public List<RateYear> getAllRateYear() throws SQLException {
+    public List<CounterYear> getAllCounterYear() throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        List<RateYear> rateYears=new ArrayList<>();
-        RateYear temp = null;
-        statement = connection.prepareStatement("Select id,year,rate from md.rate_year order by id");
+        List<CounterYear> counterYears=new ArrayList<>();
+        CounterYear temp = null;
+        statement = connection.prepareStatement("Select id,year,rate from md.counter_rate_year order by id");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
-            temp = new RateYear();
+            temp = new CounterYear();
             temp.setId(rs.getInt("id"));
             temp.setYear(rs.getInt("year"));
-            temp.setRate(rs.getDouble("rate"));
-            rateYears.add(temp);
+            temp.setCounterRate(rs.getDouble("rate"));
+            counterYears.add(temp);
         }
         connection.close();
-        return rateYears;
+        return counterYears;
 
     }
-
-    public RateYear getRateYear(Integer year) throws SQLException {
+    public void addRateYear(CounterYear counterYear) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        RateYear temp = null;
-        statement = connection.prepareStatement("Select id,year,rate from md.rate_year where year=? order by id limit 1;");
-        statement.setInt(1,year);
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            temp = new RateYear();
-            temp.setId(rs.getInt("id"));
-            temp.setYear(rs.getInt("year"));
-            temp.setRate(rs.getDouble("rate"));
-        }
-        connection.close();
-        return temp;
-
-    }
-    public void addRateYear(RateYear rateYear) throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        statement = connection.prepareStatement("Insert into md.rate_year (id,year,rate) values ((Select coalesce(max(id),0)+1 from md.rate_year),?,?)");
-        statement.setInt(1, rateYear.getYear());
-        statement.setDouble(2, rateYear.getRate());
+        statement = connection.prepareStatement("Insert into md.counter_rate_year (id,year,rate) values ((Select coalesce(max(id),0)+1 from md.counter_rate_year),?,?)");
+        statement.setInt(1, counterYear.getYear());
+        statement.setDouble(2, counterYear.getCounterRate());
         statement.executeUpdate();
         connection.close();
     }
-    public void deleteRateYearById(RateYear rateYear) throws SQLException {
+    public void deleteRateYearById(CounterYear counterYear) throws SQLException {
         PreparedStatement statement;
         Connection connection = getConnection();
-        statement = connection.prepareStatement("Delete from md.rate_year where id=?");
-        statement.setInt(1,rateYear.getId());
+        statement = connection.prepareStatement("Delete from md.counter_rate_year where id=?");
+        statement.setInt(1,counterYear.getId());
         statement.executeUpdate();
         connection.close();
     }
@@ -91,7 +73,7 @@ public class RateYearRepository {
         PreparedStatement statement=null;
         Connection connection = getConnection();
         Integer check = -1;
-        statement = connection.prepareStatement("Select coalesce(max(year),-1)+1 as year from md.rate_year;");
+        statement = connection.prepareStatement("Select coalesce(max(year),-1)+1 as year from md.counter_rate_year;");
         ResultSet rs = statement.executeQuery();
         while(rs.next())
             check=rs.getInt("year");

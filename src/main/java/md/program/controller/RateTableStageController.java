@@ -54,9 +54,6 @@ public class RateTableStageController {
         yearRateTable.setItems(rateYearListModel.getRateYearFXObservableList());
         yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty());
         rateColumn.setCellValueFactory(cellData -> cellData.getValue().rateProperty().asString());
-        planColumn.setCellValueFactory(cellData -> cellData.getValue().paymentPlanIsGeneratedProperty());
-        planColumn.setCellFactory(CheckBoxTableCell.forTableColumn(planColumn));
-
         rateColumn.setCellFactory(param-> new TableCell<RateYearFX,String>(){
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -133,45 +130,4 @@ public class RateTableStageController {
         }
     }
 
-    @FXML
-    public void generatePaymentPlanButtonOnAction() {
-        try {
-            RateYearFX rateYearFX = yearRateTable.getSelectionModel().getSelectedItem();
-            if (rateYearFX != null) {
-                if (rateYearFX.isPaymentPlanIsGenerated()) {
-                    DialogUtil.dialogAboutApplication("dialog.title","dialog.header","dialog.payment.plan.decription");
-                } else {
-                    paymentPlanModel.generatePaymentPlan(rateYearFX);
-                    rateYearFX.setPaymentPlanIsGenerated(true);
-                    rateYearModel.setRateYearFX(rateYearFX);
-                    rateYearModel.updateRateYearGeneratedStatus();
-                    initialize();
-                    yearRateTable.getSelectionModel().select(rateYearListModel.getRateYearFXObservableList().filtered(partnerFX1 -> partnerFX1.getId()==rateYearFX.getId()).get(0));
-                    yearRateTable.scrollTo(yearRateTable.getSelectionModel().getSelectedItem());
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void deletePaymentPlanButtonOnAction() {
-        RateYearFX rateYearFX = yearRateTable.getSelectionModel().getSelectedItem();
-        if (rateYearFX != null) {
-            rateYearModel.setRateYearFX(rateYearFX);
-            try {
-                paymentPlanModel.deletePaymentPlanByYear(rateYearFX);
-                rateYearFX.setPaymentPlanIsGenerated(false);
-                rateYearModel.setRateYearFX(rateYearFX);
-                rateYearModel.updateRateYearGeneratedStatus();
-                    initialize();
-                yearRateTable.getSelectionModel().select(rateYearListModel.getRateYearFXObservableList().filtered(partnerFX1 -> partnerFX1.getId()==rateYearFX.getId()).get(0));
-                yearRateTable.scrollTo(yearRateTable.getSelectionModel().getSelectedItem());
-
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 }

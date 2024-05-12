@@ -116,7 +116,7 @@ public class MainStageController {
         }
         Stage stage1 = new Stage();
         stage1.setScene(scene);
-        stage1.setTitle(Utils.getResourceBundle().getString("rate.table.title"));
+        stage1.setTitle(Utils.getResourceBundle().getString("counter.rate.table.title"));
         stage1.initModality(Modality.APPLICATION_MODAL);
         stage1.setResizable(false);
         CounterTableStageController counterTableStageController = fxmlLoader.getController();

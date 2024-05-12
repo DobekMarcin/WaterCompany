@@ -4,37 +4,88 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import md.program.modelFX.CounterYearFX;
+import md.program.modelFX.CounterYearListModel;
+import md.program.modelFX.CounterYearModel;
+import md.program.modelFX.RateYearFX;
 import md.program.stage.LoginStage;
+import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 public class CounterTableStageController {
     private static final String FXML_COUNTER_TABLE_ADD_STAGE_FXML = "/FXML/CounterTableAddStage.fxml";
 
     @FXML
-    private TableView yearRateTable;
+    private TableView<CounterYearFX> yearRateTable;
     @FXML
-    private TableColumn yearColumn;
+    private TableColumn<CounterYearFX, Number> yearColumn;
     @FXML
-    private TableColumn rateColumn;
+    private TableColumn<CounterYearFX, String> rateColumn;
     private Stage thisStage;
+    private CounterYearListModel counterYearListModel = new CounterYearListModel();
+    private CounterYearModel counterYearModel = new CounterYearModel();
 
 
     public void initialize() {
+        try {
 
+            counterYearListModel.init();
+            tableInit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    private void tableInit() {
+        yearRateTable.setItems(counterYearListModel.getCounterYearFXObservableList());
+        yearColumn.setCellValueFactory(cellData -> cellData.getValue().yearProperty());
+        rateColumn.setCellValueFactory(cellData -> cellData.getValue().rateProperty().asString());
+
+        rateColumn.setCellFactory(param-> new TableCell<CounterYearFX,String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setText("");
+                } else {
+                    setText(Utils.getDecimalFormatWithTwoPlaces().format(Double.valueOf(item)));
+                }
+            }
+        });
+    }
     public void addCounterRateButtonOnAction() {
         openCounterTableAddStage();
     }
 
     public void deleteCounterRateButtonOnAction() {
+
+        CounterYearFX counterYearFX = yearRateTable.getSelectionModel().getSelectedItem();
+        if (counterYearFX != null) {
+            counterYearModel.setCounterYearFX(counterYearFX);
+            try {
+                Boolean result = counterYearModel.deleteCounterYear();
+                if(!result){
+                    DialogUtil.dialogAboutApplication("dialog.title","dialog.header","dialog.year.rate.delete");
+                }else{
+                    initialize();
+                    yearRateTable.getSelectionModel().selectLast();
+                    yearRateTable.scrollTo(yearRateTable.getSelectionModel().getSelectedItem());
+                }
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void closeButtonOnAction() {
