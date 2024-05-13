@@ -58,6 +58,8 @@ public class PaymentPlanRepository {
         connection.close();
     }
 
+
+
     public List<PaymentPlan> getAllPaymentPlanByYear(Integer yearId) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();

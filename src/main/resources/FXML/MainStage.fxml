@@ -46,6 +46,15 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#counterMenuButtonOnAction">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/counter.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <Button mnemonicParsing="false" onAction="#paymentPlanMenuButtonOnAction">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">

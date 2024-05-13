@@ -19,6 +19,7 @@ public class MainStageController {
     private static final String FXML_COUNTER_RATE_TABLE_STAGE_FXML = "/FXML/CounterTableStage.fxml";
     private static final String FXML_PARTNER_STAGE_FXML = "/FXML/PartnerTableStage.fxml";
     private static final String FXML_PAYMENT_PLAN_STAGE_FXML = "/FXML/PaymentPlanTableStage.fxml";
+    private static final String FXML_COUNTER_READ_STAGE_FXML = "/FXML/CounterReadTableStage.fxml";
     private static final String FXML_CHANGE_PASSWORD_STAGE_FXML = "/FXML/ChangePasswordStage.fxml";
     @FXML
     private BorderPane borderPane;
@@ -122,5 +123,20 @@ public class MainStageController {
         CounterTableStageController counterTableStageController = fxmlLoader.getController();
         counterTableStageController.setThisStage(stage1);
         stage1.showAndWait();
+    }
+
+    public void counterMenuButtonOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COUNTER_READ_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+
+        Pane bordPane = null;
+        try {
+            bordPane = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        CounterReadTableStageController counterReadTableStageController = fxmlLoader.getController();
+        counterReadTableStageController.init();
+        borderPane.setCenter(bordPane);
     }
 }

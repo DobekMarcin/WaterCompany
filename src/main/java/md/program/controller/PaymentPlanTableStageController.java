@@ -69,10 +69,12 @@ public class PaymentPlanTableStageController {
 
     private PaymentPlanListModel paymentPlanListModel = new PaymentPlanListModel();
     private PaymentPlanModel paymentPlanModel = new PaymentPlanModel();
-
-    private Integer initializeYear=0;
+    private PaymentPlanRepository paymentPlanRepository = new PaymentPlanRepository();
+    private Integer initializeYear = 0;
 
     public void init() {
+        paymentPlanListModel.clearList();
+        paymentTable.refresh();
         paymentPlanListModel.filterProperty().bindBidirectional(filterTextField.textProperty());
         paymentPlanListModel.companyFilterProperty().bindBidirectional(companyFilter.selectedProperty());
         tableInit();
@@ -134,7 +136,7 @@ public class PaymentPlanTableStageController {
     public void selectYearOnAction() {
         Integer planYear = yearComboBox.getSelectionModel().getSelectedItem();
         try {
-          if(planYear!=null)  paymentPlanListModel.init(planYear);
+            if (planYear != null) paymentPlanListModel.init(planYear);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -222,5 +224,27 @@ public class PaymentPlanTableStageController {
 
     public void setInitializeYear(Integer initializeYear) {
         this.initializeYear = initializeYear;
+    }
+
+    public void deletePaymentPlanOnAction() {
+        try {
+            Integer year = yearComboBox.getSelectionModel().getSelectedItem();
+            if (year>0) paymentPlanRepository.deletePaymnetPlanByYear(year);
+            init();
+            initComboBox();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void generatePaymentPlanOneOnAction() {
+        PaymentPlanFX paymentPlanFX = paymentTable.getSelectionModel().getSelectedItem();
+        try {
+            paymentPlanModel.generatePaymentPlanOnePerson(yearComboBox.getSelectionModel().getSelectedItem(),paymentPlanFX);
+            yearComboBox.getSelectionModel().select(yearComboBox.getSelectionModel().getSelectedItem());
+            selectYearOnAction();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
