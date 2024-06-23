@@ -19,6 +19,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="%menu.file">
                   <items>
+                        <MenuItem mnemonicParsing="false" onAction="#defaultYearOnAction" text="%menu.file.year" />
                         <MenuItem mnemonicParsing="false" onAction="#changePasswordOnAction" text="%menu.file.change.password" />
                     <MenuItem mnemonicParsing="false" onAction="#closeOnAction" text="%menu.file.close" />
                   </items>

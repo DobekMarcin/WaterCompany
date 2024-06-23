@@ -113,6 +113,24 @@ public class PaymentPlanRepository {
         connection.close();
     }
 
+    public void deletePaymnetPlanByYearNoCompany(Integer year) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("delete from md.payment_plan where year_id=? and partner_id in (Select id from md.partner_list where company=false) ");
+        statement.setInt(1, year);
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public void deletePaymnetPlanByPerson(PaymentPlan paymentPlan) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("delete from md.payment_plan where id=?");
+        statement.setInt(1, paymentPlan.getId());
+        statement.executeUpdate();
+        connection.close();
+    }
+
     public void updatePaymentPlan(PaymentPlan paymentPlan) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
@@ -149,4 +167,17 @@ public class PaymentPlanRepository {
         return yearList;
     }
 
+
+    public Integer chceckIsPaymentPlanByDefaultYear(Integer defaultYear) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        Integer check = 0;
+        statement = connection.prepareStatement("Select count(*) as count from md.payment_plan where year_id=?;");
+        statement.setInt(1, defaultYear);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next())
+            check = rs.getInt("count");
+        connection.close();
+        return check;
+    }
 }

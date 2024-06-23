@@ -96,15 +96,11 @@ public class PartnerListModel {
 
         String filepath2= LoginStage.class.getResource(JR_PRINT_ALL_PARTNER_PDF).getPath();
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("firstName","Aleksandra");
-        parameters.put("lastName","Dobek");
-        parameters.put("dob","13.12.1999");
-        parameters.put("age",28);
+
         parameters.put("TestDataSet",jrBeanCollectionDataSource);
         JasperReport report = JasperCompileManager.compileReport(filepath2);
         JasperPrint print = JasperFillManager.fillReport(report,parameters,new JREmptyDataSource());
 
-        JasperExportManager.exportReportToPdfFile(print,"C:\\Users\\reina\\IdeaProjects\\JR\\src\\main\\resources\\static\\raport.pdf");
         JasperViewer jv=new JasperViewer(print,false);
         jv.setTitle("Challan");
         jv.setVisible(true);

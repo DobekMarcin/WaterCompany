@@ -1,6 +1,5 @@
 package md.program.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import md.program.database.repository.CounterReadRepository;
-import md.program.database.repository.PaymentPlanRepository;
 import md.program.modelFX.*;
 import md.program.stage.LoginStage;
 import md.program.utils.Utils;
@@ -21,6 +19,7 @@ import java.util.List;
 public class CounterReadTableStageController {
 
     private static final String FXML_INITIALIZE_YEAR_COUNTER_READ_STAGE_FXML = "/FXML/InitializeYearCounterReadStage.fxml";
+    private static final String FXML_COUNTER_READ_EDIT_TABLE_STAGE_FXML = "/FXML/CounterReadEditTableStage.fxml";
 
     @FXML
     private CheckBox companyFilter;
@@ -62,27 +61,31 @@ public class CounterReadTableStageController {
     private TableColumn<CounterReadFX,String> m12Column;
 
     private CounterReadListModel counterReadListModel = new CounterReadListModel();
-    private PaymentPlanModel paymentPlanModel = new PaymentPlanModel();
     private CounterReadRepository counterReadRepository = new CounterReadRepository();
     private Integer initializeYear = 0;
     private CounterReadModel counterReadModel = new CounterReadModel();
+private SettingsModel settingsModel = new SettingsModel();
+
 
     public void init() {
+
         counterReadListModel.clearList();
         counterReadTable.refresh();
         counterReadListModel.filterProperty().bindBidirectional(filterTextField.textProperty());
-        counterReadListModel.companyFilterProperty().bindBidirectional(companyFilter.selectedProperty());
         tableInit();
         initComboBox();
         filterTextField.textProperty().addListener(observable -> counterReadListModel.filterPaymentList());
-        companyFilter.selectedProperty().addListener(observable -> {
-
-            counterReadListModel.filterPaymentList();
-        });
-
+        try {
+            Boolean isPaymentPlan =  counterReadModel.chceckCounterReadByDefayultYear(settingsModel.getDefaultYear());
+            if(isPaymentPlan) {
+                yearComboBox.getSelectionModel().select(settingsModel.getDefaultYear());
+                selectYearOnAction();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void initComboBox() {
-
         try {
             yearComboBox.setItems(counterReadModel.getAllYear());
         } catch (SQLException e) {
@@ -135,6 +138,30 @@ public class CounterReadTableStageController {
     }
 
     public void editCounterReadOnAction() {
+        CounterReadFX counterReadFX = counterReadTable.getSelectionModel().getSelectedItem();
+        if (counterReadFX != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COUNTER_READ_EDIT_TABLE_STAGE_FXML));
+            fxmlLoader.setResources(Utils.getResourceBundle());
+            Scene scene = null;
+            try {
+                scene = new Scene(fxmlLoader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage1 = new Stage();
+            stage1.setScene(scene);
+            stage1.setTitle(Utils.getResourceBundle().getString("counter.read.edit.title"));
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.setResizable(false);
+            CounterReadEditTableStageController counterReadEditTableStageController = fxmlLoader.getController();
+            counterReadEditTableStageController.setStage(stage1);
+            counterReadEditTableStageController.getCounterReadModel().setCounterReadFX(counterReadFX);
+            counterReadEditTableStageController.init();
+            stage1.showAndWait();
+            selectYearOnAction();
+       //     paymentTable.getSelectionModel().select(paymentPlanListModel.getPaymentPlanFXObservableList().filtered(partnerFX1 -> partnerFX1.getId() == paymentPlanFX.getId()).get(0));
+       //     paymentTable.scrollTo(paymentTable.getSelectionModel().getSelectedItem());
+        }
     }
 
 
@@ -149,7 +176,7 @@ public class CounterReadTableStageController {
         }
         Stage stage1 = new Stage();
         stage1.setScene(scene);
-        stage1.setTitle(Utils.getResourceBundle().getString("rate.table.add.title"));
+        stage1.setTitle(Utils.getResourceBundle().getString("counter.read.initialize.year"));
         stage1.initModality(Modality.APPLICATION_MODAL);
         stage1.setResizable(false);
         InitializeYearCounterReadStageController initializeYearCounterReadStageController = fxmlLoader.getController();
@@ -167,5 +194,31 @@ public class CounterReadTableStageController {
 
     public void setInitializeYear(Integer initializeYear) {
         this.initializeYear = initializeYear;
+    }
+
+    public void deleteCounterReadOneOnAction() {
+        CounterReadFX counterReadFX = counterReadTable.getSelectionModel().getSelectedItem();
+        if(counterReadFX!= null){
+        try {
+
+            counterReadModel.deleteCounterReadOnePerson(counterReadFX);
+            yearComboBox.getSelectionModel().select(yearComboBox.getSelectionModel().getSelectedItem());
+            selectYearOnAction();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }}
+    }
+
+    public void deleteCounterReadYearOnAction() {
+        Integer year = yearComboBox.getSelectionModel().getSelectedItem();
+        if (year>0 && year!= null) {
+            try {
+                counterReadRepository.deleteCounterReadByYear(year);
+            } catch (SQLException | NullPointerException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        init();
+        initComboBox();
     }
 }

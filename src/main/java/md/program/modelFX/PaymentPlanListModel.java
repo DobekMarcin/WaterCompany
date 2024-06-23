@@ -36,6 +36,9 @@ public class PaymentPlanListModel {
         List<PaymentPlan> paymentPlanList = paymentPlanRepository.getAllPaymentPlanByYear(planYear);
         for (PaymentPlan paymentPlan : paymentPlanList) {
             paymentPlan.setPartner(partnerRepository.getPartnerById(paymentPlan.getPartnerId()));
+
+
+
         }
         paymentPlanFXList.clear();
         paymentPlanList.forEach(item->{
@@ -43,7 +46,7 @@ public class PaymentPlanListModel {
             paymentPlanFXList.add(paymentPlanFX);
         });
         paymentPlanFXObservableList.setAll(paymentPlanFXList);
-        filterPaymentList();
+          filterPaymentList();
     }
 
     public void clearList(){
@@ -144,16 +147,12 @@ paymentPlanFXObservableList.clear();
         JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(printList);
         String filepath2= LoginStage.class.getResource(JR_PRINT_PAYMENT_PLAN_PDF).getPath();
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("firstName","Aleksandra");
-        parameters.put("lastName","Dobek");
-        parameters.put("dob","13.12.1999");
-        parameters.put("age",28);
+
         parameters.put("TestDataSet",jrBeanCollectionDataSource);
         JasperReport report = JasperCompileManager.compileReport(filepath2);
         JasperPrint print = JasperFillManager.fillReport(report,parameters,new JREmptyDataSource());
 
-        JasperExportManager.exportReportToPdfFile(print,"C:\\Users\\reina\\IdeaProjects\\JR\\src\\main\\resources\\static\\raport.pdf");
-        JasperViewer jv=new JasperViewer(print,false);
+             JasperViewer jv=new JasperViewer(print,false);
         jv.setTitle("Challan");
         jv.setVisible(true);
     }
@@ -183,15 +182,11 @@ paymentPlanFXObservableList.clear();
         JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(printList);
         String filepath2= LoginStage.class.getResource(JR_PRINT_PAYMENT_BILL_PDF).getPath();
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("firstName","Aleksandra");
-        parameters.put("lastName","Dobek");
-        parameters.put("dob","13.12.1999");
-        parameters.put("age",28);
+
         parameters.put("TestDataSet",jrBeanCollectionDataSource);
         JasperReport report = JasperCompileManager.compileReport(filepath2);
         JasperPrint print = JasperFillManager.fillReport(report,parameters,new JREmptyDataSource());
 
-        JasperExportManager.exportReportToPdfFile(print,"C:\\Users\\reina\\IdeaProjects\\JR\\src\\main\\resources\\static\\raport.pdf");
         JasperViewer jv=new JasperViewer(print,false);
         jv.setTitle("Challan");
         jv.setVisible(true);

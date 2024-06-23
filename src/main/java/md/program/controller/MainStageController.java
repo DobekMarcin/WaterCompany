@@ -21,6 +21,7 @@ public class MainStageController {
     private static final String FXML_PAYMENT_PLAN_STAGE_FXML = "/FXML/PaymentPlanTableStage.fxml";
     private static final String FXML_COUNTER_READ_STAGE_FXML = "/FXML/CounterReadTableStage.fxml";
     private static final String FXML_CHANGE_PASSWORD_STAGE_FXML = "/FXML/ChangePasswordStage.fxml";
+    private static final String FXML_DEFAULT_YEAR_STAGE_FXML = "/FXML/DefaultYearStage.fxml";
     @FXML
     private BorderPane borderPane;
 
@@ -138,5 +139,25 @@ public class MainStageController {
         CounterReadTableStageController counterReadTableStageController = fxmlLoader.getController();
         counterReadTableStageController.init();
         borderPane.setCenter(bordPane);
+    }
+
+    public void defaultYearOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_DEFAULT_YEAR_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("default.year.title"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        DefaultYearStageController defaultYearStageController = fxmlLoader.getController();
+        defaultYearStageController.setThisStage(stage1);
+        defaultYearStageController.init();
+        stage1.showAndWait();
     }
 }

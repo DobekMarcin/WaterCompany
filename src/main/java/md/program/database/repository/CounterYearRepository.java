@@ -1,5 +1,6 @@
 package md.program.database.repository;
 
+import md.program.database.model.CounterRead;
 import md.program.database.model.CounterYear;
 import md.program.database.model.RateYear;
 
@@ -79,5 +80,23 @@ public class CounterYearRepository {
             check=rs.getInt("year");
         connection.close();
         return  check;
+    }
+
+    public CounterYear getCounterYear(Integer year) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        CounterYear temp = null;
+        statement = connection.prepareStatement("Select id,year,rate from md.counter_rate_year where year=? order by id limit 1;");
+        statement.setInt(1,year);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new CounterYear();
+            temp.setId(rs.getInt("id"));
+            temp.setYear(rs.getInt("year"));
+            temp.setCounterRate(rs.getDouble("rate"));
+        }
+        connection.close();
+        return temp;
+
     }
 }

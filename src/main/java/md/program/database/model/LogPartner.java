@@ -1,9 +1,11 @@
 package md.program.database.model;
 
-import java.util.Objects;
+public class LogPartner {
 
-public class Partner implements  Cloneable{
-    private Integer id;
+    private Integer id_logu;
+    private Integer month;
+    private Integer year;
+    private Integer id_partner;
     private String name;
     private String surname;
     private String address;
@@ -15,29 +17,57 @@ public class Partner implements  Cloneable{
     private Boolean company;
     private Boolean meter;
 
-    public Partner() {
+    public LogPartner() {
     }
 
-    public Partner(Integer id, String name, String surname, String address, String postCode, String post, String nip, Integer peopleCount, Boolean archives, Boolean company, Boolean meter) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.postCode = postCode;
-        this.post = post;
-        this.nip = nip;
-        this.peopleCount = peopleCount;
-        this.archives = archives;
-        this.company = company;
-        this.meter = meter;
+    public LogPartner(Integer year, Integer month, Partner partner) {
+        this.id_logu=0;
+        this.month=month;
+        this.year=year;
+        this.id_partner=partner.getId();
+        this.name= partner.getName();
+        this.surname= partner.getSurname();
+        this.address= partner.getAddress();
+        this.postCode= partner.getPostCode();
+        this.post= partner.getPost();
+        this.nip= partner.getNip();
+        this.peopleCount=partner.getPeopleCount();
+        this.archives=partner.getArchives();
+        this.company=partner.getCompany();
+        this.meter=partner.getMeter();
     }
 
-    public Integer getId() {
-        return id;
+
+    public Integer getId_logu() {
+        return id_logu;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_logu(Integer id_logu) {
+        this.id_logu = id_logu;
+    }
+
+    public Integer getMonth() {
+        return month;
+    }
+
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getId_partner() {
+        return id_partner;
+    }
+
+    public void setId_partner(Integer id_partner) {
+        this.id_partner = id_partner;
     }
 
     public String getName() {
@@ -120,19 +150,13 @@ public class Partner implements  Cloneable{
         this.meter = meter;
     }
 
-
-    public boolean equals(Partner partner) {
-        if(this.id==partner.id && this.name.equals(partner.name) && this.surname.equals(partner.surname) && this.address.equals(partner.address) &&
-        this.postCode.equals(partner.getPostCode()) && this.post.equals(partner.post) && this.nip.equals(partner.nip) && this.peopleCount==partner.peopleCount &&
-        this.archives==partner.archives && this.company==partner.company && this.meter== partner.meter)
-            return true;
-        return false;
-    }
-
     @Override
     public String toString() {
-        return "Partner{" +
-                "id=" + id +
+        return "LogPartner{" +
+                "id_logu=" + id_logu +
+                ", month=" + month +
+                ", year=" + year +
+                ", id_partner=" + id_partner +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
@@ -144,10 +168,5 @@ public class Partner implements  Cloneable{
                 ", company=" + company +
                 ", meter=" + meter +
                 '}';
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 }

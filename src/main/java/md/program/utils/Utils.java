@@ -4,6 +4,9 @@ import javafx.scene.control.TextFormatter;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.Month;
+import java.time.Year;
+import java.time.YearMonth;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
@@ -54,5 +57,15 @@ public class Utils {
         decimalFormatSymbols.setDecimalSeparator('.');
         df = new DecimalFormat("0.00",decimalFormatSymbols);
         return df;
+    }
+
+    public static Integer getYear(){
+        int year = Year.now().getValue();
+        return year;
+    }
+
+    public static Integer getMonth(){
+        int month = YearMonth.now().getMonth().getValue();
+        return month;
     }
 }

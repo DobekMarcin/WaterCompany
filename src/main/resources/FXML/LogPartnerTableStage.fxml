@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.LogPartnerTableStageController">
+   <center>
+      <TableView fx:id="logPartnerTable" prefHeight="244.0" prefWidth="469.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn id="right" fx:id="idColumnLogPartnerTable" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="%partner.table.id" />
+            <TableColumn id="left" fx:id="yearColumnLogPartnerTable" maxWidth="80.0" minWidth="80.0" text="%partner.table.year" />
+            <TableColumn id="left" fx:id="monthColumnLogPartnerTable" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="%partner.table.month" />
+          <TableColumn id="left" fx:id="nameColumnLogPartnerTable" minWidth="80.0" text="%partner.table.name" />
+          <TableColumn id="left" fx:id="surnameColumnLogPartnerTable" minWidth="120.0" prefWidth="120.0" text="%partner.table.surname" />
+          <TableColumn id="left" fx:id="addressColumnLogPartnerTable" minWidth="120.0" prefWidth="120.0" text="%partner.table.address" />
+          <TableColumn id="left" fx:id="postCodeColumnLogPartnerTable" prefWidth="75.0" text="%partner.table.postCode" />
+          <TableColumn id="left" fx:id="postColumnLogPartnerTable" prefWidth="75.0" text="%partner.table.post" />
+          <TableColumn id="right" fx:id="peopleColumnLogPartnerTable" minWidth="60.0" prefWidth="60.0" text="%partner.table.people" />
+          <TableColumn id="center" fx:id="companyColumnLogPartnerTable" prefWidth="75.0" text="%partner.table.company" />
+          <TableColumn id="left" fx:id="nipColumnLogPartnerTable" prefWidth="75.0" text="%partner.table.nip" />
+          <TableColumn id="center" fx:id="meterColumnLogPartnerTable" prefWidth="75.0" text="%partner.table.meter" />
+          <TableColumn id="center" fx:id="archiveColumnLogPartnerTable" minWidth="50.0" prefWidth="75.0" text="%partner.table.archives" />
+      </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <bottom>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="14.0" layoutY="-2.0" mnemonicParsing="false" onAction="#deleteLog" text="%rate.table.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" />
+            <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="6.0" />
+            <Button layoutX="39.0" layoutY="5.0" mnemonicParsing="false" onAction="#editLogOnAction" text="%partner.table.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </AnchorPane>
+   </bottom>
+</BorderPane>

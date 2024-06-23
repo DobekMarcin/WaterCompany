@@ -2,18 +2,24 @@ package md.program.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import md.program.modelFX.PartnerModel;
+import md.program.stage.LoginStage;
 import md.program.utils.Utils;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class PartnerTableEditStageController {
 
+    private static final String FXML_ARCHIVE_INFO_STAGE_FXML = "/FXML/ArchiveInfoStage.fxml";
     @FXML
     private TextField postCodeTextField;
     @FXML
@@ -42,6 +48,11 @@ public class PartnerTableEditStageController {
     private PartnerModel partnerModel = new PartnerModel();
 
     public void init() {
+        try {
+            partnerModel.setOldPartner();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
         bindings();
         setListeners();
         idTextField.setEditable(false);
@@ -69,6 +80,7 @@ public class PartnerTableEditStageController {
         companyChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().companyProperty());
         companyChceckBox.setDisable(true);
         meterCheckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().meterProperty());
+        meterCheckBox.setDisable(true);
         peopleTextField.setDisable(companyChceckBox.isSelected());
         postTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postProperty());
         postCodeTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postCodeProperty());
@@ -111,5 +123,25 @@ public class PartnerTableEditStageController {
 
     public void setPartnerModel(PartnerModel partnerModel) {
         this.partnerModel = partnerModel;
+    }
+
+    public void infoArchiveOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ARCHIVE_INFO_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("default.archive.title"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        ArchiveInfoStageController archiveInfoStageController = fxmlLoader.getController();
+        archiveInfoStageController.setThisStage(stage1);
+        archiveInfoStageController.init();
+        stage1.showAndWait();
     }
 }

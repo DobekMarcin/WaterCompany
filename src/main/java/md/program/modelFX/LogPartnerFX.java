@@ -4,7 +4,11 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class PartnerFX implements Cloneable{
+public class   LogPartnerFX {
+
+    private SimpleIntegerProperty id_logu = new SimpleIntegerProperty();
+    private SimpleIntegerProperty month = new SimpleIntegerProperty();
+    private SimpleIntegerProperty year = new SimpleIntegerProperty();
     private SimpleIntegerProperty id = new SimpleIntegerProperty();
     private SimpleStringProperty name = new SimpleStringProperty();
     private SimpleStringProperty surname = new SimpleStringProperty();
@@ -17,8 +21,10 @@ public class PartnerFX implements Cloneable{
     private SimpleBooleanProperty company = new SimpleBooleanProperty();
     private SimpleBooleanProperty meter = new SimpleBooleanProperty();
 
-    public PartnerFX(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty address,SimpleStringProperty postCode,SimpleStringProperty post,SimpleStringProperty nip, SimpleIntegerProperty peopleCount, SimpleBooleanProperty archives, SimpleBooleanProperty company,SimpleBooleanProperty meter) {
-
+    public LogPartnerFX(SimpleIntegerProperty id_logu, SimpleIntegerProperty month, SimpleIntegerProperty year, SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty address, SimpleStringProperty postCode, SimpleStringProperty post, SimpleStringProperty nip, SimpleIntegerProperty peopleCount, SimpleBooleanProperty archives, SimpleBooleanProperty company, SimpleBooleanProperty meter) {
+        this.id_logu = id_logu;
+        this.month = month;
+        this.year = year;
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -32,7 +38,43 @@ public class PartnerFX implements Cloneable{
         this.meter = meter;
     }
 
-    public PartnerFX() {
+    public LogPartnerFX() {
+    }
+
+    public int getId_logu() {
+        return id_logu.get();
+    }
+
+    public SimpleIntegerProperty id_loguProperty() {
+        return id_logu;
+    }
+
+    public void setId_logu(int id_logu) {
+        this.id_logu.set(id_logu);
+    }
+
+    public int getMonth() {
+        return month.get();
+    }
+
+    public SimpleIntegerProperty monthProperty() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month.set(month);
+    }
+
+    public int getYear() {
+        return year.get();
+    }
+
+    public SimpleIntegerProperty yearProperty() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year.set(year);
     }
 
     public int getId() {
@@ -165,10 +207,5 @@ public class PartnerFX implements Cloneable{
 
     public void setMeter(boolean meter) {
         this.meter.set(meter);
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 }

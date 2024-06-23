@@ -1,8 +1,6 @@
 package md.program.database.repository;
 
 import md.program.database.model.Partner;
-import md.program.database.model.PaymentPlan;
-import md.program.database.model.RateYear;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,6 +57,83 @@ public class PartnerRepository {
         connection.close();
         return partnerList;
     }
+    public List<Partner> getAllPartnerNoCompany(Integer yearId) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        List<Partner> partnerList=new ArrayList<>();
+        Partner temp = null;
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where id not in (Select partner_id from md.payment_plan where year_id=?) order by id");
+       statement.setInt(1,yearId);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new Partner();
+            temp.setId(rs.getInt("id"));
+            temp.setName(rs.getString("name"));
+            temp.setSurname(rs.getString("surname"));
+            temp.setAddress(rs.getString("address"));
+            temp.setPostCode(rs.getString("postCode"));
+            temp.setPost(rs.getString("post"));
+            temp.setNip(rs.getString("nip"));
+            temp.setPeopleCount(rs.getInt("people_count"));
+            temp.setArchives(rs.getBoolean("archives"));
+            temp.setCompany(rs.getBoolean("company"));
+            temp.setMeter(rs.getBoolean("meter"));
+            partnerList.add(temp);
+        }
+        connection.close();
+        return partnerList;
+    }
+    public List<Partner> getCounterPartner() throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        List<Partner> partnerList=new ArrayList<>();
+        Partner temp = null;
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where meter=true order by id");
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new Partner();
+            temp.setId(rs.getInt("id"));
+            temp.setName(rs.getString("name"));
+            temp.setSurname(rs.getString("surname"));
+            temp.setAddress(rs.getString("address"));
+            temp.setPostCode(rs.getString("postCode"));
+            temp.setPost(rs.getString("post"));
+            temp.setNip(rs.getString("nip"));
+            temp.setPeopleCount(rs.getInt("people_count"));
+            temp.setArchives(rs.getBoolean("archives"));
+            temp.setCompany(rs.getBoolean("company"));
+            temp.setMeter(rs.getBoolean("meter"));
+            partnerList.add(temp);
+        }
+        connection.close();
+        return partnerList;
+    }
+
+    public List<Partner> getCounterPartnerOnlyNew() throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        List<Partner> partnerList=new ArrayList<>();
+        Partner temp = null;
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where meter=true order by id");
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new Partner();
+            temp.setId(rs.getInt("id"));
+            temp.setName(rs.getString("name"));
+            temp.setSurname(rs.getString("surname"));
+            temp.setAddress(rs.getString("address"));
+            temp.setPostCode(rs.getString("postCode"));
+            temp.setPost(rs.getString("post"));
+            temp.setNip(rs.getString("nip"));
+            temp.setPeopleCount(rs.getInt("people_count"));
+            temp.setArchives(rs.getBoolean("archives"));
+            temp.setCompany(rs.getBoolean("company"));
+            temp.setMeter(rs.getBoolean("meter"));
+            partnerList.add(temp);
+        }
+        connection.close();
+        return partnerList;
+    }
 
     public Integer getNextId() throws SQLException {
         PreparedStatement statement = null;
@@ -92,7 +167,7 @@ public class PartnerRepository {
         connection.close();
     }
 
-    public void deleteRateYearById(Partner partner) throws SQLException {
+    public void deletePartnerById(Partner partner) throws SQLException {
         PreparedStatement statement;
         Connection connection = getConnection();
         statement = connection.prepareStatement("Delete from md.partner_list where id=?");

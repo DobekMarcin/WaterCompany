@@ -5,6 +5,10 @@ public class CounterYear {
     private Integer year;
     private Double counterRate;
 
+    public CounterYear() {
+        counterRate=0d;
+    }
+
     public Integer getId() {
         return id;
     }

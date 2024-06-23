@@ -26,7 +26,6 @@ public class CounterReadListModel {
     private List<CounterReadFX> counterReadFXList = new ArrayList<>();
     private SimpleStringProperty filter = new SimpleStringProperty();
 
-    private SimpleBooleanProperty companyFilter= new SimpleBooleanProperty();
 
     public void init(Integer planYear) throws SQLException {
         List<CounterRead> counterReadList = counterReadRepository.getAllCounterReadByYear(planYear);
@@ -36,7 +35,7 @@ public class CounterReadListModel {
         counterReadFXList.clear();
         counterReadList.forEach(item->{
             CounterReadFX counterReadFX = CounterReadConverter.convertToCounterReadFX(item);
-            counterReadFXObservableList.add(counterReadFX);
+            counterReadFXList.add(counterReadFX);
         });
         counterReadFXObservableList.setAll(counterReadFXList);
         filterPaymentList();
@@ -55,12 +54,11 @@ public class CounterReadListModel {
     }
 
     public void filterPaymentList() {
-        //   filterPredicate((predicateCompany().and((predicateName()))).or(predicateCompany().and((predicateSurname()))).or(predicateCompany().and((predicateID()))));
         filterPredicate(predicateName().or(predicateSurname().or(predicateID())));
     }
 
     private void filterPredicate(Predicate<CounterReadFX> predicate) {
-        List<CounterReadFX> newList = counterReadFXObservableList.stream().filter(predicate).collect(Collectors.toList());
+        List<CounterReadFX> newList = counterReadFXList.stream().filter(predicate).collect(Collectors.toList());
         counterReadFXObservableList.setAll(newList);
     }
     private Predicate<CounterReadFX> predicateName() {
@@ -88,15 +86,4 @@ public class CounterReadListModel {
         this.filter.set(filter);
     }
 
-    public boolean isCompanyFilter() {
-        return companyFilter.get();
-    }
-
-    public SimpleBooleanProperty companyFilterProperty() {
-        return companyFilter;
-    }
-
-    public void setCompanyFilter(boolean companyFilter) {
-        this.companyFilter.set(companyFilter);
-    }
 }

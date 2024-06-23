@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="608.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.CounterReadEditTableStageController">
+    <children>
+        <TextField fx:id="month1TextField" layoutX="103.0" layoutY="31.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month2TextField" layoutX="103.0" layoutY="78.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month3TextField" layoutX="103.0" layoutY="130.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month4TextField" layoutX="103.0" layoutY="177.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month5TextField" layoutX="103.0" layoutY="225.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month6TextField" layoutX="103.0" layoutY="272.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month7TextField" layoutX="397.0" layoutY="31.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month8TextField" layoutX="397.0" layoutY="78.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month9TextField" layoutX="397.0" layoutY="130.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month10TextField" layoutX="397.0" layoutY="177.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month11TextField" layoutX="397.0" layoutY="225.0" prefHeight="25.0" prefWidth="187.0" />
+      <TextField fx:id="month12TextField" layoutX="397.0" layoutY="272.0" prefHeight="25.0" prefWidth="187.0" />
+        <Label layoutX="21.0" layoutY="38.0" text="%month1" />
+        <Button layoutX="177.0" layoutY="332.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%payment.plan.accept" />
+        <Label fx:id="noLogLabel" layoutX="211.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
+        <Button layoutX="313.0" layoutY="332.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%payment.plan.cancel" />
+      <Label layoutX="21.0" layoutY="85.0" text="%month2" />
+      <Label layoutX="24.0" layoutY="137.0" text="%month3" />
+      <Label layoutX="21.0" layoutY="184.0" text="%month4" />
+      <Label layoutX="21.0" layoutY="232.0" text="%month5" />
+      <Label layoutX="21.0" layoutY="279.0" text="%month6" />
+      <Label layoutX="315.0" layoutY="38.0" text="%month7" />
+      <Label layoutX="315.0" layoutY="85.0" text="%month8" />
+      <Label layoutX="318.0" layoutY="137.0" text="%month9" />
+      <Label layoutX="315.0" layoutY="184.0" text="%month10" />
+      <Label layoutX="315.0" layoutY="232.0" text="%month11" />
+      <Label layoutX="315.0" layoutY="279.0" text="%month12" />
+    </children>
+</Pane>

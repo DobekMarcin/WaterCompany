@@ -16,8 +16,26 @@ private Double m9;
 private Double m10;
 private Double m11;
 private Double m12;
-
 private Partner partner;
+
+    public CounterRead() {
+        id=0;
+        yearId=0;
+        partnerId=0;
+        m1=0d;
+        m2=0d;
+        m3=0d;
+        m4=0d;
+        m5=0d;
+        m6=0d;
+        m7=0d;
+        m8=0d;
+        m9=0d;
+        m10=0d;
+        m11=0d;
+        m12=0d;
+        partner = new Partner();
+    }
 
     public Partner getPartner() {
         return partner;

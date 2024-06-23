@@ -38,7 +38,7 @@ public class CounterReadRepository {
     public void addCounterRead(CounterRead counterRead) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        statement = connection.prepareStatement("Insert into md.counter_read (id,year_id,partner_id,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12) values ((Select coalesce(max(id),0)+1 from md.payment_plan ),?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        statement = connection.prepareStatement("Insert into md.counter_read (id,year_id,partner_id,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12) values ((Select coalesce(max(id),0)+1 from md.counter_read ),?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         statement.setInt(1, counterRead.getYearId());
         statement.setInt(2, counterRead.getPartnerId());
         statement.setDouble(3, counterRead.getM1());
@@ -91,6 +91,38 @@ public class CounterReadRepository {
         return counterReadList;
     }
 
+
+    public CounterRead getCounterReadByYearAndPartner(Integer yearId,Integer partnerId) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        CounterRead counterRead = new CounterRead();
+        statement = connection.prepareStatement("SELECT coalesce(id,0) as id,coalesce(year_id,0) as year_id,coalesce(partner_id,0) as partner_id, coalesce(m1,0) as m1, coalesce(m2,0) as m2, coalesce(m3,0) as m3, coalesce(m4,0) as m4, coalesce(m5,0) as m5, coalesce(m6,0) as m6, coalesce(m7,0) as m7, coalesce(m8,0) as m8, coalesce(m9,0) as m9, coalesce(m10,0) as m10, coalesce(m11,0) as m11, coalesce(m12,0) as m12  FROM md.counter_read where year_id=? and partner_id=? order by partner_id");
+        statement.setInt(1, yearId);
+        statement.setInt(2,partnerId);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            counterRead = new CounterRead();
+            counterRead.setId(rs.getInt("id"));
+            counterRead.setYearId(rs.getInt("year_id"));
+            counterRead.setPartnerId(rs.getInt("partner_id"));
+            counterRead.setM1(rs.getDouble("m1"));
+            counterRead.setM2(rs.getDouble("m2"));
+            counterRead.setM3(rs.getDouble("m3"));
+            counterRead.setM4(rs.getDouble("m4"));
+            counterRead.setM5(rs.getDouble("m5"));
+            counterRead.setM6(rs.getDouble("m6"));
+            counterRead.setM7(rs.getDouble("m7"));
+            counterRead.setM8(rs.getDouble("m8"));
+            counterRead.setM9(rs.getDouble("m9"));
+            counterRead.setM10(rs.getDouble("m10"));
+            counterRead.setM11(rs.getDouble("m11"));
+            counterRead.setM12(rs.getDouble("m12"));
+        }
+        connection.close();
+        return counterRead;
+    }
+
+
     public void deleteCounterReadByYear(Integer year) throws SQLException {
         PreparedStatement statement;
         Connection connection = getConnection();
@@ -136,4 +168,52 @@ public class CounterReadRepository {
         return yearList;
     }
 
+    public Boolean checkCounterRead(Integer yearId,Integer partnerId) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        Integer isCounterRead = 0;
+        statement = connection.prepareStatement("SELECT count(*) as isCounterRead  FROM md.counter_read where year_id=? and partner_id=?");
+        statement.setInt(1, yearId);
+        statement.setInt(2,partnerId);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+
+            isCounterRead=rs.getInt("isCounterRead");}
+        connection.close();
+        return isCounterRead>0 ? true : false;
+    }
+    public Integer checkPartnerInCounterRead(Partner partner) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        Integer check = 0;
+        statement = connection.prepareStatement("Select count(*) as count from md.counter_read where partner_id=?;");
+        statement.setInt(1, partner.getId());
+        ResultSet rs = statement.executeQuery();
+        while (rs.next())
+            check = rs.getInt("count");
+        connection.close();
+        return check;
+    }
+
+    public void deleteCounterReadByPerson(CounterRead counterRead) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("delete from md.counter_read where id=?");
+        statement.setInt(1, counterRead.getId());
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public Integer chceckIsCounterReadByDefaultYear(Integer defaultYear) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        Integer check = 0;
+        statement = connection.prepareStatement("Select count(*) as count from md.counter_read where year_id=?;");
+        statement.setInt(1, defaultYear);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next())
+            check = rs.getInt("count");
+        connection.close();
+        return check;
+    }
 }

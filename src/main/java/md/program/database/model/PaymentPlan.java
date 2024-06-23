@@ -1,21 +1,21 @@
 package md.program.database.model;
 
 public class PaymentPlan {
-private Integer id;
-private Integer yearId;
-private Integer partnerId;
-private Double m1;
-private Double m2;
-private Double m3;
-private Double m4;
-private Double m5;
-private Double m6;
-private Double m7;
-private Double m8;
-private Double m9;
-private Double m10;
-private Double m11;
-private Double m12;
+private Integer id=0;
+private Integer yearId=0;
+private Integer partnerId=0;
+private Double m1=0d;
+private Double m2=0d;
+private Double m3=0d;
+private Double m4=0d;
+private Double m5=0d;
+private Double m6=0d;
+private Double m7=0d;
+private Double m8=0d;
+private Double m9=0d;
+private Double m10=0d;
+private Double m11=0d;
+private Double m12=0d;
 
 private Partner partner;
 

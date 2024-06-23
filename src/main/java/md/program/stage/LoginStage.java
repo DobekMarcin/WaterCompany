@@ -10,7 +10,7 @@ import md.program.utils.Utils;
 
 public class LoginStage extends Application {
 
-    public static void main(String[] args) {
+    public static void fun(String[] args) {
         launch(args);
     }
     @Override

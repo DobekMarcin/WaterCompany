@@ -1,9 +1,12 @@
 package md.program.utils.converters;
 
+import md.program.database.model.LogPartner;
 import md.program.database.model.Partner;
-import md.program.database.model.RateYear;
 import md.program.modelFX.PartnerFX;
-import md.program.modelFX.RateYearFX;
+
+import java.time.Month;
+import java.time.Year;
+import java.time.YearMonth;
 
 public class PartnerConverter {
 
@@ -38,5 +41,7 @@ public class PartnerConverter {
         partnerFX.setMeter(partner.getMeter());
         return partnerFX;
     }
+
+
 
 }
