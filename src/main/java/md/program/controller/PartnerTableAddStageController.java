@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
@@ -19,12 +16,18 @@ import md.program.utils.Utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.GregorianCalendar;
 
 public class PartnerTableAddStageController {
 
     private static final String FXML_ARCHIVE_INFO_STAGE_FXML = "/FXML/ArchiveInfoStage.fxml";
     @FXML
     public CheckBox meterCheckBox;
+    @FXML
+    private TextField addYearTextField;
+    @FXML
+    private TextField addMonthTextField;
     @FXML
     private TextField postTextField;
     @FXML
@@ -88,10 +91,15 @@ public class PartnerTableAddStageController {
         nipTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().nipProperty());
         nipTextField.disableProperty().set(true);
         peopleTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().peopleCountProperty(), new NumberStringConverter());
-        archivesChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().archivesProperty());
+        //archivesChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().archivesProperty());
         companyChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().companyProperty());
         peopleTextField.disableProperty().bindBidirectional(companyChceckBox.selectedProperty());
         meterCheckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().meterProperty());
+        addMonthTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().monthProperty(),new NumberStringConverter());
+        addYearTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().yearProperty(),new NumberStringConverter());
+
+        GregorianCalendar periodDate = new GregorianCalendar();
+
         nameTextField.setText("");
         surnameTextField.setText("");
         addressTextField.setText("");

@@ -1,5 +1,10 @@
 package md.program.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 import md.program.modelFX.*;
 import md.program.stage.LoginStage;
 import md.program.utils.DialogUtil;
@@ -18,6 +25,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class PartnerTableStageController {
 
@@ -51,6 +59,9 @@ public class PartnerTableStageController {
     private TableColumn<PartnerFX, Boolean> archiveColumnPartnerTable;
     @FXML
     private TableColumn<PartnerFX, Boolean> companyColumnPartnerTable;
+    @FXML
+    private TableColumn<PartnerFX, String> addDateColumnPartnerTable;
+
     private Stage mainStage = null;
     private PartnerListModel partnerListModel = new PartnerListModel();
     private PartnerModel partnerModel = new PartnerModel();
@@ -77,12 +88,19 @@ public class PartnerTableStageController {
         postColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().postProperty());
         nipColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().nipProperty());
         peopleColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().peopleCountProperty());
-        archiveColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().archivesProperty());
-        archiveColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(archiveColumnPartnerTable));
+     //   archiveColumnPartnerTable.setCellValueFactory(cellDate -> cellDate.getValue().archivesProperty());
+     //   archiveColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(archiveColumnPartnerTable));
         companyColumnPartnerTable.setCellValueFactory(cellData -> cellData.getValue().companyProperty());
         companyColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(companyColumnPartnerTable));
         meterColumnPartnerTable.setCellValueFactory(cellData -> cellData.getValue().meterProperty());
         meterColumnPartnerTable.setCellFactory(CheckBoxTableCell.forTableColumn(meterColumnPartnerTable));
+        addDateColumnPartnerTable.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<PartnerFX, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<PartnerFX, String> param) {
+                StringProperty sp = new SimpleStringProperty("1."+param.getValue().getMonth()+"."+param.getValue().getYear());
+                return sp;
+            }
+        });
     }
 
     public Stage getMainStage() {

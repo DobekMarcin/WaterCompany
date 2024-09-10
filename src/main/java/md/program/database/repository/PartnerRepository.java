@@ -37,7 +37,7 @@ public class PartnerRepository {
         Connection connection = getConnection();
         List<Partner> partnerList=new ArrayList<>();
         Partner temp = null;
-        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list order by id");
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter,year,month from md.partner_list order by id");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new Partner();
@@ -52,6 +52,8 @@ public class PartnerRepository {
             temp.setArchives(rs.getBoolean("archives"));
             temp.setCompany(rs.getBoolean("company"));
             temp.setMeter(rs.getBoolean("meter"));
+            temp.setYear(rs.getInt("year"));
+            temp.setMonth(rs.getInt("month"));
             partnerList.add(temp);
         }
         connection.close();
@@ -62,7 +64,7 @@ public class PartnerRepository {
         Connection connection = getConnection();
         List<Partner> partnerList=new ArrayList<>();
         Partner temp = null;
-        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where id not in (Select partner_id from md.payment_plan where year_id=?) order by id");
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter,year,month from md.partner_list where id not in (Select partner_id from md.payment_plan where year_id=?) order by id");
        statement.setInt(1,yearId);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -78,6 +80,8 @@ public class PartnerRepository {
             temp.setArchives(rs.getBoolean("archives"));
             temp.setCompany(rs.getBoolean("company"));
             temp.setMeter(rs.getBoolean("meter"));
+            temp.setYear(rs.getInt("year"));
+            temp.setMonth(rs.getInt("month"));
             partnerList.add(temp);
         }
         connection.close();
@@ -88,7 +92,7 @@ public class PartnerRepository {
         Connection connection = getConnection();
         List<Partner> partnerList=new ArrayList<>();
         Partner temp = null;
-        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where meter=true order by id");
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter,year,month from md.partner_list where meter=true order by id");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new Partner();
@@ -103,6 +107,8 @@ public class PartnerRepository {
             temp.setArchives(rs.getBoolean("archives"));
             temp.setCompany(rs.getBoolean("company"));
             temp.setMeter(rs.getBoolean("meter"));
+            temp.setYear(rs.getInt("year"));
+            temp.setMonth(rs.getInt("month"));
             partnerList.add(temp);
         }
         connection.close();
@@ -114,7 +120,7 @@ public class PartnerRepository {
         Connection connection = getConnection();
         List<Partner> partnerList=new ArrayList<>();
         Partner temp = null;
-        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where meter=true order by id");
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter,year,month from md.partner_list where meter=true order by id");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new Partner();
@@ -129,6 +135,8 @@ public class PartnerRepository {
             temp.setArchives(rs.getBoolean("archives"));
             temp.setCompany(rs.getBoolean("company"));
             temp.setMeter(rs.getBoolean("meter"));
+            temp.setYear(rs.getInt("year"));
+            temp.setMonth(rs.getInt("month"));
             partnerList.add(temp);
         }
         connection.close();
@@ -151,7 +159,7 @@ public class PartnerRepository {
     public void addPartner(Partner partner) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        statement = connection.prepareStatement("Insert into md.partner_list (id,name,surname,address,postCode,post,nip,people_count,archives,company,meter) values (?,?,?,?,?,?,?,?,?,?,?)");
+        statement = connection.prepareStatement("Insert into md.partner_list (id,name,surname,address,postCode,post,nip,people_count,archives,company,meter,year,month) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
         statement.setInt(1, partner.getId());
         statement.setString(2, partner.getName());
         statement.setString(3,partner.getSurname());
@@ -163,6 +171,9 @@ public class PartnerRepository {
         statement.setBoolean(9,partner.getArchives());
         statement.setBoolean(10,partner.getCompany());
         statement.setBoolean(11, partner.getMeter());
+        statement.setInt(12,partner.getYear());
+        statement.setInt(13,partner.getMonth());
+
         statement.executeUpdate();
         connection.close();
     }
@@ -198,7 +209,7 @@ public class PartnerRepository {
         Connection connection = getConnection();
         Partner partner=null;
         Partner temp = null;
-        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter from md.partner_list where id=?");
+        statement = connection.prepareStatement("Select id,name,surname,address,postCode,post,nip,people_count,archives,company,meter,year,month from md.partner_list where id=?");
         statement.setInt(1,id);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -214,6 +225,8 @@ public class PartnerRepository {
             temp.setArchives(rs.getBoolean("archives"));
             temp.setCompany(rs.getBoolean("company"));
             temp.setMeter(rs.getBoolean("meter"));
+            temp.setYear(rs.getInt("year"));
+            temp.setMonth(rs.getInt("month"));
             partner=temp;
         }
         connection.close();

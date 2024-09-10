@@ -42,6 +42,8 @@ public class PartnerModel {
         if (partner.getSurname().isEmpty() || partner.getAddress().isEmpty() || partner.getPostCode().isEmpty() || partner.getPost().isEmpty()) return false;
         if (partner.getCompany() == false && partner.getPeopleCount().intValue() < 0) return false;
         if (partner.getCompany()== true && partner.getNip().isEmpty()) return false;
+        if (partner.getYear()<2024 || partner.getYear()>2050) return false;
+        if(partner.getMonth()<0 || partner.getMonth()>12) return false;
         return true;
     }
 
@@ -56,6 +58,7 @@ public class PartnerModel {
         Integer temp2 = counterReadRepository.checkPartnerInCounterRead(PartnerConverter.convertToPartner(partnerFX));
         if (temp == 0 && temp2==0) {
             partnerRepository.deletePartnerById(PartnerConverter.convertToPartner(partnerFX));
+            logPartnerRepository.deleteLogByPartner(PartnerConverter.convertToPartner(partnerFX));
             return true;
         } else return false;
     }

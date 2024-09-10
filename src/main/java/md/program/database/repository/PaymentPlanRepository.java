@@ -65,7 +65,10 @@ public class PaymentPlanRepository {
         Connection connection = getConnection();
         List<PaymentPlan> paymentPlanList = new ArrayList<>();
         PaymentPlan temp = null;
-        statement = connection.prepareStatement("SELECT id,year_id,partner_id, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12 FROM md.payment_plan where year_id=? order by partner_id");
+        Partner temp2 = null;
+        statement = connection.prepareStatement("SELECT A.id,A.year_id,A.partner_id, A.m1, A.m2, A.m3, A.m4, A.m5, A.m6, A.m7, A.m8, A.m9, A.m10, A.m11, A.m12," +
+                " B.id as id2,B.name,B.surname,B.address,B.postcode,B.post,B.nip,B.people_count,B.archives,B.company,B.meter,B.year,B.month FROM md.payment_plan A left join md.partner_list B on A.partner_id=B.id  " +
+                " where A.year_id=? order by A.partner_id");
         statement.setInt(1, yearId);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -85,6 +88,23 @@ public class PaymentPlanRepository {
             temp.setM10(rs.getDouble("m10"));
             temp.setM11(rs.getDouble("m11"));
             temp.setM12(rs.getDouble("m12"));
+
+            temp2= new Partner();
+            temp2.setId(rs.getInt("id2"));
+            temp2.setName(rs.getString("name"));
+            temp2.setSurname(rs.getString("surname"));
+            temp2.setAddress(rs.getString("address"));
+            temp2.setPostCode(rs.getString("postcode"));
+            temp2.setPost(rs.getString("post"));
+            temp2.setNip(rs.getString("nip"));
+            temp2.setPeopleCount(rs.getInt("people_count"));
+            temp2.setArchives(rs.getBoolean("archives"));
+            temp2.setCompany(rs.getBoolean("company"));
+            temp2.setMeter(rs.getBoolean("meter"));
+            temp2.setYear(rs.getInt("year"));
+            temp2.setMonth(rs.getInt("month"));
+            temp.setPartner(temp2);
+
             paymentPlanList.add(temp);
         }
         connection.close();

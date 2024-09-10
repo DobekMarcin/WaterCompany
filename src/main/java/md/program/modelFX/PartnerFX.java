@@ -16,8 +16,10 @@ public class PartnerFX implements Cloneable{
     private SimpleBooleanProperty archives = new SimpleBooleanProperty();
     private SimpleBooleanProperty company = new SimpleBooleanProperty();
     private SimpleBooleanProperty meter = new SimpleBooleanProperty();
+    private SimpleIntegerProperty year = new SimpleIntegerProperty();
+    private SimpleIntegerProperty month = new SimpleIntegerProperty();
 
-    public PartnerFX(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty address,SimpleStringProperty postCode,SimpleStringProperty post,SimpleStringProperty nip, SimpleIntegerProperty peopleCount, SimpleBooleanProperty archives, SimpleBooleanProperty company,SimpleBooleanProperty meter) {
+    public PartnerFX(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty address,SimpleStringProperty postCode,SimpleStringProperty post,SimpleStringProperty nip, SimpleIntegerProperty peopleCount, SimpleBooleanProperty archives, SimpleBooleanProperty company,SimpleBooleanProperty meter,SimpleIntegerProperty year,SimpleIntegerProperty month) {
 
         this.id = id;
         this.name = name;
@@ -30,6 +32,9 @@ public class PartnerFX implements Cloneable{
         this.archives = archives;
         this.company = company;
         this.meter = meter;
+        this.year = year;
+        this.month = month;
+
     }
 
     public PartnerFX() {
@@ -170,5 +175,29 @@ public class PartnerFX implements Cloneable{
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public int getYear() {
+        return year.get();
+    }
+
+    public SimpleIntegerProperty yearProperty() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year.set(year);
+    }
+
+    public int getMonth() {
+        return month.get();
+    }
+
+    public SimpleIntegerProperty monthProperty() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month.set(month);
     }
 }

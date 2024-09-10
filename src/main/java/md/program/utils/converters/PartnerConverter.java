@@ -23,6 +23,8 @@ public class PartnerConverter {
         partner.setArchives(partnerFX.archivesProperty().get());
         partner.setCompany(partnerFX.companyProperty().get());
         partner.setMeter(partnerFX.meterProperty().get());
+        partner.setYear(partnerFX.getYear());
+        partner.setMonth(partnerFX.getMonth());
         return partner;
     }
 
@@ -39,9 +41,8 @@ public class PartnerConverter {
         partnerFX.setArchives(partner.getArchives());
         partnerFX.setCompany(partner.getCompany());
         partnerFX.setMeter(partner.getMeter());
+        partnerFX.setYear(partner.getYear());
+        partnerFX.setMonth(partner.getMonth());
         return partnerFX;
     }
-
-
-
 }

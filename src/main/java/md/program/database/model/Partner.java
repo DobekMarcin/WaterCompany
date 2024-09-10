@@ -14,11 +14,13 @@ public class Partner implements  Cloneable{
     private Boolean archives;
     private Boolean company;
     private Boolean meter;
+    private Integer year;
+    private Integer month;
 
     public Partner() {
     }
 
-    public Partner(Integer id, String name, String surname, String address, String postCode, String post, String nip, Integer peopleCount, Boolean archives, Boolean company, Boolean meter) {
+    public Partner(Integer id, String name, String surname, String address, String postCode, String post, String nip, Integer peopleCount, Boolean archives, Boolean company, Boolean meter,Integer year,Integer month) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -30,6 +32,8 @@ public class Partner implements  Cloneable{
         this.archives = archives;
         this.company = company;
         this.meter = meter;
+        this.year = year;
+        this.month = month;
     }
 
     public Integer getId() {
@@ -120,11 +124,26 @@ public class Partner implements  Cloneable{
         this.meter = meter;
     }
 
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getMonth() {
+        return month;
+    }
+
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
 
     public boolean equals(Partner partner) {
         if(this.id==partner.id && this.name.equals(partner.name) && this.surname.equals(partner.surname) && this.address.equals(partner.address) &&
         this.postCode.equals(partner.getPostCode()) && this.post.equals(partner.post) && this.nip.equals(partner.nip) && this.peopleCount==partner.peopleCount &&
-        this.archives==partner.archives && this.company==partner.company && this.meter== partner.meter)
+        this.archives==partner.archives && this.company==partner.company && this.meter== partner.meter && this.year==partner.year && this.month == partner.month)
             return true;
         return false;
     }
@@ -143,6 +162,8 @@ public class Partner implements  Cloneable{
                 ", archives=" + archives +
                 ", company=" + company +
                 ", meter=" + meter +
+                ", year=" + year +
+                ", month=" + month +
                 '}';
     }
 

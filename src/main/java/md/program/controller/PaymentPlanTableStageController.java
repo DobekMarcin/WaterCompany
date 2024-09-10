@@ -70,12 +70,12 @@ public class PaymentPlanTableStageController {
     private PaymentPlanListModel paymentPlanListModel = new PaymentPlanListModel();
     private PaymentPlanModel paymentPlanModel = new PaymentPlanModel();
     private PaymentPlanRepository paymentPlanRepository = new PaymentPlanRepository();
+    private SettingsModel settingsModel = new SettingsModel();
     private Integer initializeYear = 0;
-private SettingsModel settingsModel = new SettingsModel();
 
     public void init() {
         paymentPlanListModel.clearList();
-        paymentTable.refresh();
+       // paymentTable.refresh();
         paymentPlanListModel.filterProperty().bindBidirectional(filterTextField.textProperty());
         paymentPlanListModel.companyFilterProperty().bindBidirectional(companyFilter.selectedProperty());
         tableInit();
@@ -223,8 +223,10 @@ private SettingsModel settingsModel = new SettingsModel();
         initializePaymentPlanStageController.setPaymentPlanTableStageController(this);
         stage1.showAndWait();
         initComboBox();
-        yearComboBox.getSelectionModel().select(initializeYear);
-        selectYearOnAction();
+        if(initializeYear!=0)
+        { yearComboBox.getSelectionModel().select(initializeYear);
+
+        selectYearOnAction();}
     }
 
     public Integer getInitializeYear() {
@@ -238,9 +240,9 @@ private SettingsModel settingsModel = new SettingsModel();
     public void deletePaymentPlanOnAction() {
         try {
             Integer year = yearComboBox.getSelectionModel().getSelectedItem();
-            if (year>0) paymentPlanRepository.deletePaymnetPlanByYear(year);
+            if (year != null && year>0 ) {paymentPlanRepository.deletePaymnetPlanByYear(year);
             init();
-            initComboBox();
+            initComboBox();}
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -261,12 +263,15 @@ private SettingsModel settingsModel = new SettingsModel();
 
     public void deletePaymentPlanOneOnAction() {
         PaymentPlanFX paymentPlanFX = paymentTable.getSelectionModel().getSelectedItem();
+        if (paymentPlanFX != null) {
+
+
         try {
             paymentPlanModel.deletePaymentPlanOnePerson(paymentPlanFX);
             yearComboBox.getSelectionModel().select(yearComboBox.getSelectionModel().getSelectedItem());
             selectYearOnAction();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }}
     }
 }

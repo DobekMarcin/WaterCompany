@@ -76,12 +76,13 @@ public class PartnerTableEditStageController {
         surnameTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().surnameProperty());
         addressTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().addressProperty());
         peopleTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().peopleCountProperty(), new NumberStringConverter());
-        archivesChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().archivesProperty());
+        //archivesChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().archivesProperty());
         companyChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().companyProperty());
         companyChceckBox.setDisable(true);
         meterCheckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().meterProperty());
-        meterCheckBox.setDisable(true);
-        peopleTextField.setDisable(companyChceckBox.isSelected());
+        if(meterCheckBox.isSelected()) meterCheckBox.setDisable(true);
+
+        peopleTextField.setDisable(companyChceckBox.isSelected() || meterCheckBox.isSelected());
         postTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postProperty());
         postCodeTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postCodeProperty());
         nipTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().nipProperty());

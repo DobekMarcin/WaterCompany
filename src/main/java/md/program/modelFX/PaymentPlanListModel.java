@@ -34,12 +34,7 @@ public class PaymentPlanListModel {
 
     public void init(Integer planYear) throws SQLException {
         List<PaymentPlan> paymentPlanList = paymentPlanRepository.getAllPaymentPlanByYear(planYear);
-        for (PaymentPlan paymentPlan : paymentPlanList) {
-            paymentPlan.setPartner(partnerRepository.getPartnerById(paymentPlan.getPartnerId()));
 
-
-
-        }
         paymentPlanFXList.clear();
         paymentPlanList.forEach(item->{
             PaymentPlanFX paymentPlanFX = PaymentPlanConverter.convertToPaymentPlanFX(item);

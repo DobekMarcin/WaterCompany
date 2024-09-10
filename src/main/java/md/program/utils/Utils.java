@@ -13,7 +13,7 @@ import java.util.function.UnaryOperator;
 public class Utils {
 
     public static ResourceBundle getResourceBundle(){
-        return ResourceBundle.getBundle("BUNDLES.messages");
+        return ResourceBundle.getBundle("bundles.messages");
     }
 
 

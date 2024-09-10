@@ -59,7 +59,7 @@ public class LogPartnerRepository {
         List<LogPartner> logPartnerList=new ArrayList<>();
         LogPartner temp = null;
         statement = connection.prepareStatement("SELECT id_logu, month, year, id_partnera, name, surname, address, postcode, post, nip, people_count, archives, company, meter" +
-                " FROM md.partner_list_logs where id_partnera=? order by year,month;");
+                " FROM md.partner_list_logs where id_partnera=? order by year,month,id_logu;");
         statement.setInt(1,partnerId);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -94,6 +94,17 @@ public class LogPartnerRepository {
             statement.executeUpdate();
             connection.close();
             return true;
+    }
+
+    public Boolean deleteLogByPartner(Partner partner) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+
+        statement = connection.prepareStatement("Delete from md.partner_list_logs where  id_partnera=?");
+        statement.setInt(1,partner.getId());
+        statement.executeUpdate();
+        connection.close();
+        return true;
     }
 
     public void saveDate(LogPartner logPartner) throws SQLException {
@@ -139,5 +150,36 @@ public class LogPartnerRepository {
         }
         connection.close();
         return logPartnerList;
+    }
+
+
+    public LogPartner getLastMeterPartner(Integer partnerId) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        LogPartner temp = null;
+        statement = connection.prepareStatement("Select * from md.partner_list_logs where id_partnera=? and (id_logu,year,month) = " +
+                "(Select max(id_logu),max(year),max(month) from md.partner_list_logs where id_partnera=? and meter=false )");
+        statement.setInt(1,partnerId);
+        statement.setInt(2,partnerId);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new LogPartner();
+            temp.setId_logu(rs.getInt(1));
+            temp.setMonth(rs.getInt(2));
+            temp.setYear(rs.getInt(3));
+            temp.setId_partner(rs.getInt(4));
+            temp.setName(rs.getString(5));
+            temp.setSurname(rs.getString(6));
+            temp.setAddress(rs.getString(7));
+            temp.setPostCode(rs.getString(8));
+            temp.setPost(rs.getString(9));
+            temp.setNip(rs.getString(10));
+            temp.setPeopleCount(rs.getInt(11));
+            temp.setArchives(rs.getBoolean(12));
+            temp.setCompany(rs.getBoolean(13));
+            temp.setMeter(rs.getBoolean(14));
+        }
+        connection.close();
+        return temp;
     }
 }
