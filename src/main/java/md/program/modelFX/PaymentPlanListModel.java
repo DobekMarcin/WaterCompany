@@ -15,8 +15,11 @@ import md.program.utils.converters.PartnerConverter;
 import md.program.utils.converters.PaymentPlanConverter;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.function.Predicate;
@@ -140,11 +143,15 @@ paymentPlanFXObservableList.clear();
             printList.add(temp);
         });
         JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(printList);
-        String filepath2= LoginStage.class.getResource(JR_PRINT_PAYMENT_PLAN_PDF).getPath();
+
+        InputStream file = getClass().getResourceAsStream(JR_PRINT_PAYMENT_PLAN_PDF);
+        JasperDesign jasperDesign = JRXmlLoader.load(file);
+
+        //String filepath2= LoginStage.class.getResource(JR_PRINT_PAYMENT_PLAN_PDF).getPath();
         Map<String,Object> parameters = new HashMap<>();
 
         parameters.put("TestDataSet",jrBeanCollectionDataSource);
-        JasperReport report = JasperCompileManager.compileReport(filepath2);
+        JasperReport report = JasperCompileManager.compileReport(jasperDesign);
         JasperPrint print = JasperFillManager.fillReport(report,parameters,new JREmptyDataSource());
 
              JasperViewer jv=new JasperViewer(print,false);
@@ -175,11 +182,15 @@ paymentPlanFXObservableList.clear();
             printList.add(temp);
         });
         JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(printList);
-        String filepath2= LoginStage.class.getResource(JR_PRINT_PAYMENT_BILL_PDF).getPath();
+
+        InputStream file = getClass().getResourceAsStream(JR_PRINT_PAYMENT_BILL_PDF);
+        JasperDesign jasperDesign = JRXmlLoader.load(file);
+
+     //   String filepath2= LoginStage.class.getResource(JR_PRINT_PAYMENT_BILL_PDF).getPath();
         Map<String,Object> parameters = new HashMap<>();
 
         parameters.put("TestDataSet",jrBeanCollectionDataSource);
-        JasperReport report = JasperCompileManager.compileReport(filepath2);
+        JasperReport report = JasperCompileManager.compileReport(jasperDesign);
         JasperPrint print = JasperFillManager.fillReport(report,parameters,new JREmptyDataSource());
 
         JasperViewer jv=new JasperViewer(print,false);

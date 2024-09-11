@@ -9,8 +9,11 @@ import md.program.stage.LoginStage;
 import md.program.utils.converters.PartnerConverter;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,11 +97,14 @@ public class PartnerListModel {
     public void printPartnerList() throws JRException, SQLException {
         JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(partnerFXObservableList.stream().toList());
 
-        String filepath2= LoginStage.class.getResource(JR_PRINT_ALL_PARTNER_PDF).getPath();
+        InputStream file = getClass().getResourceAsStream(JR_PRINT_ALL_PARTNER_PDF);
+        JasperDesign jasperDesign = JRXmlLoader.load(file);
+
+       // String filepath2= getClass().getResource(JR_PRINT_ALL_PARTNER_PDF).getPath();
         Map<String,Object> parameters = new HashMap<>();
 
         parameters.put("TestDataSet",jrBeanCollectionDataSource);
-        JasperReport report = JasperCompileManager.compileReport(filepath2);
+        JasperReport report = JasperCompileManager.compileReport(jasperDesign);
         JasperPrint print = JasperFillManager.fillReport(report,parameters,new JREmptyDataSource());
 
         JasperViewer jv=new JasperViewer(print,false);
