@@ -14,6 +14,8 @@ import java.sql.SQLException;
 
 public class InitializePaymentPlanStageController {
     @FXML
+    private Label nameLabel;
+    @FXML
     private CheckBox noCompany;
     @FXML
     private TextField yearTextField;
@@ -24,7 +26,9 @@ public class InitializePaymentPlanStageController {
     private PaymentPlanTableStageController paymentPlanTableStageController;
 
     public void initialize(){
+
         paymentPlanModel.noComapnyProperty().bindBidirectional(noCompany.selectedProperty());
+
     }
     public void generateButtonOnAction() {
         try {

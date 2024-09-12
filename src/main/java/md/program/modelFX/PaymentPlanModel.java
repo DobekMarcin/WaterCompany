@@ -1,6 +1,7 @@
 package md.program.modelFX;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import md.program.database.model.*;
@@ -21,6 +22,7 @@ public class PaymentPlanModel {
     private PaymentPlanRepository paymentPlanRepository = new PaymentPlanRepository();
     private RateYearRepository rateYearRepository = new RateYearRepository();
     private CounterYearRepository counterYearRepository = new CounterYearRepository();
+    private CounterCompanyYearRepository counterCompanyYearRepository = new CounterCompanyYearRepository();
     private CounterReadRepository counterReadRepository = new CounterReadRepository();
     private SimpleBooleanProperty noComapny = new SimpleBooleanProperty();
     private Integer noCounterRead = 0;
@@ -101,7 +103,13 @@ public class PaymentPlanModel {
 
         if (item.getMeter()) {
 
-            CounterYear counterYear = counterYearRepository.getCounterYear(generateYear);
+            CounterYear counterYear;
+            if(item.getCompany()==true){
+                counterYear = counterCompanyYearRepository.getCounterYear(generateYear);
+            }else{
+                counterYear = counterYearRepository.getCounterYear(generateYear);
+            }
+
             Integer monthStart = item.getMonth();
             Integer yearStart = item.getYear();
 
@@ -737,4 +745,6 @@ public class PaymentPlanModel {
     public Boolean chceckPaymentPlanByDefayultYear(Integer defaultYear) throws SQLException {
         return paymentPlanRepository.chceckIsPaymentPlanByDefaultYear(defaultYear) > 0 ? true : false;
     }
+
+
 }

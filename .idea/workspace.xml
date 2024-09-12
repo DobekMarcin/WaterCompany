@@ -9,9 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v7">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/WaterCompany_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/WaterCompany_jar.xml" afterDir="false" />
+    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v10">
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/CounterCompanyTableAddStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/CounterCompanyTableStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/CounterCompanyYearRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/CounterCompanyYearListModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/CounterCompanyYearModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/CounterCompanyTableAddStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/CounterCompanyTableStage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/InitializePaymentPlanStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/InitializePaymentPlanStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PaymentPlanModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/InitializePaymentPlanStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/InitializePaymentPlanStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +79,10 @@
       <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\bundles\icon" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="md.program.controller" />
+      <recent name="md.program.database.repository" />
       <recent name="md.program.modelFX" />
       <recent name="md.program.utils.converters" />
-      <recent name="md.program.database.repository" />
       <recent name="md.program.database.model" />
     </key>
   </component>
@@ -166,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715632917776</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="v10">
+      <option name="closed" value="true" />
+      <created>1726166473769</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726166473769</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +210,7 @@
     <MESSAGE value="v5" />
     <MESSAGE value="v6" />
     <MESSAGE value="v7" />
-    <option name="LAST_COMMIT_MESSAGE" value="v7" />
+    <MESSAGE value="v10" />
+    <option name="LAST_COMMIT_MESSAGE" value="v10" />
   </component>
 </project>

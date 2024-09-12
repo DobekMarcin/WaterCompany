@@ -28,6 +28,7 @@
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#rateTableOnAction" text="%menu.rate.rate.Table" />
                         <MenuItem mnemonicParsing="false" onAction="#counterRateTableOnAction" text="%menu.rate.counter.Table" />
+                        <MenuItem mnemonicParsing="false" onAction="#counterRateCompanyTableOnAction" text="%menu.rate.counter.company.Table" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="%menu.about">

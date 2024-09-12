@@ -20,6 +20,7 @@ public class MainStageController {
     private static final String FXML_PARTNER_STAGE_FXML = "/FXML/PartnerTableStage.fxml";
     private static final String FXML_PAYMENT_PLAN_STAGE_FXML = "/FXML/PaymentPlanTableStage.fxml";
     private static final String FXML_COUNTER_READ_STAGE_FXML = "/FXML/CounterReadTableStage.fxml";
+    private static final String FXML_COUNTER_READ_COMPANY_STAGE_FXML = "/FXML/CounterCompanyTableStage.fxml";
     private static final String FXML_CHANGE_PASSWORD_STAGE_FXML = "/FXML/ChangePasswordStage.fxml";
     private static final String FXML_DEFAULT_YEAR_STAGE_FXML = "/FXML/DefaultYearStage.fxml";
     @FXML
@@ -123,6 +124,25 @@ public class MainStageController {
         stage1.setResizable(false);
         CounterTableStageController counterTableStageController = fxmlLoader.getController();
         counterTableStageController.setThisStage(stage1);
+        stage1.showAndWait();
+    }
+
+    public void counterRateCompanyTableOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COUNTER_READ_COMPANY_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("counter.rate.table.title"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        CounterCompanyTableStageController counterCompanyTableStageController = fxmlLoader.getController();
+        counterCompanyTableStageController.setThisStage(stage1);
         stage1.showAndWait();
     }
 

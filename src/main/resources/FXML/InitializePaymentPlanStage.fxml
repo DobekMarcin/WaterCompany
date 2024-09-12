@@ -14,5 +14,6 @@
         <Label fx:id="noLogLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
         <Button layoutX="159.0" layoutY="121.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%log.in.cancel" />
         <CheckBox fx:id="noCompany" layoutX="25.0" layoutY="80.0" mnemonicParsing="false" selected="true" text="%payment.table.initialize.no.company" />
+      <Label fx:id="nameLabel" layoutX="23.0" layoutY="5.0" prefHeight="21.0" prefWidth="253.0" textAlignment="CENTER" textFill="#403232" />
     </children>
 </Pane>
