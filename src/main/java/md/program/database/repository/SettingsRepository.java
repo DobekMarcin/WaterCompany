@@ -51,4 +51,33 @@ public class SettingsRepository {
         connection.close();
         return  check;
     }
+
+    public Integer getBOYear() throws SQLException {
+        PreparedStatement statement=null;
+        Connection connection = getConnection();
+        Integer check = -1;
+        statement = connection.prepareStatement("Select coalesce(settings,0) as year from md.settings where id=2;");
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+            check=rs.getInt("year");
+        connection.close();
+        return  check;
+    }
+
+    public void deleteBOSettings() throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Delete from md.settings where id=2");
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public void insertNewBOYear(Integer year) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Insert into md.settings (id,settings) values (2,?)");
+        statement.setInt(1, year);
+        statement.executeUpdate();
+        connection.close();
+    }
 }

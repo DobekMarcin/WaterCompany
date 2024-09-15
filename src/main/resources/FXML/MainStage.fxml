@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -21,6 +22,14 @@
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#defaultYearOnAction" text="%menu.file.year" />
                         <MenuItem mnemonicParsing="false" onAction="#changePasswordOnAction" text="%menu.file.change.password" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <Menu mnemonicParsing="false" text="%menu.file.bo">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#boOnAction" text="%menu.file.bo.year" />
+                              <MenuItem mnemonicParsing="false" onAction="#startBoOnAction" text="%menu.file.bo.value" />
+                          </items>
+                        </Menu>
+                        <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem mnemonicParsing="false" onAction="#closeOnAction" text="%menu.file.close" />
                   </items>
                 </Menu>

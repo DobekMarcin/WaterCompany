@@ -18,4 +18,14 @@ public class SettingsModel {
     public void updateDefaultYear(Integer year) throws SQLException {
         settingsRepository.insertNewDefaultYear(year);
     }
+
+    public Integer getBOYear() throws SQLException {
+        return settingsRepository.getBOYear();
+    }
+    public void deleteBOYear() throws SQLException {
+        settingsRepository.deleteBOSettings();
+    }
+    public void updateBOYear(Integer year) throws SQLException {
+        settingsRepository.insertNewBOYear(year);
+    }
 }
