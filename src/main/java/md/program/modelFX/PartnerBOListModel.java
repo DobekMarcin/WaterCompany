@@ -4,8 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import md.program.database.model.Partner;
+import md.program.database.model.PartnerBO;
+import md.program.database.repository.PartnerBORepository;
 import md.program.database.repository.PartnerRepository;
 import md.program.database.repository.SettingsRepository;
+import md.program.utils.converters.PartnerBOConverter;
 import md.program.utils.converters.PartnerConverter;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -24,14 +27,14 @@ import java.util.stream.Collectors;
 
 public class PartnerBOListModel {
     private ObservableList<PartnerBOFX> partnerFXObservableList = FXCollections.observableArrayList();
-    private PartnerRepository partnerRepository = new PartnerRepository();
+    private PartnerBORepository partnerBORepository = new PartnerBORepository();
     private SimpleStringProperty filter = new SimpleStringProperty();
     private List<PartnerBOFX> partnerBOFXList = new ArrayList<>();
     private SettingsRepository settingsRepository = new SettingsRepository();
     private Integer yearBO;
 
 
-    public void innitYear(){
+    public void initYear(){
         try {
             yearBO= settingsRepository.getBOYear();
         } catch (SQLException e) {
@@ -39,18 +42,23 @@ public class PartnerBOListModel {
         }
     }
 
-    /*
-    public void init() throws SQLException {
-        List<Partner> partnerList = partnerRepository.getAllPartner();
-        partnerFXList.clear();
 
-        partnerList.forEach(item -> {
-            PartnerFX partnerFX = PartnerConverter.convertToPartnerFX(item);
-            partnerFXList.add(partnerFX);
+    public void init() throws SQLException {
+        List<PartnerBO> partnerBOList = partnerBORepository.getAllPartner();
+        partnerBOFXList.clear();
+
+        partnerBOList.forEach(item -> {
+            PartnerBOFX partnerFX = PartnerBOConverter.convertToPartnerBOFX(item);
+            partnerBOFXList.add(partnerFX);
         });
-        partnerFXObservableList.setAll(partnerFXList);
-        filterPartnerList();
+        partnerFXObservableList.setAll(partnerBOFXList);
+
     }
+
+    public Boolean generateBO() throws SQLException {
+        return partnerBORepository.insertBOFromSelect();
+    }
+
     /*
     public void filterPartnerList() {
         filterPredicate(predicateName().or(predicateAddress().or(predicateSurname().or(predicateID()).or(predicatePostCode()).or(predicatePost()).or(predicateNip()))));
@@ -131,5 +139,13 @@ public class PartnerBOListModel {
 
     public void setYearBO(Integer yearBO) {
         this.yearBO = yearBO;
+    }
+
+    public ObservableList<PartnerBOFX> getPartnerFXObservableList() {
+        return partnerFXObservableList;
+    }
+
+    public void setPartnerFXObservableList(ObservableList<PartnerBOFX> partnerFXObservableList) {
+        this.partnerFXObservableList = partnerFXObservableList;
     }
 }

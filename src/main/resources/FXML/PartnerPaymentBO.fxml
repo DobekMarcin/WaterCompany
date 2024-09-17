@@ -12,9 +12,9 @@
       <TableView fx:id="partnerBOTable" prefHeight="244.0" prefWidth="469.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn id="center" fx:id="idColumn" maxWidth="80.0" minWidth="80.0" text="%partner.table.id" />
-          <TableColumn id="right" fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="80.0" prefWidth="100.0" text="%partner.table.name" />
-            <TableColumn fx:id="surnameColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%partner.table.surname" />
-            <TableColumn fx:id="boValueColumn" maxWidth="1.7976931348623157E308" prefWidth="60.0" text="%partner.bo" />
+          <TableColumn id="left" fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="80.0" prefWidth="100.0" text="%partner.table.name" />
+            <TableColumn id="left" fx:id="surnameColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="%partner.table.surname" />
+            <TableColumn id="right" fx:id="boValueColumn" maxWidth="1.7976931348623157E308" prefWidth="60.0" text="%partner.bo" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -27,10 +27,9 @@
    <bottom>
       <AnchorPane prefWidth="586.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="45.0" layoutY="5.0" mnemonicParsing="false" onAction="#editBOOnAction" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="120.0" />
+            <Button layoutX="45.0" layoutY="5.0" mnemonicParsing="false" onAction="#editBOOnAction" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
             <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="6.0" />
             <Button layoutX="580.0" layoutY="5.0" mnemonicParsing="false" onAction="#closeBOButtonOnAction" text="%partner.bo.closeBO" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="112.0" />
-            <Button fx:id="initializeButton" mnemonicParsing="false" onAction="#initializeBOOnAction" text="%partner.bo.initialize" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
          </children>
          <BorderPane.margin>
             <Insets />

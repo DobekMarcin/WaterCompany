@@ -2,10 +2,7 @@ package md.program.modelFX;
 
 import md.program.database.model.LogPartner;
 import md.program.database.model.Partner;
-import md.program.database.repository.CounterReadRepository;
-import md.program.database.repository.LogPartnerRepository;
-import md.program.database.repository.PartnerRepository;
-import md.program.database.repository.PaymentPlanRepository;
+import md.program.database.repository.*;
 import md.program.utils.Utils;
 import md.program.utils.converters.PartnerConverter;
 
@@ -19,6 +16,7 @@ public class PartnerModel {
     private PaymentPlanRepository paymentPlanRepository = new PaymentPlanRepository();
     private CounterReadRepository counterReadRepository = new CounterReadRepository();
     private LogPartnerRepository logPartnerRepository = new LogPartnerRepository();
+    private PartnerBORepository partnerBORepository = new PartnerBORepository();
 
     public void setOldPartner() throws CloneNotSupportedException {
         oldPartner = PartnerConverter.convertToPartner(partnerFX);
@@ -56,7 +54,8 @@ public class PartnerModel {
     public Boolean deletePartner() throws SQLException {
         Integer temp = paymentPlanRepository.checkPartnerInPaymentPlan(PartnerConverter.convertToPartner(partnerFX));
         Integer temp2 = counterReadRepository.checkPartnerInCounterRead(PartnerConverter.convertToPartner(partnerFX));
-        if (temp == 0 && temp2==0) {
+        Integer temp3 = partnerBORepository.checkPartnerInBO(PartnerConverter.convertToPartner(partnerFX));
+        if (temp.intValue() == 0 && temp2.intValue()==0 && temp3.intValue()==0) {
             partnerRepository.deletePartnerById(PartnerConverter.convertToPartner(partnerFX));
             logPartnerRepository.deleteLogByPartner(PartnerConverter.convertToPartner(partnerFX));
             return true;

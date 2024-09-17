@@ -2,6 +2,9 @@ package md.program.database.repository;
 
 import java.sql.*;
 
+// set=1 Rok domyślny
+// set=2 Rok BO
+
 public class SettingsRepository {
 
     private final String url = "jdbc:postgresql://127.0.0.1/water_company";

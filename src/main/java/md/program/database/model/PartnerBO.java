@@ -7,6 +7,9 @@ public class PartnerBO {
     Integer partnerId;
 
     public PartnerBO() {
+        bo=0d;
+        partnerId=0;
+        partner = new Partner();
     }
 
     public PartnerBO(Partner partner, Double bo, Integer partnerId) {
@@ -37,5 +40,14 @@ public class PartnerBO {
 
     public void setPartnerId(Integer partnerId) {
         this.partnerId = partnerId;
+    }
+
+    @Override
+    public String toString() {
+        return "PartnerBO{" +
+                "partner=" + partner +
+                ", bo=" + bo +
+                ", partnerId=" + partnerId +
+                '}';
     }
 }

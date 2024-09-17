@@ -9,22 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v11">
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BOYearStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerPaymentBoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/PartnerBO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerBORepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOFX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOListModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/PartnerBOConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/BOYearStage.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerPaymentBO.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v12">
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerPaymentBOEditController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOFXModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerPaymentBOEdit.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/BOYearStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BOYearStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/DefaultYearStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/DefaultYearStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerPaymentBoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerPaymentBoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/model/PartnerBO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/PartnerBO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerBORepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerBORepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/SettingsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/SettingsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/SettingsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/SettingsModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/BOYearStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/BOYearStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PartnerPaymentBO.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerPaymentBO.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726172483287</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="v12">
+      <option name="closed" value="true" />
+      <created>1726432279886</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726432279886</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,6 +230,7 @@
     <MESSAGE value="v7" />
     <MESSAGE value="v10" />
     <MESSAGE value="v11" />
-    <option name="LAST_COMMIT_MESSAGE" value="v11" />
+    <MESSAGE value="v12" />
+    <option name="LAST_COMMIT_MESSAGE" value="v12" />
   </component>
 </project>

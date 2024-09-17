@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class PartnerBOFX {
 
-    private SimpleObjectProperty<PartnerFX> partnerFXSimpleObjectProperty;
+    private SimpleObjectProperty<PartnerFX> partnerFXSimpleObjectProperty = new SimpleObjectProperty<>();
     private SimpleIntegerProperty parterIdSimpleIntegerProperty = new SimpleIntegerProperty();
     private SimpleDoubleProperty partnerBoValueProperty = new SimpleDoubleProperty();
 

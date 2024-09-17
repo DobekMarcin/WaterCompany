@@ -17,7 +17,7 @@ public class DefaultYearStageController {
     public void init() {
         try {
             Integer defaultYear = settingsModel.getDefaultYear();
-            yearTextField.setText(defaultYear.toString());
+            yearTextField.setText(defaultYear==-1 ? 0+"" : defaultYear.toString());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

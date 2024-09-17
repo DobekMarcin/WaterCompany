@@ -9,7 +9,8 @@
     <children>
         <Label layoutX="20.0" layoutY="36.0" text="%yearBo" />
         <TextField fx:id="yearTextField" layoutX="79.0" layoutY="30.0" prefHeight="25.0" prefWidth="187.0" />
-        <Button layoutX="97.0" layoutY="81.0" mnemonicParsing="false" onAction="#confirmYear" prefHeight="26.0" prefWidth="118.0" text="%button.confirm" />
+        <Button fx:id="initializeButton" layoutX="30.0" layoutY="80.0" mnemonicParsing="false" onAction="#confirmYear" prefHeight="26.0" prefWidth="118.0" text="%button.confirm" />
         <Label fx:id="noLogLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
+      <Button layoutX="154.0" layoutY="80.0" mnemonicParsing="false" onAction="#closeButton" prefWidth="118.0" text="%menu.file.close" />
     </children>
 </Pane>

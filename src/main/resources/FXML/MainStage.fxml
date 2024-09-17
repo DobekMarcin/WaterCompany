@@ -27,6 +27,8 @@
                           <items>
                             <MenuItem mnemonicParsing="false" onAction="#boOnAction" text="%menu.file.bo.year" />
                               <MenuItem mnemonicParsing="false" onAction="#startBoOnAction" text="%menu.file.bo.value" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem mnemonicParsing="false" text="%menu.file.bo.delete" />
                           </items>
                         </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
