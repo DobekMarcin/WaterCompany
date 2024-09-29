@@ -94,4 +94,23 @@ public class PartnerBORepository {
         statement.executeUpdate();
         connection.close();
     }
+
+    public void deletePartnerById(PartnerBO partner) throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Delete from md.company_payment_bo where partner_id=?");
+        statement.setInt(1,partner.getPartnerId());
+        statement.executeUpdate();
+        connection.close();
+    }
+
+
+    public void deleteAllPartner() throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Delete from md.company_payment_bo");
+
+        statement.executeUpdate();
+        connection.close();
+    }
 }

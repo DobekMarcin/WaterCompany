@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.DialogPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -14,6 +15,7 @@ import md.program.stage.LoginStage;
 import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -28,6 +30,7 @@ public class MainStageController {
     private static final String FXML_DEFAULT_YEAR_STAGE_FXML = "/FXML/DefaultYearStage.fxml";
     private static final String FXML_BO_YEAR_STAGE_FXML = "/FXML/BOYearStage.fxml";
     private static final String FXML_PARTNER_BO_YEAR_STAGE_FXML = "/FXML/PartnerPaymentBO.fxml";
+    private static final String FXML_DELETE_BO_STAGE_FXML = "/FXML/CheckPasswordStage.fxml";
 
     @FXML
     private BorderPane borderPane;
@@ -235,5 +238,26 @@ public class MainStageController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void deleteBOOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_DELETE_BO_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("close.Bo"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        CheckPasswordStageController checkPasswordStageController = fxmlLoader.getController();
+        checkPasswordStageController.setThisStage(stage1);
+        checkPasswordStageController.init();
+        stage1.showAndWait();
+
     }
 }

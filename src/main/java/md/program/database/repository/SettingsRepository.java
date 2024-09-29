@@ -4,6 +4,7 @@ import java.sql.*;
 
 // set=1 Rok domyślny
 // set=2 Rok BO
+// set=3 Zamknij BO
 
 public class SettingsRepository {
 
@@ -80,6 +81,34 @@ public class SettingsRepository {
         Connection connection = getConnection();
         statement = connection.prepareStatement("Insert into md.settings (id,settings) values (2,?)");
         statement.setInt(1, year);
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public void closeBO() throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Insert into md.settings (id,settings) values (3,1)");
+        statement.executeUpdate();
+        connection.close();
+    }
+
+    public Integer getCloseBO() throws SQLException {
+        PreparedStatement statement=null;
+        Connection connection = getConnection();
+        Integer check = -1;
+        statement = connection.prepareStatement("Select coalesce(settings,0) as bo from md.settings where id=3;");
+        ResultSet rs = statement.executeQuery();
+        while(rs.next())
+            check=rs.getInt("bo");
+        connection.close();
+        return  check;
+    }
+
+    public void deleteCloseBoSettings() throws SQLException {
+        PreparedStatement statement;
+        Connection connection = getConnection();
+        statement = connection.prepareStatement("Delete from md.settings where id=3");
         statement.executeUpdate();
         connection.close();
     }

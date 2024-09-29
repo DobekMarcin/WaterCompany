@@ -27,9 +27,10 @@
    <bottom>
       <AnchorPane prefWidth="586.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="45.0" layoutY="5.0" mnemonicParsing="false" onAction="#editBOOnAction" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
+            <Button fx:id="editButton" layoutX="45.0" layoutY="5.0" mnemonicParsing="false" onAction="#editBOOnAction" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
             <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="6.0" />
-            <Button layoutX="580.0" layoutY="5.0" mnemonicParsing="false" onAction="#closeBOButtonOnAction" text="%partner.bo.closeBO" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="112.0" />
+            <Button fx:id="closeButton" layoutX="580.0" layoutY="5.0" mnemonicParsing="false" onAction="#closeBOButtonOnAction" text="%partner.bo.closeBO" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="112.0" />
+            <Button fx:id="deleteButton" layoutX="112.0" layoutY="2.0" mnemonicParsing="false" onAction="#deletePersonBoOnAction" text="%partner.bo.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
          </children>
          <BorderPane.margin>
             <Insets />

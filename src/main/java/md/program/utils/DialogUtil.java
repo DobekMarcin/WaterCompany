@@ -3,6 +3,8 @@ package md.program.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import java.util.Optional;
+
 public class DialogUtil
 
 {
@@ -30,5 +32,14 @@ public class DialogUtil
         informationAlert.setHeaderText(Utils.getResourceBundle().getString(headerKey));
         informationAlert.setContentText(Utils.getResourceBundle().getString(decriptionKey));
         informationAlert.showAndWait();
+    }
+    public static boolean yesNoDialog(String titleKey,String headerKey,String decriptionKey) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(Utils.getResourceBundle().getString(titleKey));
+        alert.setHeaderText(Utils.getResourceBundle().getString(headerKey));
+        alert.setContentText(Utils.getResourceBundle().getString(decriptionKey));
+        alert.getButtonTypes().addAll(ButtonType.CANCEL);
+        Optional<ButtonType> choose = alert.showAndWait();
+        return choose.get() == ButtonType.OK;
     }
 }

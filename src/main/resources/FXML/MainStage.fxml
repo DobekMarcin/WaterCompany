@@ -28,7 +28,7 @@
                             <MenuItem mnemonicParsing="false" onAction="#boOnAction" text="%menu.file.bo.year" />
                               <MenuItem mnemonicParsing="false" onAction="#startBoOnAction" text="%menu.file.bo.value" />
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem mnemonicParsing="false" text="%menu.file.bo.delete" />
+                              <MenuItem mnemonicParsing="false" onAction="#deleteBOOnAction" text="%menu.file.bo.delete" />
                           </items>
                         </Menu>
                         <SeparatorMenuItem mnemonicParsing="false" />
@@ -42,6 +42,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#counterRateCompanyTableOnAction" text="%menu.rate.counter.company.Table" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="%bookkeeping">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="%bookkeeping.plan" />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="%menu.about">
                   <items>
                     <MenuItem mnemonicParsing="false" text="%menu.about.about" />

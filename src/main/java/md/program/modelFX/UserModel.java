@@ -28,4 +28,8 @@ public class UserModel {
     public void setUserFx(UserFX userFx) {
         this.userFx = userFx;
     }
+
+    public Boolean checkPassword(String password) throws SQLException {
+        return userRepository.checkPassword(password)>0?true:false;
+    }
 }

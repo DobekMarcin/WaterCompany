@@ -33,6 +33,8 @@ public class PartnerBOListModel {
     private SettingsRepository settingsRepository = new SettingsRepository();
     private Integer yearBO;
 
+    private PartnerBOFX partnerBOFX = new PartnerBOFX();
+
 
     public void initYear(){
         try {
@@ -147,5 +149,32 @@ public class PartnerBOListModel {
 
     public void setPartnerFXObservableList(ObservableList<PartnerBOFX> partnerFXObservableList) {
         this.partnerFXObservableList = partnerFXObservableList;
+    }
+
+    public PartnerBOFX getPartnerBOFX() {
+        return partnerBOFX;
+    }
+
+    public void setPartnerBOFX(PartnerBOFX partnerBOFX) {
+        this.partnerBOFX = partnerBOFX;
+    }
+
+    public Boolean deletePartnerBOFX() throws SQLException {
+        partnerBORepository.deletePartnerById(PartnerBOConverter.convertToPartnerBO(partnerBOFX));
+        return true;
+    }
+
+    public void closeBO() throws SQLException {
+   settingsRepository.closeBO();
+    }
+
+    public Boolean checkBO() throws SQLException {
+       return  settingsRepository.getCloseBO()==1?true:false;
+    }
+
+    public void deleteCloseBO() throws SQLException {
+        settingsRepository.deleteCloseBoSettings();
+        settingsRepository.deleteBOSettings();
+        partnerBORepository.deleteAllPartner();
     }
 }

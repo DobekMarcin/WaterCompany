@@ -15,6 +15,7 @@ import md.program.modelFX.PartnerBOListModel;
 import md.program.modelFX.PartnerFX;
 import md.program.modelFX.RateYearFX;
 import md.program.stage.LoginStage;
+import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
 
 import java.io.IOException;
@@ -22,6 +23,12 @@ import java.sql.SQLException;
 
 public class PartnerPaymentBoController {
     private static final String FXML_PARTNER_PAYMENT_BO_EDIT_STAGE_FXML = "/FXML/PartnerPaymentBOEdit.fxml";
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button deleteButton;
     @FXML
     private Button initializeButton;
     @FXML
@@ -63,6 +70,17 @@ public class PartnerPaymentBoController {
                 }
             }
         });
+
+        try {
+            Boolean boIsClose = partnerBOListModel.checkBO();
+            if(boIsClose==true){
+            editButton.setVisible(false);
+            deleteButton.setVisible(false);
+            closeButton.setVisible(false);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void editBOOnAction() {
@@ -98,7 +116,12 @@ public class PartnerPaymentBoController {
     }
 
     public void closeBOButtonOnAction() {
-
+        try {
+            partnerBOListModel.closeBO();
+            init();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setThisStage(Stage stage1) {
@@ -107,5 +130,25 @@ public class PartnerPaymentBoController {
 
     public void initializeBOOnAction() {
         init();
+    }
+
+    public void deletePersonBoOnAction() {
+        if (partnerBOTable.getSelectionModel().getSelectedItem() != null) {
+            PartnerBOFX partnerBOFX = partnerBOTable.getSelectionModel().getSelectedItem();
+            partnerBOListModel.setPartnerBOFX(partnerBOFX);
+            try {
+                Boolean result = partnerBOListModel.deletePartnerBOFX();
+                if (result == false) {
+                    DialogUtil.dialogAboutApplication("dialog.title", "dialog.header", "dialog.partnerBO.delete");
+                } else {
+                    init();
+               //     partnerBOTable.getSelectionModel().selectLast();
+               //     partnerBOTable.scrollTo(partnerBOTable.getSelectionModel().getSelectedItem());
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
     }
 }
