@@ -44,7 +44,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="%bookkeeping">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="%bookkeeping.plan" />
+                      <MenuItem mnemonicParsing="false" onAction="#accountPlanOnAction" text="%bookkeeping.plan" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="%menu.about">

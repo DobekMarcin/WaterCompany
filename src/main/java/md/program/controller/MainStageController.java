@@ -31,6 +31,7 @@ public class MainStageController {
     private static final String FXML_BO_YEAR_STAGE_FXML = "/FXML/BOYearStage.fxml";
     private static final String FXML_PARTNER_BO_YEAR_STAGE_FXML = "/FXML/PartnerPaymentBO.fxml";
     private static final String FXML_DELETE_BO_STAGE_FXML = "/FXML/CheckPasswordStage.fxml";
+    private static final String FXML_ACCOUNT_PLAN_STAGE_FXML = "/FXML/BookKeepingAccountPlanStage.fxml";
 
     @FXML
     private BorderPane borderPane;
@@ -259,5 +260,25 @@ public class MainStageController {
         checkPasswordStageController.init();
         stage1.showAndWait();
 
+    }
+
+    public void accountPlanOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ACCOUNT_PLAN_STAGE_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("bookkeeping.plan"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        BookKeepingAccountPlanStageController bookKeepingAccountPlanStageController = fxmlLoader.getController();
+        bookKeepingAccountPlanStageController.setThisStage(stage1);
+        bookKeepingAccountPlanStageController.init();
+        stage1.showAndWait();
     }
 }

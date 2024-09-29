@@ -9,20 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v13">
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/CheckPasswordStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/CheckPasswordStage.fxml" afterDir="false" />
+    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v14">
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BookKeepingAccountPlanStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/BKAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountFX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountPlanModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/BKAccountConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/BookKeepingAccountPlanStage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerPaymentBoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/PartnerPaymentBoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerBORepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/PartnerBORepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/SettingsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/SettingsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/PartnerBOListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/utils/DialogUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/DialogUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PartnerPaymentBO.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PartnerPaymentBO.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726606996170</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="v14">
+      <option name="closed" value="true" />
+      <created>1727613875233</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1727613875233</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,6 +242,7 @@
     <MESSAGE value="v11" />
     <MESSAGE value="v12" />
     <MESSAGE value="v13" />
-    <option name="LAST_COMMIT_MESSAGE" value="v13" />
+    <MESSAGE value="v14" />
+    <option name="LAST_COMMIT_MESSAGE" value="v14" />
   </component>
 </project>
