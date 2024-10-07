@@ -10,9 +10,10 @@
    <bottom>
       <AnchorPane prefWidth="586.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="45.0" layoutY="5.0" mnemonicParsing="false" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
-            <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="6.0" />
-            <Button layoutX="112.0" layoutY="2.0" mnemonicParsing="false" text="%partner.bo.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
+            <Button layoutX="45.0" layoutY="5.0" mnemonicParsing="false" onAction="#editOnAction" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
+            <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="6.0" />
+            <Button layoutX="112.0" layoutY="2.0" mnemonicParsing="false" onAction="#deleteOnAction" text="%partner.bo.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="195.0" />
+            <Button layoutX="-16.0" layoutY="17.0" mnemonicParsing="false" onAction="#addOnAction" text="%bookkeeping.account.edit.add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -23,9 +24,9 @@
       </AnchorPane>
    </bottom>
    <center>
-      <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TreeView fx:id="treeView" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
       </TreeView>
    </center>

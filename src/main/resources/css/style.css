@@ -195,3 +195,7 @@
   -fx-alignment: CENTER;
   -fx-font-size: 12pt;
 }
+
+.tree-cell{
+    -fx-font-size: 16;
+}

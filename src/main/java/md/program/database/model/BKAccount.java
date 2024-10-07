@@ -7,10 +7,20 @@ import java.util.List;
 public class BKAccount {
 
     private Integer id = 0;
-    private String root="";
+    private Integer root= 0;
     private String account="";
     private String description="";
     private List<BKAccount> accountList;
+
+    public BKAccount() {
+    }
+
+    public BKAccount(Integer id, Integer root, String account, String description) {
+        this.id = id;
+        this.root = root;
+        this.account = account;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
@@ -20,11 +30,11 @@ public class BKAccount {
         this.id = id;
     }
 
-    public String getRoot() {
+    public Integer getRoot() {
         return root;
     }
 
-    public void setRoot(String root) {
+    public void setRoot(Integer root) {
         this.root = root;
     }
 
@@ -54,6 +64,6 @@ public class BKAccount {
 
     @Override
     public String toString() {
-        return account +"-"+ description;
+        return account +" - "+ description;
     }
 }

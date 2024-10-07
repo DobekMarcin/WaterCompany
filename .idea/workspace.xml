@@ -9,17 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v14">
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BookKeepingAccountPlanStageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/BKAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountFX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountPlanModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/utils/converters/BKAccountConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/BookKeepingAccountPlanStage.fxml" afterDir="false" />
+    <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v15">
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountPlanAddStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountPlanEditStageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/BKAccountPlanAddStage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/BKAccountPlanEditStage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/MainStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/BookKeepingAccountPlanStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BookKeepingAccountPlanStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/model/BKAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/BKAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountPlanModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountPlanModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/BookKeepingAccountPlanStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/BookKeepingAccountPlanStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,21 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "20",
-    "last_opened_file_path": "C:/Users/reina/IdeaProjects/WaterCompany/src/main/resources/FXML",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.36666667",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;20&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/reina/IdeaProjects/WaterCompany/src/main/resources/FXML&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.36666667&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\reina\IdeaProjects\WaterCompany\src\main\resources\FXML" />
@@ -215,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727613875233</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="v15">
+      <option name="closed" value="true" />
+      <created>1727631038238</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1727631038238</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +254,7 @@
     <MESSAGE value="v12" />
     <MESSAGE value="v13" />
     <MESSAGE value="v14" />
-    <option name="LAST_COMMIT_MESSAGE" value="v14" />
+    <MESSAGE value="v15" />
+    <option name="LAST_COMMIT_MESSAGE" value="v15" />
   </component>
 </project>

@@ -10,7 +10,7 @@ import java.util.List;
 public class BKAccountFX {
 
     private SimpleIntegerProperty id = new SimpleIntegerProperty();
-    private SimpleStringProperty root = new SimpleStringProperty();
+    private SimpleIntegerProperty root = new SimpleIntegerProperty();
     private SimpleStringProperty account = new SimpleStringProperty();
     private SimpleStringProperty description = new SimpleStringProperty();
     private SimpleListProperty<BKAccountFX> accountList = new SimpleListProperty<>();
@@ -27,15 +27,15 @@ public class BKAccountFX {
         this.id.set(id);
     }
 
-    public String getRoot() {
+    public int getRoot() {
         return root.get();
     }
 
-    public SimpleStringProperty rootProperty() {
+    public SimpleIntegerProperty rootProperty() {
         return root;
     }
 
-    public void setRoot(String root) {
+    public void setRoot(int root) {
         this.root.set(root);
     }
 
