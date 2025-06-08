@@ -9,7 +9,7 @@
     <children>
         <Label layoutX="25.0" layoutY="34.0" text="%rate.table.column.year" />
         <TextField fx:id="yearTextField" layoutX="79.0" layoutY="30.0" prefHeight="25.0" prefWidth="187.0" />
-        <Button layoutX="97.0" layoutY="81.0" mnemonicParsing="false" onAction="#confirmYear" prefHeight="26.0" prefWidth="118.0" text="%button.confirm" />
+        <Button layoutX="97.0" layoutY="81.0" mnemonicParsing="false" onAction="#confirmYear" prefHeight="26.0" prefWidth="118.0" text="%bookkeeping.account.edit.save" />
         <Label fx:id="noLogLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
     </children>
 </Pane>

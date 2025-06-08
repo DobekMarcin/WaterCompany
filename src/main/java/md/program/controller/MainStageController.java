@@ -5,17 +5,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.DialogPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import md.program.controller.BKAccountList.BKAccountListStageController;
+import md.program.controller.BKAccountPlan.BookKeepingAccountPlanStageController;
+import md.program.controller.BKPatterns.BKPatternTableStageController;
+import md.program.controller.company.CompanyTableStageController;
+import md.program.controller.invoice.InvoiceTableStageController;
+import md.program.controller.partner.PartnerPaymentBoController;
+import md.program.controller.partner.PartnerTableStageController;
 import md.program.database.repository.SettingsRepository;
 import md.program.stage.LoginStage;
 import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -32,6 +37,10 @@ public class MainStageController {
     private static final String FXML_PARTNER_BO_YEAR_STAGE_FXML = "/FXML/PartnerPaymentBO.fxml";
     private static final String FXML_DELETE_BO_STAGE_FXML = "/FXML/CheckPasswordStage.fxml";
     private static final String FXML_ACCOUNT_PLAN_STAGE_FXML = "/FXML/BookKeepingAccountPlanStage.fxml";
+    private static final String FXML_BOOK_KEEPING_ACCOUNT_LIST_FXML = "/FXML/BKAccountListStage.fxml";
+    private static final String FXML_COMPANY_LIST_FXML ="/FXML/CompanyTableStage.fxml";
+    private static final String FXML_INVOICE_LIST_FXML ="/FXML/InvoiceTableStage.fxml";
+    private static final String FXML_BOOK_KEEPING_PATTERN_LIST_FXML ="/FXML/BKPatternTableStage.fxml";
 
     @FXML
     private BorderPane borderPane;
@@ -279,6 +288,74 @@ public class MainStageController {
         BookKeepingAccountPlanStageController bookKeepingAccountPlanStageController = fxmlLoader.getController();
         bookKeepingAccountPlanStageController.setThisStage(stage1);
         bookKeepingAccountPlanStageController.init();
+        stage1.showAndWait();
+    }
+
+    public void bookKeepingAccountListButtonOnAction(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_BOOK_KEEPING_ACCOUNT_LIST_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+
+        Pane bordPane = null;
+        try {
+            bordPane = fxmlLoader.load();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BKAccountListStageController bkAccountListStageController = fxmlLoader.getController();
+        bkAccountListStageController.init();
+        borderPane.setCenter(bordPane);
+    }
+
+    public void companyListButtonOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COMPANY_LIST_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+
+        Pane bordPane = null;
+        try {
+            bordPane = fxmlLoader.load();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        CompanyTableStageController companyTableStageController = fxmlLoader.getController();
+        companyTableStageController.init();
+        borderPane.setCenter(bordPane);
+    }
+
+    public void invoiceListButtonOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_INVOICE_LIST_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+
+        Pane bordPane = null;
+        try {
+            bordPane = fxmlLoader.load();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        InvoiceTableStageController invoiceTableStageController = fxmlLoader.getController();
+        invoiceTableStageController.init();
+        borderPane.setCenter(bordPane);
+    }
+
+    public void invoicePatternOnAction() {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_BOOK_KEEPING_PATTERN_LIST_FXML));
+        fxmlLoader.setResources(Utils.getResourceBundle());
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage1 = new Stage();
+        stage1.setScene(scene);
+        stage1.setTitle(Utils.getResourceBundle().getString("book.keeping.patterns"));
+        stage1.initModality(Modality.APPLICATION_MODAL);
+        stage1.setResizable(false);
+        BKPatternTableStageController bkPatternTableStageController = fxmlLoader.getController();
+        bkPatternTableStageController.setThisStage(stage1);
+        bkPatternTableStageController.init();
         stage1.showAndWait();
     }
 }

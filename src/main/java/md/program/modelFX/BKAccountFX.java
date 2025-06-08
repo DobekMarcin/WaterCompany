@@ -1,5 +1,6 @@
 package md.program.modelFX;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,11 +10,13 @@ import java.util.List;
 
 public class BKAccountFX {
 
-    private SimpleIntegerProperty id = new SimpleIntegerProperty();
-    private SimpleIntegerProperty root = new SimpleIntegerProperty();
-    private SimpleStringProperty account = new SimpleStringProperty();
-    private SimpleStringProperty description = new SimpleStringProperty();
+    private SimpleIntegerProperty id = new SimpleIntegerProperty(0);
+    private SimpleIntegerProperty root = new SimpleIntegerProperty(0);
+    private SimpleStringProperty account = new SimpleStringProperty("");
+    private SimpleStringProperty description = new SimpleStringProperty("");
     private SimpleListProperty<BKAccountFX> accountList = new SimpleListProperty<>();
+    private SimpleBooleanProperty syn = new SimpleBooleanProperty(false);
+    private SimpleStringProperty fullName = new SimpleStringProperty();
 
     public int getId() {
         return id.get();
@@ -75,6 +78,30 @@ public class BKAccountFX {
         this.accountList.set(accountList);
     }
 
+    public boolean isSyn() {
+        return syn.get();
+    }
+
+    public SimpleBooleanProperty synProperty() {
+        return syn;
+    }
+
+    public void setSyn(boolean syn) {
+        this.syn.set(syn);
+    }
+
+    public String getFullName() {
+        return fullName.get();
+    }
+
+    public SimpleStringProperty fullNameProperty() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName.set(fullName);
+    }
+
     @Override
     public String toString() {
         return "BKAccountFX{" +
@@ -83,6 +110,7 @@ public class BKAccountFX {
                 ", account=" + account +
                 ", description=" + description +
                 ", accountList=" + accountList +
+                ", syn=" + syn +
                 '}';
     }
 }

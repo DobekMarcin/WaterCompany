@@ -13,6 +13,8 @@ public class BKAccountConverter {
         bkAccount.setRoot(bkAccountFX.getRoot());
         bkAccount.setAccount(bkAccountFX.getAccount());
         bkAccount.setDescription(bkAccountFX.getDescription());
+        bkAccount.setSyn(bkAccountFX.synProperty().get());
+        bkAccount.setFullName(bkAccountFX.getFullName());
         return bkAccount;
     }
 
@@ -22,6 +24,8 @@ public class BKAccountConverter {
         bkAccountFX.setRoot(bkAccount.getRoot());
         bkAccountFX.setAccount(bkAccount.getAccount());
         bkAccountFX.setDescription(bkAccount.getDescription());
+        bkAccountFX.setSyn(bkAccount.getSyn());
+        bkAccountFX.setFullName(bkAccount.getFullName());
         return bkAccountFX;
     }
 }

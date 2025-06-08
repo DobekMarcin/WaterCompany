@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.BookKeepingAccountPlanStageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.BKAccountPlan.BookKeepingAccountPlanStageController">
    <bottom>
       <AnchorPane prefWidth="586.0" BorderPane.alignment="CENTER">
          <children>
+            <Button mnemonicParsing="false" onAction="#addGenerateYearButton" text="%counter.read.initialize.year" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="550.0" />
             <Button layoutX="45.0" layoutY="5.0" mnemonicParsing="false" onAction="#editOnAction" text="%partner.bo.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" />
             <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="6.0" />
             <Button layoutX="112.0" layoutY="2.0" mnemonicParsing="false" onAction="#deleteOnAction" text="%partner.bo.delete" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="195.0" />

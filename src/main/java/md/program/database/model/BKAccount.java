@@ -11,15 +11,19 @@ public class BKAccount {
     private String account="";
     private String description="";
     private List<BKAccount> accountList;
+    private Boolean syn;
+    private String fullName="";
 
     public BKAccount() {
     }
 
-    public BKAccount(Integer id, Integer root, String account, String description) {
+    public BKAccount(Integer id, Integer root, String account, String description,Boolean syn,String fullName) {
         this.id = id;
         this.root = root;
         this.account = account;
         this.description = description;
+        this.syn=syn;
+        this.fullName=fullName;
     }
 
     public Integer getId() {
@@ -62,8 +66,28 @@ public class BKAccount {
         this.accountList = accountList;
     }
 
+    public Boolean getSyn() {
+        return syn;
+    }
+
+    public void setSyn(Boolean syn) {
+        this.syn = syn;
+    }
+
     @Override
     public String toString() {
-        return account +" - "+ description;
+        if(syn == true){
+            return account +" - S - "+ description;
+        }else
+
+        return account +" - A - "+ description;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

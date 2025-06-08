@@ -1,6 +1,5 @@
-package md.program.controller;
+package md.program.controller.partner;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,13 +8,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import md.program.controller.partner.LogPartnerTableDateEditStageController;
 import md.program.modelFX.LogPartnerFX;
 import md.program.modelFX.LogPartnerListModel;
-import md.program.modelFX.PartnerFX;
 import md.program.stage.LoginStage;
-import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
-import org.jfree.util.Log;
 
 import java.io.IOException;
 import java.sql.SQLException;

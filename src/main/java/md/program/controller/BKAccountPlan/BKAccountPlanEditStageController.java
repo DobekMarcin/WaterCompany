@@ -1,10 +1,11 @@
-package md.program.controller;
+package md.program.controller.BKAccountPlan;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import md.program.modelFX.BKAccountPlanModel;
+import md.program.utils.DialogUtil;
 
 import java.sql.SQLException;
 
@@ -26,11 +27,17 @@ public class BKAccountPlanEditStageController {
     }
     public void saveButtonOnAction() {
         try {
-            bkAccountPlanModel.saveEdit();
+            if(accountNumber.textProperty().getValue().isEmpty() || accountDes.textProperty().getValue().isEmpty()){
+                DialogUtil.errorAboutApplication("dialog.title", "error.header", "dialog.accountPlan.empty.data");
+            }else {
+                int answer = bkAccountPlanModel.saveEdit();
+                thisStage.close();
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        thisStage.close();
+
     }
 
     public void cancelButtonOnAction() {

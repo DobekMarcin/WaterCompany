@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.partner;
 
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;

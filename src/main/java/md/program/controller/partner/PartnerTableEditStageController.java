@@ -1,42 +1,38 @@
-package md.program.controller;
+package md.program.controller.partner;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
+import md.program.controller.ArchiveInfoStageController;
 import md.program.modelFX.PartnerModel;
 import md.program.stage.LoginStage;
 import md.program.utils.Utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.GregorianCalendar;
 
-public class PartnerTableAddStageController {
+public class PartnerTableEditStageController {
 
     private static final String FXML_ARCHIVE_INFO_STAGE_FXML = "/FXML/ArchiveInfoStage.fxml";
     @FXML
-    public CheckBox meterCheckBox;
-    @FXML
-    private TextField addYearTextField;
-    @FXML
-    private TextField addMonthTextField;
+    private TextField postCodeTextField;
     @FXML
     private TextField postTextField;
     @FXML
     private TextField nipTextField;
     @FXML
-    private TextField postCodeTextField;
+    private CheckBox meterCheckBox;
     @FXML
     private Label errorLabel;
-    private Stage stage;
+    @FXML
+    private CheckBox companyChceckBox;
     @FXML
     private TextField idTextField;
     @FXML
@@ -49,20 +45,19 @@ public class PartnerTableAddStageController {
     private TextField peopleTextField;
     @FXML
     private CheckBox archivesChceckBox;
-    @FXML
-    private CheckBox companyChceckBox;
+    private Stage stage;
     private PartnerModel partnerModel = new PartnerModel();
 
     public void init() {
-        bindings();
-        setListeners();
         try {
-            partnerModel.setId();
-        } catch (SQLException e) {
+            partnerModel.setOldPartner();
+        } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
-        peopleTextField.setTextFormatter(new TextFormatter<>(Utils.integerFilter));
+        bindings();
+        setListeners();
         idTextField.setEditable(false);
+
         nameTextField.requestFocus();
     }
 
@@ -71,64 +66,65 @@ public class PartnerTableAddStageController {
         surnameTextField.textProperty().addListener(observable -> errorLabel.setText(""));
         addressTextField.textProperty().addListener(observable -> errorLabel.setText(""));
         peopleTextField.textProperty().addListener(observable -> errorLabel.setText(""));
-        companyChceckBox.selectedProperty().addListener(observable -> errorLabel.setText(""));
-        companyChceckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue == true) peopleTextField.setText("0");
-        });
-        postTextField.textProperty().addListener(observable -> errorLabel.setText(""));
         postCodeTextField.textProperty().addListener(observable -> errorLabel.setText(""));
+        postTextField.textProperty().addListener(observable -> errorLabel.setText(""));
         nipTextField.textProperty().addListener(observable -> errorLabel.setText(""));
     }
-    private void bindings() {
 
+    private void bindings() {
         idTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().idProperty(), new NumberStringConverter());
-        idTextField.disableProperty().set(true);
         nameTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().nameProperty());
         surnameTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().surnameProperty());
         addressTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().addressProperty());
-        postCodeTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postCodeProperty());
-        postTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postProperty());
-        nipTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().nipProperty());
-        nipTextField.disableProperty().set(true);
         peopleTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().peopleCountProperty(), new NumberStringConverter());
         //archivesChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().archivesProperty());
         companyChceckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().companyProperty());
-        peopleTextField.disableProperty().bindBidirectional(companyChceckBox.selectedProperty());
+        companyChceckBox.setDisable(true);
         meterCheckBox.selectedProperty().bindBidirectional(partnerModel.getPartnerFX().meterProperty());
-        addMonthTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().monthProperty(),new NumberStringConverter());
-        addYearTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().yearProperty(),new NumberStringConverter());
+        if(meterCheckBox.isSelected()) meterCheckBox.setDisable(true);
 
-        GregorianCalendar periodDate = new GregorianCalendar();
+        peopleTextField.setDisable(companyChceckBox.isSelected() || meterCheckBox.isSelected());
+        postTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postProperty());
+        postCodeTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().postCodeProperty());
+        nipTextField.textProperty().bindBidirectional(partnerModel.getPartnerFX().nipProperty());
+        nipTextField.setDisable(true);
+        idTextField.setDisable(true);
+    }
 
-        nameTextField.setText("");
-        surnameTextField.setText("");
-        addressTextField.setText("");
-        postCodeTextField.setText("");
-        postTextField.setText("");
-        nipTextField.setText("");
+    public Stage getStage() {
+        return stage;
+    }
 
-        companyChceckBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-            if(isNowSelected) nipTextField.disableProperty().set(false);
-            if(!isNowSelected) {
-                nipTextField.disableProperty().set(true);
-                nipTextField.setText("");
-            }
-        });
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @FXML
-    public void addButtonOnAction() {
+    public void editButtonOnAction() {
         try {
             Boolean validData = partnerModel.validData();
             if (!validData) {
                 errorLabel.setText(Utils.getResourceBundle().getString("partner.add.error"));
             } else {
-                partnerModel.addPartner();
-                stage.close();
+            partnerModel.saveUpdatePartner();
+            stage.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void cancelButtonOnAction() {
+        stage.close();
+    }
+
+    public PartnerModel getPartnerModel() {
+        return partnerModel;
+    }
+
+    public void setPartnerModel(PartnerModel partnerModel) {
+        this.partnerModel = partnerModel;
     }
 
     public void infoArchiveOnAction() {
@@ -150,18 +146,4 @@ public class PartnerTableAddStageController {
         archiveInfoStageController.init();
         stage1.showAndWait();
     }
-    @FXML
-    public void cancelButtonOnAction() {
-        stage.close();
-    }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-
 }

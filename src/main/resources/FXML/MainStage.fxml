@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -45,6 +46,11 @@
                   <Menu mnemonicParsing="false" text="%bookkeeping">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#accountPlanOnAction" text="%bookkeeping.plan" />
+                        <Menu mnemonicParsing="false" text="%book.keeping.patterns">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#invoicePatternOnAction" text="%book.keeping.patterns.pattern" />
+                          </items>
+                        </Menu>
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="%menu.about">
@@ -78,6 +84,43 @@
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icon/money.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0">
+                     <HBox.margin>
+                        <Insets left="5.0" right="3.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <Button mnemonicParsing="false" onAction="#companyListButtonOnAction">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/company.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#invoiceListButtonOnAction">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/invoice.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator orientation="VERTICAL">
+                     <HBox.margin>
+                        <Insets left="5.0" right="3.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <Button mnemonicParsing="false" onAction="#bookKeepingAccountListButtonOnAction">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/bookkeeping.png" />
                            </image>
                         </ImageView>
                      </graphic>

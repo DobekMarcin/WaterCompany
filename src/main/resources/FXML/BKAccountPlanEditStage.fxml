@@ -5,14 +5,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="564.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.BKAccountPlanEditStageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="564.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.BKAccountPlan.BKAccountPlanEditStageController">
     <children>
-      <TextField fx:id="accountNumber" layoutX="123.0" layoutY="68.0" prefHeight="35.0" prefWidth="216.0" />
-        <Label layoutX="26.0" layoutY="75.0" text="%bookkeeping.account" />
+      <TextField fx:id="accountNumber" layoutX="123.0" layoutY="18.0" prefHeight="35.0" prefWidth="216.0" />
+      <TextField fx:id="accountDes" layoutX="123.0" layoutY="66.0" prefHeight="35.0" prefWidth="425.0" />
+        <Label layoutX="26.0" layoutY="25.0" text="%bookkeeping.account" />
         <Button layoutX="155.0" layoutY="115.0" mnemonicParsing="false" onAction="#saveButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%bookkeeping.account.edit.save" />
         <Label fx:id="noLogLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
         <Button layoutX="291.0" layoutY="115.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%log.in.cancel" />
-      <Label layoutX="26.0" layoutY="25.0" text="%bookkeeping.account.des" />
-      <TextField fx:id="accountDes" layoutX="121.0" layoutY="18.0" prefHeight="35.0" prefWidth="425.0" />
+      <Label layoutX="28.0" layoutY="73.0" text="%bookkeeping.account.des" />
     </children>
 </Pane>

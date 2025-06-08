@@ -1,6 +1,5 @@
-package md.program.controller;
+package md.program.controller.partner;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,8 +11,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import md.program.modelFX.PartnerBOFX;
 import md.program.modelFX.PartnerBOListModel;
-import md.program.modelFX.PartnerFX;
-import md.program.modelFX.RateYearFX;
 import md.program.stage.LoginStage;
 import md.program.utils.DialogUtil;
 import md.program.utils.Utils;

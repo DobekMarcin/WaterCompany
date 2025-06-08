@@ -14,6 +14,7 @@ public class BKAccountPlanModel {
     private BKAccountPlanRepository bkAccountPlanRepository = new BKAccountPlanRepository();
 
     private BKAccount bkAccountEdit = new BKAccount();
+    private BKAccountFX bkAccountNewFX = new BKAccountFX();
     private BKAccountFX bkAccountFX = new BKAccountFX();
     public void init() throws SQLException {
         treeItemRoot.getChildren().clear();
@@ -96,8 +97,9 @@ public class BKAccountPlanModel {
         this.bkAccountFX = bkAccountFX;
     }
 
-    public void saveEdit() throws SQLException {
+    public int saveEdit() throws SQLException {
         bkAccountPlanRepository.save(BKAccountConverter.convertToBKAccount(bkAccountFX));
+        return 1;
     }
 
     public int delete() throws SQLException {
@@ -109,16 +111,40 @@ public class BKAccountPlanModel {
     }
 
     public int addnew() throws SQLException {
-        BKAccount bkAccount = BKAccountConverter.convertToBKAccount(bkAccountFX);
-
-        int level = checkLevel(bkAccount);
-        bkAccountPlanRepository.insertNewAccount(new BKAccount(1, bkAccountEdit.getId(), bkAccount.getAccount(),bkAccount.getDescription()));
-return 10;
-    }
-
-    private int checkLevel(BKAccount bkAccount) throws SQLException {
-        int root=bkAccountPlanRepository.getRoot(bkAccount);
-     //   if(root>0) checkLevel(bkAccountPlanRepository.getAccountById(int id));
+            BKAccount bkAccountNew = BKAccountConverter.convertToBKAccount(bkAccountNewFX);
+            bkAccountPlanRepository.insertNewAccount(new BKAccount(1, bkAccountEdit.getId(), bkAccountNew.getAccount(), bkAccountNew.getDescription(),bkAccountNew.getSyn(), bkAccountEdit.getId()==0? bkAccountNew.getAccount() : bkAccountEdit.getFullName()+" - "+bkAccountNew.getAccount()));
         return 1;
     }
+
+    public int checkLevel( ) throws SQLException {
+        int root=bkAccountPlanRepository.getRoot(bkAccountEdit);
+        if(root == 0) return 1;
+
+        int root2 = bkAccountPlanRepository.getRootById(root);
+        if(root2 == 0)
+            return 2;
+        int root3 = bkAccountPlanRepository.getRootById(root2);
+        if(root3 == 0)
+            return 3;
+
+        return -1;
+    }
+
+    public int getRoot() throws SQLException {
+        int root=bkAccountPlanRepository.getRoot(bkAccountEdit);
+        return root;
+    }
+
+
+    public BKAccountFX getBkAccountNewFX() {
+        return bkAccountNewFX;
+    }
+
+    public void setBkAccountNewFX(BKAccountFX bkAccountNewFX) {
+        this.bkAccountNewFX = bkAccountNewFX;
+    }
+    public void resetAccountNew(){
+        bkAccountNewFX = new BKAccountFX();
+    }
+
 }

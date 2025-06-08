@@ -102,6 +102,7 @@ public class LoginStageController {
         stage1.setScene(scene);
         stage1.setTitle(Utils.getResourceBundle().getString("title.app"));
         stage1.setResizable(true);
+        stage1.setMaximized(true);
         stage1.show();
     }
 
