@@ -1,12 +1,10 @@
-package md.program.controller;
+package md.program.controller.PaymentPlan;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import md.program.database.repository.PaymentPlanRepository;
 import md.program.modelFX.PaymentPlanModel;
 import md.program.utils.DialogUtil;
 

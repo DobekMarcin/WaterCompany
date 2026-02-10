@@ -1,16 +1,14 @@
-package md.program.controller;
+package md.program.controller.Rate;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import md.program.controller.Rate.RateTableAddStageController;
 import md.program.modelFX.PaymentPlanModel;
 import md.program.modelFX.RateYearFX;
 import md.program.modelFX.RateYearListModel;

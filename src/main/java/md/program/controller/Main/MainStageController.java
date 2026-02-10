@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.Main;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,6 +12,12 @@ import javafx.stage.Stage;
 import md.program.controller.BKAccountList.BKAccountListStageController;
 import md.program.controller.BKAccountPlan.BookKeepingAccountPlanStageController;
 import md.program.controller.BKPatterns.BKPatternTableStageController;
+import md.program.controller.BO.BOYearStageController;
+import md.program.controller.Counter.CounterCompanyTableStageController;
+import md.program.controller.Counter.CounterReadTableStageController;
+import md.program.controller.Counter.CounterTableStageController;
+import md.program.controller.PaymentPlan.PaymentPlanTableStageController;
+import md.program.controller.Rate.RateTableStageController;
 import md.program.controller.company.CompanyTableStageController;
 import md.program.controller.invoice.InvoiceTableStageController;
 import md.program.controller.partner.PartnerPaymentBoController;

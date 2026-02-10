@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.Main;
 
 import javafx.stage.Stage;
 

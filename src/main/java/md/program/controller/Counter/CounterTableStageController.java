@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.Counter;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +8,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import md.program.modelFX.*;
+import md.program.controller.Counter.CounterTableAddStageController;
+import md.program.modelFX.CounterYearFX;
+import md.program.modelFX.CounterYearListModel;
+import md.program.modelFX.CounterYearModel;
 import md.program.stage.LoginStage;
 import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
@@ -17,8 +20,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 
-public class CounterCompanyTableStageController {
-    private static final String FXML_COUNTER_COMPANY_TABLE_ADD_STAGE_FXML = "/FXML/CounterCompanyTableAddStage.fxml";
+public class CounterTableStageController {
+    private static final String FXML_COUNTER_TABLE_ADD_STAGE_FXML = "/FXML/CounterTableAddStage.fxml";
 
     @FXML
     private TableView<CounterYearFX> yearRateTable;
@@ -27,8 +30,8 @@ public class CounterCompanyTableStageController {
     @FXML
     private TableColumn<CounterYearFX, String> rateColumn;
     private Stage thisStage;
-    private CounterCompanyYearListModel counterYearListModel = new CounterCompanyYearListModel();
-    private CounterCompanyYearModel counterYearModelCompany = new CounterCompanyYearModel();
+    private CounterYearListModel counterYearListModel = new CounterYearListModel();
+    private CounterYearModel counterYearModel = new CounterYearModel();
 
 
     public void initialize() {
@@ -66,9 +69,9 @@ public class CounterCompanyTableStageController {
 
         CounterYearFX counterYearFX = yearRateTable.getSelectionModel().getSelectedItem();
         if (counterYearFX != null) {
-            counterYearModelCompany.setCounterYearFX(counterYearFX);
+            counterYearModel.setCounterYearFX(counterYearFX);
             try {
-                Boolean result = counterYearModelCompany.deleteCounterYear();
+                Boolean result = counterYearModel.deleteCounterYear();
                 if(!result){
                     DialogUtil.dialogAboutApplication("dialog.title","dialog.header","dialog.year.rate.delete");
                 }else{
@@ -88,7 +91,7 @@ public class CounterCompanyTableStageController {
     }
 
     private void openCounterTableAddStage() {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COUNTER_COMPANY_TABLE_ADD_STAGE_FXML));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_COUNTER_TABLE_ADD_STAGE_FXML));
         fxmlLoader.setResources(Utils.getResourceBundle());
         Scene scene = null;
         try {
@@ -101,7 +104,7 @@ public class CounterCompanyTableStageController {
         stage1.setTitle(Utils.getResourceBundle().getString("rate.table.add.title"));
         stage1.initModality(Modality.APPLICATION_MODAL);
         stage1.setResizable(false);
-        CounterCompanyTableAddStageController counterTableAddStageController = fxmlLoader.getController();
+        CounterTableAddStageController counterTableAddStageController = fxmlLoader.getController();
         counterTableAddStageController.setThisStage(stage1);
         counterTableAddStageController.init();
         stage1.showAndWait();

@@ -1,16 +1,9 @@
-package md.program.controller;
+package md.program.controller.PaymentPlan;
 
-import javafx.collections.FXCollections;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import md.program.database.repository.PaymentPlanRepository;
@@ -20,9 +13,7 @@ import md.program.utils.Utils;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

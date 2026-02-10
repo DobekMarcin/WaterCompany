@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import md.program.controller.LoginStageController;
+import md.program.controller.Main.LoginStageController;
 import md.program.utils.Utils;
 
 public class LoginStage extends Application {

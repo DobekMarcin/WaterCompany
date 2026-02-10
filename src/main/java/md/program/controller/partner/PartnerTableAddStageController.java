@@ -1,8 +1,5 @@
 package md.program.controller.partner;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,14 +7,13 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
-import md.program.controller.ArchiveInfoStageController;
+import md.program.controller.Main.ArchiveInfoStageController;
 import md.program.modelFX.PartnerModel;
 import md.program.stage.LoginStage;
 import md.program.utils.Utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.GregorianCalendar;
 
 public class PartnerTableAddStageController {

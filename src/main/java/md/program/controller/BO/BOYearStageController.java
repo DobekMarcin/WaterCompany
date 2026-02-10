@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.BO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -190,6 +190,11 @@ public class InvoiceListModel {
         this.filter.set(filter);
     }
 
+    public Boolean checkInvoiceDefaultYear(int defaultYear) throws SQLException {
+
+        return invoiceRepository.chceckIsDefaultYear(defaultYear) > 0 ? true : false;
+    }
+
 //    public void printPartnerList() throws JRException, SQLException {
 //        JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(partnerFXObservableList.stream().toList());
 //

@@ -1,11 +1,10 @@
-package md.program.controller;
+package md.program.controller.Counter;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import md.program.database.repository.CounterReadRepository;
+import md.program.controller.Counter.CounterReadTableStageController;
 import md.program.modelFX.CounterReadModel;
 import md.program.utils.DialogUtil;
 

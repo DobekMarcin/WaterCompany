@@ -47,6 +47,7 @@ public class InvoiceTableStageController {
 
     private InvoiceListModel invoiceListModel = new InvoiceListModel();
     private BKAccountListModel bkAccountListModel = new BKAccountListModel();
+    private SettingsModel settingsModel = new SettingsModel();
 
     public void init() {
 
@@ -54,6 +55,17 @@ public class InvoiceTableStageController {
         initComboBox();
         tableInit();
         filterTextField.textProperty().addListener(observable -> invoiceListModel.filterInvoiceList());
+        try {
+            Boolean isInvoiceYear = invoiceListModel.checkInvoiceDefaultYear(settingsModel.getDefaultYear());
+            if(isInvoiceYear) {
+                yearComboBox.getSelectionModel().select(settingsModel.getDefaultYear());
+                selectYearOnAction();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     public void initComboBox() {

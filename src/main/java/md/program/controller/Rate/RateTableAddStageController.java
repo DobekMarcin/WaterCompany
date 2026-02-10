@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.Rate;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -1,4 +1,4 @@
-package md.program.controller;
+package md.program.controller.Counter;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
