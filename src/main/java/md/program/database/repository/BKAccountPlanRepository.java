@@ -183,20 +183,7 @@ public class BKAccountPlanRepository {
         return accountPlanList;
     }
 
-    public List<Integer> getYearList() throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        Integer year = 0;
-        List<Integer> yearList = new ArrayList<>();
-        statement = connection.prepareStatement("SELECT distinct year as year FROM md.bookkeeping_year order by year;");
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            year = rs.getInt("year");
-            yearList.add(year);
-        }
-        connection.close();
-        return yearList;
-    }
+
 
     public List<BKAccount> getAllAccountLevel(BKAccountFX level0) throws SQLException {
         PreparedStatement statement = null;
@@ -241,20 +228,24 @@ public class BKAccountPlanRepository {
         return temp;
     }
 
-    public int chceckIsDefaultYear(Integer defaultYear) throws SQLException {
-
-            PreparedStatement statement = null;
-            Connection connection = getConnection();
-            Integer check = 0;
-            statement = connection.prepareStatement("Select count(*) as count from md.bookkeeping_year where year=?;");
-            statement.setInt(1, defaultYear);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next())
-                check = rs.getInt("count");
-            connection.close();
-            return check;
-
-
-
+    public List<BKAccount> getAllAccount() throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        List<BKAccount> accountPlanList = new ArrayList<>();
+        BKAccount temp = null;
+        statement = connection.prepareStatement("SELECT id, root, account, description,syn,full_name FROM md.account_plan where id>0 order by account;");
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new BKAccount();
+            temp.setId(rs.getInt("id"));
+            temp.setAccount(rs.getString("account"));
+            temp.setRoot(rs.getInt("root"));
+            temp.setDescription(rs.getString("description"));
+            temp.setSyn(rs.getBoolean("syn"));
+            temp.setFullName(rs.getString("full_name"));
+            accountPlanList.add(temp);
+        }
+        connection.close();
+        return accountPlanList;
     }
 }

@@ -79,6 +79,7 @@ public class BKInitializeYearTableStageController {
                 throw new RuntimeException(e);
             }
             init();
+            //TODO: dodać kasowanie planu kont by year
         }
     }
 

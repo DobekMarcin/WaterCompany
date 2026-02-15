@@ -1,6 +1,7 @@
 package md.program.database.repository;
 
 import md.program.database.model.BKAccount;
+import md.program.modelFX.BKAccountFX;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,16 +58,19 @@ public class BKAccountPlanYearRepository {
         }
     }
 
-    public List<BKAccount> getAllAccount() throws SQLException {
+
+
+    public List<BKAccount> getAllAccountLevel0(int year) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        List<BKAccount> accountPlanList = new ArrayList<>();
+        List<BKAccount> accountPlanList=new ArrayList<>();
         BKAccount temp = null;
-        statement = connection.prepareStatement("SELECT id, root, account, description,syn,full_name FROM md.account_plan where id>0 order by account;");
+        statement = connection.prepareStatement("SELECT year, root, account, description,syn,full_name FROM md.account_plan_year where root=0 and year=?  order by account;");
+           statement.setInt(1,year);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new BKAccount();
-            temp.setId(rs.getInt("id"));
+            temp.setId(rs.getInt("year"));
             temp.setAccount(rs.getString("account"));
             temp.setRoot(rs.getInt("root"));
             temp.setDescription(rs.getString("description"));
@@ -77,4 +81,30 @@ public class BKAccountPlanYearRepository {
         connection.close();
         return accountPlanList;
     }
+
+
+
+    public List<BKAccount> getAllAccountLevel(BKAccountFX level0,int year) throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        List<BKAccount> accountPlanList=new ArrayList<>();
+        BKAccount temp = null;
+        statement = connection.prepareStatement("SELECT year, root, account, description,syn,full_name FROM md.account_plan_year where root=? and year=?  order by account;");
+        statement.setInt(1,level0.getId());
+        statement.setInt(2,year);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            temp = new BKAccount();
+            temp.setId(rs.getInt("year"));
+            temp.setAccount(rs.getString("account"));
+            temp.setRoot(rs.getInt("root"));
+            temp.setDescription(rs.getString("description"));
+            temp.setSyn(rs.getBoolean("syn"));
+            temp.setFullName(rs.getString("full_name"));
+            accountPlanList.add(temp);
+        }
+        connection.close();
+        return accountPlanList;
+    }
+
 }

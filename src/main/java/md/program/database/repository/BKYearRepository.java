@@ -85,4 +85,33 @@ public class BKYearRepository {
         }
     }
 
+    public int chceckIsDefaultYear(Integer defaultYear) throws SQLException {
+
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        Integer check = 0;
+        statement = connection.prepareStatement("Select count(*) as count from md.bookkeeping_year where year=?;");
+        statement.setInt(1, defaultYear);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next())
+            check = rs.getInt("count");
+        connection.close();
+        return check;
+    }
+
+    public List<Integer> getYearList() throws SQLException {
+        PreparedStatement statement = null;
+        Connection connection = getConnection();
+        Integer year = 0;
+        List<Integer> yearList = new ArrayList<>();
+        statement = connection.prepareStatement("SELECT distinct year as year FROM md.bookkeeping_year order by year;");
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            year = rs.getInt("year");
+            yearList.add(year);
+        }
+        connection.close();
+        return yearList;
+    }
+
 }

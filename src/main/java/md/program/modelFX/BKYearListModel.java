@@ -19,6 +19,7 @@ public class BKYearListModel {
     private ObservableList<BKYearFX> bkYearFXES = FXCollections.observableArrayList();
     private BKYearRepository bkYearRepository = new BKYearRepository();
     private BKAccountPlanYearRepository bkAccountPlanYearRepository = new BKAccountPlanYearRepository();
+    private BKAccountPlanRepository bkAccountPlanRepository = new BKAccountPlanRepository();
     private List<BKYearFX> bkYearFXList = new ArrayList<>();
     private BKYearFX deleteYearFX = new BKYearFX();
     private BKYearFX addnewYear = new BKYearFX();
@@ -46,7 +47,7 @@ public class BKYearListModel {
             return -1;
         }else {
             bkYearRepository.addYear(bkYear);
-            List<BKAccount> bkAccountList = bkAccountPlanYearRepository.getAllAccount();
+            List<BKAccount> bkAccountList = bkAccountPlanRepository.getAllAccount();
             bkAccountPlanYearRepository.insertNewAccount(bkAccountList,bkYear.getYear());
             return 1;
         }

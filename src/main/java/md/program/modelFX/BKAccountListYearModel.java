@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import md.program.database.model.BKAccount;
 import md.program.database.repository.BKAccountPlanRepository;
+import md.program.database.repository.BKAccountPlanYearRepository;
 import md.program.database.repository.BKYearRepository;
 import md.program.utils.converters.BKAccountConverter;
 
@@ -11,10 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BKAccountListModel {
+public class BKAccountListYearModel {
     private ObservableList<BKAccountFX> bkAccountFXObservableList = FXCollections.observableArrayList();
-    private BKAccountPlanRepository bkAccountPlanRepository = new BKAccountPlanRepository();
     private BKYearRepository bkYearRepository = new BKYearRepository();
+    private BKAccountPlanYearRepository bkAccountPlanYearRepository = new BKAccountPlanYearRepository();
     private List<BKAccountFX> accountFXList = new ArrayList<>();
     private static final String JR_PRINT_ALL_PARTNER_PDF = "/JR_TEMPLATES/partnerList.jrxml";
 
@@ -23,15 +24,16 @@ public class BKAccountListModel {
     private BKAccountFX level2 = new BKAccountFX();
 
     private int level = 0;
+    private int year;
 
     public void init() throws SQLException {
         List<BKAccount> allAccount = null;
         if (level == 0) {
-            allAccount = bkAccountPlanRepository.getAllAccountLevel0();
+            allAccount = bkAccountPlanYearRepository.getAllAccountLevel0(year);
         } else if (level == 1) {
-            allAccount = bkAccountPlanRepository.getAllAccountLevel(level0);
+            allAccount = bkAccountPlanYearRepository.getAllAccountLevel(level0,year);
         } else if (level == 2) {
-            allAccount = bkAccountPlanRepository.getAllAccountLevel(level1);
+            allAccount = bkAccountPlanYearRepository.getAllAccountLevel(level1,year);
         }
         accountFXList.clear();
 
@@ -87,8 +89,15 @@ public class BKAccountListModel {
         this.level = level;
     }
 
+    public int getYear() {
+        return year;
+    }
 
-//    public void printPartnerList() throws JRException, SQLException {
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    //    public void printPartnerList() throws JRException, SQLException {
 //        JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(partnerFXObservableList.stream().toList());
 //
 //        InputStream file = getClass().getResourceAsStream(JR_PRINT_ALL_PARTNER_PDF);
