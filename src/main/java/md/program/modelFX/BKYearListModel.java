@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import md.program.database.model.BKAccount;
 import md.program.database.model.BKYear;
 import md.program.database.repository.BKAccountPlanRepository;
+import md.program.database.repository.BKAccountPlanYearRepository;
 import md.program.database.repository.BKYearRepository;
 import md.program.utils.converters.BKAccountConverter;
 import md.program.utils.converters.BKYearConverter;
@@ -17,6 +18,7 @@ public class BKYearListModel {
 
     private ObservableList<BKYearFX> bkYearFXES = FXCollections.observableArrayList();
     private BKYearRepository bkYearRepository = new BKYearRepository();
+    private BKAccountPlanYearRepository bkAccountPlanYearRepository = new BKAccountPlanYearRepository();
     private List<BKYearFX> bkYearFXList = new ArrayList<>();
     private BKYearFX deleteYearFX = new BKYearFX();
     private BKYearFX addnewYear = new BKYearFX();
@@ -37,8 +39,17 @@ public class BKYearListModel {
         bkYearRepository.deleteBKYear(BKYearConverter.convertToBKYear(deleteYearFX));
     }
 
-    public void addYear() throws SQLException {
-        bkYearRepository.addYear(BKYearConverter.convertToBKYear(addnewYear));
+    public int addYear() throws SQLException {
+        BKYear bkYear = BKYearConverter.convertToBKYear(addnewYear);
+
+        if(bkYearRepository.existsByYear(bkYear.getYear())) {
+            return -1;
+        }else {
+            bkYearRepository.addYear(bkYear);
+            List<BKAccount> bkAccountList = bkAccountPlanYearRepository.getAllAccount();
+            bkAccountPlanYearRepository.insertNewAccount(bkAccountList,bkYear.getYear());
+            return 1;
+        }
     }
 
 

@@ -42,7 +42,7 @@ public class PatternRepository {
         Connection connection = getConnection();
 
         List<BKPattern> bkPatterns = new ArrayList<>();
-        statement = connection.prepareStatement("SELECT pattern, pattern_des, debit,(Select full_name+++++++++++++++++++++++++++ from md.account_plan where id=debit) as debittext, credit, " +
+        statement = connection.prepareStatement("SELECT pattern, pattern_des, debit,(Select full_name from md.account_plan where id=debit) as debittext, credit, " +
                 " (Select full_name from md.account_plan where id=credit) as credittext, invoice, bank, cash FROM md.bookkeeping_patterns;");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {

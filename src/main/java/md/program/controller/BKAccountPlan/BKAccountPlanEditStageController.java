@@ -25,11 +25,12 @@ public class BKAccountPlanEditStageController {
         accountNumber.textProperty().bindBidirectional(bkAccountPlanModel.getBkAccountFX().accountProperty());
         accountDes.textProperty().bindBidirectional(bkAccountPlanModel.getBkAccountFX().descriptionProperty());
     }
+
     public void saveButtonOnAction() {
         try {
-            if(accountNumber.textProperty().getValue().isEmpty() || accountDes.textProperty().getValue().isEmpty()){
+            if (accountNumber.textProperty().getValue().isEmpty() || accountDes.textProperty().getValue().isEmpty()) {
                 DialogUtil.errorAboutApplication("dialog.title", "error.header", "dialog.accountPlan.empty.data");
-            }else {
+            } else {
                 int answer = bkAccountPlanModel.saveEdit();
                 thisStage.close();
             }
@@ -41,7 +42,7 @@ public class BKAccountPlanEditStageController {
     }
 
     public void cancelButtonOnAction() {
-    thisStage.close();
+        thisStage.close();
     }
 
     public Stage getThisStage() {

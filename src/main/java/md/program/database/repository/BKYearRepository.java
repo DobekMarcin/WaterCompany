@@ -71,5 +71,18 @@ public class BKYearRepository {
         connection.close();
     }
 
+    public boolean existsByYear(int year) throws SQLException {
+        String sql = "SELECT 1 FROM md.bookkeeping_year WHERE year = ? LIMIT 1";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, year);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
 
 }

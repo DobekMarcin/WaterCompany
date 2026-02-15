@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
+import jdk.jshell.execution.Util;
 import md.program.modelFX.BKYearListModel;
 import md.program.utils.DialogUtil;
+import md.program.utils.Utils;
 
 import java.sql.SQLException;
 
@@ -27,8 +29,11 @@ public class BKInitializeYearStageController {
             DialogUtil.errorAboutApplication("dialog.title", "error.header", "dialog.bkYear");
         }else{
             try {
-                bkYearListModel.addYear();
-                stage.close();
+               int i= bkYearListModel.addYear();
+               if(i==-1){
+                   DialogUtil.errorAboutApplication("dialog.title", "error.header", "dialog.bkYear.error");
+               }
+               stage.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
