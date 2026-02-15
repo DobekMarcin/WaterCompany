@@ -34,6 +34,7 @@ public class BKAccountListStageController {
     private Stage stage;
 
     private BKAccountListModel bkAccountListModel = new BKAccountListModel();
+    private SettingsModel settingsModel = new SettingsModel();
 
     public void init() {
       //  try {
@@ -44,6 +45,20 @@ public class BKAccountListStageController {
     //    }
 
         initComboBox();
+
+        Boolean isBKYear = null;
+        try {
+            isBKYear = bkAccountListModel.checkBKPlanDefaultYear(settingsModel.getDefaultYear());
+            if(isBKYear) {
+                yearComboBox.getSelectionModel().select(settingsModel.getDefaultYear());
+                selectYearOnAction();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     public void initComboBox() {

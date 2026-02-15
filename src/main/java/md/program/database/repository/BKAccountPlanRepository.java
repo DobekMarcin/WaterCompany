@@ -240,4 +240,21 @@ public class BKAccountPlanRepository {
         connection.close();
         return temp;
     }
+
+    public int chceckIsDefaultYear(Integer defaultYear) throws SQLException {
+
+            PreparedStatement statement = null;
+            Connection connection = getConnection();
+            Integer check = 0;
+            statement = connection.prepareStatement("Select count(*) as count from md.bookkeeping_year where year=?;");
+            statement.setInt(1, defaultYear);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next())
+                check = rs.getInt("count");
+            connection.close();
+            return check;
+
+
+
+    }
 }

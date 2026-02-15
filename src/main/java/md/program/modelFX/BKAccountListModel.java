@@ -109,4 +109,8 @@ public class BKAccountListModel {
         level1 = new BKAccountFX();
         level2 = new BKAccountFX();
     }
+
+    public Boolean checkBKPlanDefaultYear(Integer defaultYear) throws SQLException {
+        return bkAccountPlanRepository.chceckIsDefaultYear(defaultYear) > 0 ? true : false;
+    }
 }
