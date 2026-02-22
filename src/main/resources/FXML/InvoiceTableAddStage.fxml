@@ -1,40 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.invoice.InvoiceTableAddStageController">
+<VBox prefWidth="720.0" spacing="0.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.invoice.InvoiceTableAddStageController">
     <children>
-        <Label layoutX="25.0" layoutY="37.0" text="%invoice.nr" />
-        <TextField fx:id="invoiceIdTextField" disable="true" editable="false" layoutX="134.0" layoutY="30.0" prefHeight="35.0" prefWidth="100.0" />
-      <TextField fx:id="invoiceNumberTextField" layoutX="134.0" layoutY="125.0" prefHeight="35.0" prefWidth="536.0" />
-      <TextArea fx:id="invoiceDesTextField" layoutX="134.0" layoutY="225.0" prefHeight="105.0" prefWidth="536.0" />
-      <TextField fx:id="invoiceAmountTextField" layoutX="134.0" layoutY="345.0" prefWidth="207.0" />
-      <TextField fx:id="invoiceCompanyTextField" editable="false" layoutX="235.0" layoutY="172.0" prefHeight="35.0" prefWidth="314.0" />
-        <Button layoutX="224.0" layoutY="396.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%rate.table.add" />
-        <Button layoutX="360.0" layoutY="396.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%log.in.cancel" />
-        <Label layoutX="25.0" layoutY="84.0" text="%invoice.date">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-        <Label fx:id="errorLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
-      <Label layoutX="25.0" layoutY="131.0" text="%invoice.number" />
-      <Label layoutX="25.0" layoutY="178.0" text="%invoice.company" />
+        <VBox spacing="5.0" style="-fx-background-color: white;">
+            <children>
+                <Label fx:id="errorLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="RED" wrapText="true" />
+                <Label style="-fx-font-size: 15pt; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #28a745;" text="Dodawanie nowej faktury" />
+                <Separator />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </VBox>
 
-      <Label layoutX="25.0" layoutY="225.0" text="%invoice.des" />
-      <Label layoutX="25.0" layoutY="352.0" text="%invoice.amount" />
-      <DatePicker fx:id="invoiceDatePicker" layoutX="134.0" layoutY="77.0" prefHeight="35.0" prefWidth="153.0" promptText="%invoice.date" />
-      <Button layoutX="560.0" layoutY="173.0" mnemonicParsing="false" onAction="#chooseCompanyOnAction" text="%invoice.company.chooser" />
-      <TextField fx:id="invoiceIdCompanyTextField" editable="false" layoutX="134.0" layoutY="172.0" prefHeight="35.0" prefWidth="90.0" />
+        <GridPane hgap="15.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="130.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="%invoice.nr" GridPane.halignment="RIGHT" />
+                <TextField fx:id="invoiceIdTextField" disable="true" editable="false" maxWidth="100.0" promptText="AUTO" style="-fx-background-color: #f4f4f4;" GridPane.columnIndex="1" />
+
+                <Label style="-fx-font-weight: bold;" text="%invoice.date" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <DatePicker fx:id="invoiceDatePicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="%invoice.number" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                <TextField fx:id="invoiceNumberTextField" promptText="np. FV/001/2026" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="%invoice.company" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <TextField fx:id="invoiceIdCompanyTextField" editable="false" prefWidth="80.0" promptText="ID" />
+                        <TextField fx:id="invoiceCompanyTextField" editable="false" HBox.hgrow="ALWAYS" promptText="Kliknij przycisk, aby wybrać kontrahenta..." />
+                        <Button mnemonicParsing="false" onAction="#chooseCompanyOnAction" styleClass="button-info" text="%invoice.company.chooser" />
+                    </children>
+                </HBox>
+
+                <Label text="%invoice.des" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                    <GridPane.margin>
+                        <Insets top="5.0" />
+                    </GridPane.margin>
+                </Label>
+                <TextArea fx:id="invoiceDesTextField" prefHeight="100.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <Label text="%invoice.amount" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                <TextField fx:id="invoiceAmountTextField" maxWidth="200.0" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="25.0" right="25.0" top="15.0" />
+            </padding>
+        </GridPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1 0 0 0;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#cancelButtonOnAction" prefWidth="120.0" text="%log.in.cancel" />
+                <Button mnemonicParsing="false" onAction="#addButtonOnAction" prefWidth="140.0" styleClass="button-success" text="%rate.table.add" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
     </children>
-   <stylesheets>
-      <URL value="@../css/style.css" />
-      <URL value="@../css/style.css" />
-   </stylesheets>
-</Pane>
+</VBox>

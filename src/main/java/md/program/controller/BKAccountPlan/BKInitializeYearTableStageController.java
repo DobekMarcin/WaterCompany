@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import md.program.database.repository.BKAccountPlanYearRepository;
 import md.program.modelFX.BKYearFX;
 import md.program.modelFX.BKYearListModel;
 import md.program.modelFX.PartnerFX;
@@ -79,7 +80,6 @@ public class BKInitializeYearTableStageController {
                 throw new RuntimeException(e);
             }
             init();
-            //TODO: dodać kasowanie planu kont by year
         }
     }
 

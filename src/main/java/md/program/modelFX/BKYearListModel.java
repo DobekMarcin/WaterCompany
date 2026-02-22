@@ -3,6 +3,7 @@ package md.program.modelFX;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import md.program.database.model.BKAccount;
+import md.program.database.model.BKAccountYear;
 import md.program.database.model.BKYear;
 import md.program.database.repository.BKAccountPlanRepository;
 import md.program.database.repository.BKAccountPlanYearRepository;
@@ -37,7 +38,9 @@ public class BKYearListModel {
     }
 
     public void deleteYear() throws SQLException {
-        bkYearRepository.deleteBKYear(BKYearConverter.convertToBKYear(deleteYearFX));
+        BKYear bkAccountYear = BKYearConverter.convertToBKYear(deleteYearFX);
+        bkYearRepository.deleteBKYear(bkAccountYear);
+        bkAccountPlanYearRepository.deleteYearByYear(bkAccountYear.getYear());
     }
 
     public int addYear() throws SQLException {
@@ -47,8 +50,7 @@ public class BKYearListModel {
             return -1;
         }else {
             bkYearRepository.addYear(bkYear);
-            List<BKAccount> bkAccountList = bkAccountPlanRepository.getAllAccount();
-            bkAccountPlanYearRepository.insertNewAccount(bkAccountList,bkYear.getYear());
+            bkAccountPlanYearRepository.generateYearFromPattern(bkYear.getYear());
             return 1;
         }
     }

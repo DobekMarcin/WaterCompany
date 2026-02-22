@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="171.0" prefWidth="322.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.Counter.CounterTableAddStageController">
+<VBox prefWidth="350.0" spacing="0.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.Counter.CounterTableAddStageController">
     <children>
-        <Label layoutX="25.0" layoutY="34.0" text="%rate.table.column.year" />
-        <TextField fx:id="yearTextField" layoutX="109.0" layoutY="34.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="rateTextField" layoutX="109.0" layoutY="81.0" prefHeight="25.0" prefWidth="187.0" />
-        <Label layoutX="25.0" layoutY="84.0" text="%rate.table.column.rate" />
-        <Button layoutX="34.0" layoutY="124.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%rate.table.add" />
-        <Label fx:id="noLogLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
-        <Button layoutX="170.0" layoutY="124.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%log.in.cancel" />
+        <VBox spacing="5.0" style="-fx-background-color: white;">
+            <children>
+                <Label fx:id="noLogLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="RED" wrapText="true" />
+                <Label style="-fx-font-size: 13pt; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #2c3e50;" text="Nowa stawka licznika" />
+                <Separator />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </VBox>
+
+        <GridPane hgap="15.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="180.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="%rate.table.column.year" GridPane.halignment="RIGHT" />
+                <TextField fx:id="yearTextField" promptText="RRRR" GridPane.columnIndex="1" />
+
+                <Label text="%rate.table.column.rate" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <TextField fx:id="rateTextField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </children>
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="15.0" />
+            </padding>
+        </GridPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1 0 0 0;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#cancelButtonOnAction" prefWidth="100.0" text="%log.in.cancel" />
+                <Button mnemonicParsing="false" onAction="#addButtonOnAction" prefWidth="120.0" styleClass="button-success" text="%rate.table.add" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
     </children>
-</Pane>
+</VBox>

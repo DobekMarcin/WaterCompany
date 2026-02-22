@@ -5,70 +5,104 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.Counter.CounterReadTableStageController">
-   <center>
-      <TableView fx:id="counterReadTable" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
-        <columns>
-            <TableColumn id="right" fx:id="idColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="%payment.table.id" />
-            <TableColumn id="left" fx:id="nameColumn" prefWidth="150.0" text="%payment.table.name" />
-            <TableColumn id="left" fx:id="surnameColumn" prefWidth="150.0" text="%payment.table.surname" />
-            <TableColumn id="right" fx:id="m1Column" text="%payment.table.m1" />
-          <TableColumn id="right" fx:id="m2Column" text="%payment.table.m2" />
-          <TableColumn id="right" fx:id="m3Column" text="%payment.table.m3" />
-            <TableColumn id="right" fx:id="m4Column" text="%payment.table.m4" />
-            <TableColumn id="right" fx:id="m5Column" text="%payment.table.m5" />
-            <TableColumn id="right" fx:id="m6Column" text="%payment.table.m6" />
-            <TableColumn id="right" fx:id="m7Column" text="%payment.table.m7" />
-            <TableColumn id="right" fx:id="m8Column" text="%payment.table.m8" />
-            <TableColumn id="right" fx:id="m9Column" text="%payment.table.m9" />
-            <TableColumn id="right" fx:id="m10Column" text="%payment.table.m10" />
-            <TableColumn id="right" fx:id="m11Column" text="%payment.table.m11" />
-            <TableColumn id="right" fx:id="m12Column" text="%payment.table.m12" />
-        </columns>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </center>
-   <bottom>
-      <AnchorPane BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="98.0" layoutY="7.0" mnemonicParsing="false" onAction="#editCounterReadOnAction" text="%partner.table.edit" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-            <Button layoutX="102.0" layoutY="7.0" mnemonicParsing="false" onAction="#initYearCounterReadOnAction" text="%counter.read.initialize.year" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="102.0" />
-            <Button layoutX="366.0" mnemonicParsing="false" onAction="#deleteCounterReadOneOnAction" text="%payment.table.delete.one" AnchorPane.bottomAnchor="0.0" />
-            <Button layoutX="248.0" mnemonicParsing="false" onAction="#deleteCounterReadYearOnAction" text="%payment.table.delete.year" AnchorPane.bottomAnchor="0.0" />
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" />
-         </BorderPane.margin>
-      </AnchorPane>
-   </bottom>
-   <top>
-      <AnchorPane BorderPane.alignment="CENTER">
-         <children>
-            <ComboBox fx:id="yearComboBox" layoutX="44.0" onAction="#selectYearOnAction" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="0.0" />
-            <TextField fx:id="filterTextField" layoutX="901.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
-            <Label layoutX="1046.0" layoutY="5.0" prefHeight="35.0" prefWidth="63.0" text="%textfield.filter" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="5.0" />
-            <Label layoutX="988.0" layoutY="15.0" prefHeight="35.0" prefWidth="40.0" text="%textfield.year" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0" />
-            <CheckBox fx:id="companyFilter" layoutX="177.0" layoutY="7.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="117.0" stylesheets="@../css/style.css" text="%payment.filter.company" visible="false" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="7.0">
-             <font>
-                 <Font name="Segoe UI Bold" size="13.0" />
-             </font>
-            </CheckBox>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-         </BorderPane.margin>
-      </AnchorPane>
-   </top>
+
+    <top>
+        <VBox spacing="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" style="-fx-background-color: white;">
+                    <children>
+                        <VBox>
+                            <children>
+                                <Label style="-fx-font-size: 16pt; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #2c3e50;" text="Odczyty Liczników" />
+                                <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 9pt;" text="Zarządzaj stanami liczników i zużyciem mediów." />
+                            </children>
+                        </VBox>
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <CheckBox fx:id="companyFilter" mnemonicParsing="false" text="%payment.filter.company" visible="false" />
+
+                                <Label style="-fx-font-weight: bold;" text="%textfield.year" />
+                                <ComboBox fx:id="yearComboBox" onAction="#selectYearOnAction" prefWidth="100.0" />
+
+                                <Label style="-fx-font-weight: bold;" text="%textfield.filter" />
+                                <TextField fx:id="filterTextField" prefWidth="300.0" promptText="Szukaj osoby lub numeru..." />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                    </padding>
+                </HBox>
+                <Separator />
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="counterReadTable" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="idColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.id" />
+                <TableColumn fx:id="nameColumn" minWidth="100.0" prefWidth="120.0" text="%payment.table.name" />
+                <TableColumn fx:id="surnameColumn" minWidth="120.0" prefWidth="150.0" text="%payment.table.surname" />
+
+                <TableColumn fx:id="m1Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT; -fx-background-color: rgba(240,240,240,0.3);" text="%payment.table.m1" />
+                <TableColumn fx:id="m2Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.m2" />
+                <TableColumn fx:id="m3Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT; -fx-background-color: rgba(240,240,240,0.3);" text="%payment.table.m3" />
+                <TableColumn fx:id="m4Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.m4" />
+                <TableColumn fx:id="m5Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT; -fx-background-color: rgba(240,240,240,0.3);" text="%payment.table.m5" />
+                <TableColumn fx:id="m6Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.m6" />
+                <TableColumn fx:id="m7Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT; -fx-background-color: rgba(240,240,240,0.3);" text="%payment.table.m7" />
+                <TableColumn fx:id="m8Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.m8" />
+                <TableColumn fx:id="m9Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT; -fx-background-color: rgba(240,240,240,0.3);" text="%payment.table.m9" />
+                <TableColumn fx:id="m10Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.m10" />
+                <TableColumn fx:id="m11Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT; -fx-background-color: rgba(240,240,240,0.3);" text="%payment.table.m11" />
+                <TableColumn fx:id="m12Column" minWidth="65.0" prefWidth="70.0" style="-fx-alignment: CENTER-RIGHT;" text="%payment.table.m12" />
+            </columns>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+            </BorderPane.margin>
+            <columnResizePolicy>
+                <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox>
+            <children>
+                <Separator />
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f8f9fa;">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#editCounterReadOnAction" prefWidth="100.0" text="%partner.table.edit" />
+                        <Button mnemonicParsing="false" onAction="#initYearCounterReadOnAction" prefWidth="150.0" styleClass="button-success" text="%counter.read.initialize.year" />
+
+                        <Separator orientation="VERTICAL" />
+
+                        <Button mnemonicParsing="false" onAction="#deleteCounterReadOneOnAction" prefWidth="110.0" styleClass="button-danger-light" text="%payment.table.delete.one" />
+                        <Button mnemonicParsing="false" onAction="#deleteCounterReadYearOnAction" prefWidth="110.0" styleClass="button-danger" text="%payment.table.delete.year" />
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Button mnemonicParsing="false" prefWidth="110.0" styleClass="button-info" text="%partner.table.print" />
+                    </children>
+                    <padding>
+                        <Insets bottom="12.0" left="20.0" right="20.0" top="12.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
 </BorderPane>

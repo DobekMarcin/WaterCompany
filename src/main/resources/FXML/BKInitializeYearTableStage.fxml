@@ -2,39 +2,64 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="270.0" prefWidth="389.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.BKAccountPlan.BKInitializeYearTableStageController">
-   <center>
-      <TableView fx:id="bkYearTable" prefHeight="244.0" prefWidth="469.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn id="center" fx:id="idColumn" prefWidth="50.0" text="%partner.add.id" />
-          <TableColumn id="right" fx:id="yearColumn" prefWidth="150.0" text="%textfield.year" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-         <BorderPane.margin>
-            <Insets left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin>
-      </TableView>
-   </center>
-   <bottom>
-      <AnchorPane BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="6.0" layoutY="3.0" mnemonicParsing="false" onAction="#addYearButtonOnAction" text="%partner.table.add" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" />
-            <Button layoutX="117.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteYearButtonOnAction" text="%rate.table.delete" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="110.0" />
-            <Button layoutX="494.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeButtonOnAction" text="%rate.table.close" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="6.0" />
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </AnchorPane>
-   </bottom>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.BKAccountPlan.BKInitializeYearTableStageController">
+
+    <top>
+        <VBox spacing="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" style="-fx-background-color: white;">
+                    <children>
+                        <Label style="-fx-font-size: 13pt; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #2c3e50;" text="Lata obrotowe" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                    </padding>
+                </HBox>
+                <Separator />
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="bkYearTable" tableMenuButtonVisible="false" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="idColumn" maxWidth="70.0" minWidth="50.0" prefWidth="60.0" style="-fx-alignment: CENTER;" text="%partner.add.id" />
+                <TableColumn fx:id="yearColumn" minWidth="100.0" prefWidth="200.0" style="-fx-alignment: CENTER; -fx-font-weight: bold;" text="%textfield.year" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="15.0" />
+            </BorderPane.margin>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox>
+            <children>
+                <Separator />
+                <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-background-color: #f8f9fa;">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#addYearButtonOnAction" prefWidth="90.0" styleClass="button-success" text="%partner.table.add" />
+                        <Button mnemonicParsing="false" onAction="#deleteYearButtonOnAction" prefWidth="90.0" styleClass="button-danger" text="%rate.table.delete" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#closeButtonOnAction" prefWidth="90.0" text="%rate.table.close" />
+                    </children>
+                    <padding>
+                        <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
 </BorderPane>

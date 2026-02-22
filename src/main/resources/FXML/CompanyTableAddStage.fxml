@@ -1,42 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.company.CompanyTableAddStageController">
+<VBox prefWidth="700.0" spacing="0.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.company.CompanyTableAddStageController">
     <children>
-        <Label layoutX="25.0" layoutY="37.0" text="%partner.add.id" />
-        <TextField fx:id="idTextField" disable="true" editable="false" layoutX="134.0" layoutY="30.0" prefHeight="35.0" prefWidth="100.0" />
-      <TextField fx:id="nameTextField" layoutX="135.0" layoutY="78.0" prefHeight="35.0" prefWidth="519.0" />
-      <TextField fx:id="nipTextField" layoutX="136.0" layoutY="125.0" prefHeight="35.0" prefWidth="207.0" />
-      <TextField fx:id="placeTextField" layoutX="136.0" layoutY="172.0" prefHeight="35.0" prefWidth="207.0" />
-      <TextField fx:id="postCodeTextField" layoutX="136.0" layoutY="218.0" prefWidth="207.0" />
-      <TextField fx:id="postTextField" layoutX="136.0" layoutY="265.0" prefWidth="207.0" />
-      <TextField fx:id="addressTextField" layoutX="136.0" layoutY="310.0" prefWidth="207.0" />
-      <TextField fx:id="phoneTextField" layoutX="136.0" layoutY="355.0" prefWidth="207.0" />
-      <TextField fx:id="emailTextField" layoutX="136.0" layoutY="402.0" prefWidth="207.0" />
-        <Button layoutX="225.0" layoutY="461.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%rate.table.add" />
-        <Button layoutX="361.0" layoutY="461.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%log.in.cancel" />
-        <Label layoutX="25.0" layoutY="84.0" text="%company.name">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-        <Label fx:id="errorLabel" layoutX="79.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
-      <Label layoutX="25.0" layoutY="131.0" text="%company.nip" />
-      <Label layoutX="25.0" layoutY="178.0" text="%company.place" />
+        <VBox spacing="5.0" style="-fx-background-color: white;">
+            <children>
+                <Label fx:id="errorLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="RED" wrapText="true" />
+                <Label style="-fx-font-size: 15pt; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #28a745;" text="Nowy kontrahent" />
+                <Separator />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </VBox>
 
-      <Label layoutX="25.0" layoutY="225.0" text="%partner.add.postcode" />
-      <Label layoutX="25.0" layoutY="272.0" text="%partner.add.post" />
-      <Label layoutX="25.0" layoutY="317.0" text="%company.address" />
-      <Label layoutX="25.0" layoutY="362.0" text="%company.phone" />
-      <Label layoutX="25.0" layoutY="409.0" text="%company.email" />
+        <GridPane hgap="15.0" vgap="12.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="130.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" /> <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="%partner.add.id" GridPane.halignment="RIGHT" />
+                <TextField fx:id="idTextField" disable="true" editable="false" maxWidth="100.0" promptText="AUTO" GridPane.columnIndex="1" />
+
+                <Label text="%company.nip" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                <TextField fx:id="nipTextField" promptText="Wpisz NIP..." GridPane.columnIndex="3" />
+
+                <Label style="-fx-font-weight: bold;" text="%company.name" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                <TextField fx:id="nameTextField" promptText="Pełna nazwa firmy" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+
+                <Separator prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex = "2" />
+
+                <Label text="%company.address" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <TextField fx:id="addressTextField" promptText="Ulica i numer" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="%company.place" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <TextField fx:id="placeTextField" promptText="Miasto" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+
+                <Label text="%partner.add.postcode" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <TextField fx:id="postCodeTextField" maxWidth="100.0" promptText="00-000" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <Label text="%partner.add.post" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                <TextField fx:id="postTextField" promptText="Poczta" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+
+                <Label text="%company.phone" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                <TextField fx:id="phoneTextField" promptText="+48..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <Label text="%company.email" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                <TextField fx:id="emailTextField" promptText="biuro@firma.pl" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="25.0" right="25.0" top="15.0" />
+            </padding>
+        </GridPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1 0 0 0;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#cancelButtonOnAction" prefWidth="120.0" text="%log.in.cancel" />
+                <Button mnemonicParsing="false" onAction="#addButtonOnAction" prefWidth="150.0" styleClass="button-success" text="%rate.table.add" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
     </children>
-   <stylesheets>
-      <URL value="@../css/style.css" />
-      <URL value="@../css/style.css" />
-   </stylesheets>
-</Pane>
+</VBox>

@@ -1,38 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="608.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.Counter.CounterReadEditTableStageController">
-    <children>
-        <TextField fx:id="month1TextField" layoutX="103.0" layoutY="31.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month2TextField" layoutX="103.0" layoutY="78.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month3TextField" layoutX="103.0" layoutY="130.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month4TextField" layoutX="103.0" layoutY="177.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month5TextField" layoutX="103.0" layoutY="225.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month6TextField" layoutX="103.0" layoutY="272.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month7TextField" layoutX="397.0" layoutY="31.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month8TextField" layoutX="397.0" layoutY="78.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month9TextField" layoutX="397.0" layoutY="130.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month10TextField" layoutX="397.0" layoutY="177.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month11TextField" layoutX="397.0" layoutY="225.0" prefHeight="25.0" prefWidth="187.0" />
-      <TextField fx:id="month12TextField" layoutX="397.0" layoutY="272.0" prefHeight="25.0" prefWidth="187.0" />
-        <Label layoutX="21.0" layoutY="38.0" text="%month1" />
-        <Button layoutX="177.0" layoutY="332.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%payment.plan.accept" />
-        <Label fx:id="noLogLabel" layoutX="211.0" layoutY="4.0" prefHeight="21.0" prefWidth="187.0" textAlignment="CENTER" textFill="RED" />
-        <Button layoutX="313.0" layoutY="332.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="118.0" text="%payment.plan.cancel" />
-      <Label layoutX="21.0" layoutY="85.0" text="%month2" />
-      <Label layoutX="24.0" layoutY="137.0" text="%month3" />
-      <Label layoutX="21.0" layoutY="184.0" text="%month4" />
-      <Label layoutX="21.0" layoutY="232.0" text="%month5" />
-      <Label layoutX="21.0" layoutY="279.0" text="%month6" />
-      <Label layoutX="315.0" layoutY="38.0" text="%month7" />
-      <Label layoutX="315.0" layoutY="85.0" text="%month8" />
-      <Label layoutX="318.0" layoutY="137.0" text="%month9" />
-      <Label layoutX="315.0" layoutY="184.0" text="%month10" />
-      <Label layoutX="315.0" layoutY="232.0" text="%month11" />
-      <Label layoutX="315.0" layoutY="279.0" text="%month12" />
-    </children>
-</Pane>
+<VBox prefWidth="650.0" spacing="0.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="md.program.controller.Counter.CounterReadEditTableStageController">
+  <children>
+    <VBox spacing="5.0" style="-fx-background-color: white;">
+      <children>
+        <Label fx:id="noLogLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" textFill="RED" wrapText="true" />
+        <Label style="-fx-font-size: 14pt; -fx-font-family: 'Segoe UI Semibold'; -fx-text-fill: #2c3e50;" text="Edycja odczytów rocznych" />
+        <Separator />
+      </children>
+      <padding>
+        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+      </padding>
+    </VBox>
+
+    <GridPane hgap="30.0" vgap="10.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="60.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="180.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="60.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="180.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+      <children>
+        <Label text="%month1" GridPane.halignment="RIGHT" />
+        <TextField fx:id="month1TextField" promptText="0.00" GridPane.columnIndex="1" />
+
+        <Label text="%month2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="month2TextField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="%month3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <TextField fx:id="month3TextField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <Label text="%month4" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <TextField fx:id="month4TextField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="%month5" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+        <TextField fx:id="month5TextField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <Label text="%month6" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+        <TextField fx:id="month6TextField" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+        <Label text="%month7" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+        <TextField fx:id="month7TextField" promptText="0.00" GridPane.columnIndex="3" />
+
+        <Label text="%month8" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="month8TextField" promptText="0.00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+        <Label text="%month9" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <TextField fx:id="month9TextField" promptText="0.00" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+        <Label text="%month10" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <TextField fx:id="month10TextField" promptText="0.00" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+
+        <Label text="%month11" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+        <TextField fx:id="month11TextField" promptText="0.00" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+
+        <Label text="%month12" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+        <TextField fx:id="month12TextField" promptText="0.00" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      </children>
+      <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="15.0" />
+      </padding>
+    </GridPane>
+
+    <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-width: 1 0 0 0;">
+      <children>
+        <Button mnemonicParsing="false" onAction="#cancelButtonOnAction" prefWidth="120.0" text="%payment.plan.cancel" />
+        <Button mnemonicParsing="false" onAction="#addButtonOnAction" prefWidth="140.0" styleClass="button-success" text="%payment.plan.accept" />
+      </children>
+      <padding>
+        <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>

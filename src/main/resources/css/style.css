@@ -1,202 +1,207 @@
-.table-view .scroll-bar:vertical{
--fx-background-color: #616161;
-
+/* --- FUNDAMENTY (Enterprise Light Palette) --- */
+.root {
+    -fx-accent: #28a745;           /* Zielony akcent przewodzący */
+    -fx-focus-color: #28a745;
+    -fx-base: #f8f9fa;
+    -fx-background-color: #ffffff;
+    -fx-control-inner-background: #ffffff;
 }
 
-.background {
-    -fx-background-color: #3a3a3a;
-}
-
-#noLogLabel{
--fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: red;
-    -fx-opacity: 1;
-}
-
-#errorLabel{
--fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: red;
-    -fx-opacity: 1;
-}
-
+/* --- ETYKIETY I TYPOGRAFIA --- */
 .label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: black;
-    -fx-opacity: 1;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-text-fill: #343a40;
 }
 
-.table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #616161;
-    -fx-background-color: #616161;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: #616161;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-
-}
-
-.table-view .column-header .label {
-
-    -fx-font-size: 15pt;
-    -fx-font-family: "Segoe UI";
-    -fx-text-fill: white;
-    -fx-alignment: center;
-    -fx-opacity: 1;
+#noLogLabel, #errorLabel {
+    -fx-text-fill: #dc3545;
     -fx-font-weight: bold;
-
-
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: black;
+/* --- TABELA I TREE TABLE (Styl Premium ERP) --- */
+.table-view, .tree-table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
 }
 
-.split-pane:horizontal > .split-pane-divider {
-    -fx-border-color: transparent #1d1d1d transparent #3a3a3a;
-    -fx-background-color: transparent, derive(#3a3a3a,20%);
+/* Nagłówki - nowoczesny, płaski look */
+.table-view .column-header-background,
+.tree-table-view .column-header-background {
+    -fx-background-color: #f1f3f5;
+    -fx-border-color: transparent transparent #dee2e6 transparent;
 }
 
-.split-pane {
-    -fx-padding: 1 0 0 0;
+.table-view .column-header,
+.tree-table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 35;
+    -fx-border-color: transparent #dee2e6 transparent transparent;
 }
 
-.menu-bar {
-    -fx-background-color: derive(#616161,20%);
+.table-view .column-header .label,
+.tree-table-view .column-header .label {
+    -fx-text-fill: #495057;
+    -fx-font-size: 9pt;
+    -fx-font-weight: bold;
+    -fx-text-transform: uppercase;
 }
 
-.context-menu {
-    -fx-background-color: derive(#616161,50%);
+/* Komórki i Wiersze */
+.table-cell, .tree-table-cell {
+    -fx-font-size: 10pt;
+    -fx-text-fill: #212529;
+    -fx-padding: 8 10 8 10;
+    -fx-border-color: transparent transparent #f1f3f5 transparent;
 }
 
-.menu-bar .label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+.table-row-cell:odd { -fx-background-color: #ffffff; }
+.table-row-cell:even { -fx-background-color: #f8f9fa; }
 
+.table-row-cell:hover, .tree-table-row-cell:hover {
+    -fx-background-color: #e9ecef;
 }
 
-.menu .left-container {
-	-fx-background-color: black;
+/* Zaznaczony wiersz z zielonym paskiem akcentu */
+.table-row-cell:selected, .tree-table-row-cell:selected {
+    -fx-background-color: #e7f3e8; /* Bardzo jasna zieleń */
+    -fx-text-fill: #155724;
+    -fx-border-color: transparent transparent #dee2e6 #28a745;
+    -fx-border-width: 0 0 1 4; /* Pasek 4px z lewej */
 }
 
-.text-field {
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
-}
-
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
+/* --- PRZYCISKI (Semantic Colors) --- */
 .button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #3a3a3a;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-padding: 6 20 6 20;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 10pt;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-cursor: hand;
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #ced4da;
+    -fx-text-fill: #495057;
 }
 
 .button:hover {
-    -fx-background-color: black;
+    -fx-background-color: #e2e6ea;
 }
 
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #3a3a3a;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 1;
-    -fx-background-color: #1d1d1d;
+/* Akcent zielony - użyj klasy .button-success w FXML */
+.button-success, .button:default {
+    -fx-background-color: #28a745;
     -fx-text-fill: white;
+    -fx-border-color: #28a745;
 }
 
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
+.button-success:hover, .button:default:hover {
+    -fx-background-color: #218838;
 }
 
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
+/* Akcent czerwony - użyj klasy .button-danger w FXML */
+.button-danger {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+    -fx-border-color: #dc3545;
 }
 
-.menu-item:focused {
-     -fx-background-color: black;
+.button-danger:hover {
+    -fx-background-color: #c82333;
 }
 
-.menu:hover{
--fx-background-color: black;
+/* --- POLA TEKSTOWE I COMBO --- */
+.text-field, .combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 3;
+    -fx-padding: 5;
 }
 
-#infoLabel{
--fx-alignment: center;
+.text-field:focused, .combo-box:focused {
+    -fx-border-color: #28a745;
+    -fx-border-width: 1.5;
 }
 
-
-.check-box .box {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #3a3a3a;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+/* --- MENU BAR --- */
+.menu-bar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: transparent transparent #dee2e6 transparent;
+    -fx-padding: 2;
 }
 
-.combo-box .list-cell {
-    -fx-font-size: 12pt;
+.menu-bar .label {
+    -fx-font-size: 10pt;
+}
+
+.context-menu {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dee2e6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+/* --- TREE DISCLOSURE (Strzałki) --- */
+.tree-table-row-cell .tree-disclosure-node .arrow {
+    -fx-background-color: #495057;
+}
+
+/* --- WYRÓWNANIE (ID) --- */
+#right { -fx-alignment: CENTER-RIGHT; }
+#left { -fx-alignment: CENTER-LEFT; }
+#center { -fx-alignment: CENTER; }
+
+/* --- SCROLL BAR (Clean look) --- */
+.scroll-bar { -fx-background-color: #f1f3f5; }
+.scroll-bar .thumb { -fx-background-color: #ced4da; -fx-background-radius: 5; }
+
+/* --- OKNA DIALOGOWE (Wersja Kompaktowa ERP) --- */
+
+.dialog-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+    -fx-header-text-fill: #212529;
+    /* Ograniczenie szerokości okna */
+    -fx-pref-width: 400px;
+    -fx-max-width: 450px;
+}
+
+/* Nagłówek okna dialogowego - mniejszy padding i czcionka */
+.dialog-pane .header-panel {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: transparent transparent #dee2e6 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8 12 8 12; /* Zmniejszono z 15 */
+}
+
+.dialog-pane .header-panel .label {
+    -fx-font-size: 11pt; /* Zmniejszono z 13pt */
     -fx-font-family: "Segoe UI Semibold";
-    -fx-alignment: center;
+    -fx-text-fill: #28a745;
 }
 
-#right  {
-  -fx-alignment: CENTER-RIGHT;
-  -fx-font-size: 12pt;
-}
-#left {
-  -fx-alignment: CENTER-LEFT;
-  -fx-font-size: 12pt;
-}
-#center{
-  -fx-alignment: CENTER;
-  -fx-font-size: 12pt;
+/* Treść okna - mniejszy padding */
+.dialog-pane .content {
+    -fx-padding: 12 15 12 15; /* Zmniejszono z 20 */
+    -fx-font-size: 10pt; /* Zmniejszono z 11pt */
+    -fx-text-fill: #495057;
 }
 
-.tree-cell{
-    -fx-font-size: 16;
+/* Obszar przycisków na dole - bardziej zwarty */
+.dialog-pane .button-bar {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 8; /* Zmniejszono z 10 */
 }
 
+/* Ikony - mniejsze, żeby nie rozpychały okna */
+.dialog-pane > .graphic-container {
+    -fx-padding: 8 0 8 12;
+}
+
+.dialog-pane > .graphic-container > .graphic {
+    -fx-scale-x: 0.8; /* Pomniejszenie ikony systemowej o 20% */
+    -fx-scale-y: 0.8;
+}

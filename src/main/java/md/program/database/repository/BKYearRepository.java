@@ -1,9 +1,6 @@
 package md.program.database.repository;
 
 import md.program.database.model.BKYear;
-import md.program.database.model.CounterYear;
-import md.program.database.model.RateYear;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,61 +11,57 @@ public class BKYearRepository {
     private final String user = "postgres";
     private final String password = "root";
 
-    public void connect() {
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the PostgreSQL server successfully.");
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public static void main(String[] args) {
-        UserRepository app = new UserRepository();
-        app.connect();
-    }
-
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
 
-    public List<BKYear> getAllBKYear() throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        List<BKYear> counterYears=new ArrayList<>();
-        BKYear temp = null;
-        statement = connection.prepareStatement("Select id,year from md.bookkeeping_year order by id");
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            temp = new BKYear();
-            temp.setId(rs.getInt("id"));
-            temp.setYear(rs.getInt("year"));
-            counterYears.add(temp);
+    public void connect() {
+        try (Connection conn = getConnection()) {
+            System.out.println("Connected to the PostgreSQL server successfully.");
+        } catch (SQLException e) {
+            System.err.println("Connection error: " + e.getMessage());
         }
-        connection.close();
-        return counterYears;
+    }
 
+    public List<BKYear> getAllBKYear() throws SQLException {
+        String sql = "SELECT id, year FROM md.bookkeeping_year ORDER BY id";
+        List<BKYear> counterYears = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                BKYear temp = new BKYear();
+                temp.setId(rs.getInt("id"));
+                temp.setYear(rs.getInt("year"));
+                counterYears.add(temp);
+            }
+        }
+        return counterYears;
     }
 
     public void deleteBKYear(BKYear bkYear) throws SQLException {
-        PreparedStatement statement;
-        Connection connection = getConnection();
-        statement = connection.prepareStatement("Delete from md.bookkeeping_year where id=?");
-        statement.setInt(1,bkYear.getId());
-        statement.executeUpdate();
-        connection.close();
+        String sql = "DELETE FROM md.bookkeeping_year WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, bkYear.getId());
+            statement.executeUpdate();
+        }
     }
 
     public void addYear(BKYear bkYear) throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        statement = connection.prepareStatement("INSERT INTO md.bookkeeping_year(id, year) VALUES ((Select coalesce(max(id),0)+1 from md.bookkeeping_year), ?);");
-        statement.setInt(1, bkYear.getYear());
-        statement.executeUpdate();
-        connection.close();
+        String sql = "INSERT INTO md.bookkeeping_year(id, year) " +
+                "VALUES ((SELECT COALESCE(MAX(id), 0) + 1 FROM md.bookkeeping_year), ?)";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, bkYear.getYear());
+            statement.executeUpdate();
+        }
     }
 
     public boolean existsByYear(int year) throws SQLException {
@@ -78,7 +71,6 @@ public class BKYearRepository {
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, year);
-
             try (ResultSet rs = statement.executeQuery()) {
                 return rs.next();
             }
@@ -86,32 +78,34 @@ public class BKYearRepository {
     }
 
     public int chceckIsDefaultYear(Integer defaultYear) throws SQLException {
+        String sql = "SELECT COUNT(*) AS count FROM md.bookkeeping_year WHERE year = ?";
+        int check = 0;
 
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        Integer check = 0;
-        statement = connection.prepareStatement("Select count(*) as count from md.bookkeeping_year where year=?;");
-        statement.setInt(1, defaultYear);
-        ResultSet rs = statement.executeQuery();
-        while (rs.next())
-            check = rs.getInt("count");
-        connection.close();
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, defaultYear);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    check = rs.getInt("count");
+                }
+            }
+        }
         return check;
     }
 
     public List<Integer> getYearList() throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        Integer year = 0;
+        String sql = "SELECT DISTINCT year FROM md.bookkeeping_year ORDER BY year";
         List<Integer> yearList = new ArrayList<>();
-        statement = connection.prepareStatement("SELECT distinct year as year FROM md.bookkeeping_year order by year;");
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            year = rs.getInt("year");
-            yearList.add(year);
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+
+            while (rs.next()) {
+                yearList.add(rs.getInt("year"));
+            }
         }
-        connection.close();
         return yearList;
     }
-
 }

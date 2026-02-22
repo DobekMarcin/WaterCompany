@@ -45,18 +45,13 @@ public class LoginStageController {
     private void setListeners() {
         loginTextField.textProperty().addListener(observable -> noLogLabel.setText(""));
         passwordTextField.textProperty().addListener(observable -> noLogLabel.setText(""));
+
         loginTextField.setOnKeyPressed(keyEvent -> {
-            if(keyEvent.getCode().equals(KeyCode.ENTER)){
-                loginOnAction();
-            }
             if(keyEvent.getCode().equals(KeyCode.ESCAPE)){
                 cancelOnAction();
             }
         });
         passwordTextField.setOnKeyPressed(keyEvent -> {
-            if(keyEvent.getCode().equals(KeyCode.ENTER)){
-                loginOnAction();
-            }
             if(keyEvent.getCode().equals(KeyCode.ESCAPE)){
                 cancelOnAction();
             }
