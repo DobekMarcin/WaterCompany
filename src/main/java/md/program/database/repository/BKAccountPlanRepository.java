@@ -39,7 +39,7 @@ public class BKAccountPlanRepository {
         Connection connection = getConnection();
         List<BKAccount> accountPlanList=new ArrayList<>();
         BKAccount temp = null;
-        statement = connection.prepareStatement("SELECT id, root, account, description,syn,full_name FROM md.account_plan where id>0 and root=? order by account;");
+        statement = connection.prepareStatement("SELECT id, root, account, description,syn,full_name FROM md.account_plan where root=? and id>0 order by account;");
         statement.setInt(1,root);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -228,12 +228,12 @@ public class BKAccountPlanRepository {
         return temp;
     }
 
-    public List<BKAccount> getAllAccount() throws SQLException {
+    public ArrayList<BKAccount> getAllAccount() throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        List<BKAccount> accountPlanList = new ArrayList<>();
+        ArrayList<BKAccount> accountPlanList = new ArrayList<>();
         BKAccount temp = null;
-        statement = connection.prepareStatement("SELECT id, root, account, description,syn,full_name FROM md.account_plan where id>0 order by account;");
+        statement = connection.prepareStatement("SELECT id, root, account, description,syn,full_name FROM md.account_plan order by account;");
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new BKAccount();

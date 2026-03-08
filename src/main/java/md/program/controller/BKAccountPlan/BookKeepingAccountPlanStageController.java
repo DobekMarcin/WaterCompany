@@ -9,10 +9,12 @@ import javafx.scene.control.TreeView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import md.program.database.model.BKAccount;
+import md.program.modelFX.BKAccountFX;
 import md.program.modelFX.BKAccountPlanModel;
 import md.program.stage.LoginStage;
 import md.program.utils.DialogUtil;
 import md.program.utils.Utils;
+import md.program.utils.converters.BKAccountConverter;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,7 +25,7 @@ public class BookKeepingAccountPlanStageController {
     private static final String FXML_ADD_YEAR_BOOKKEEPING_FXML = "/FXML/BKInitializeYearTableStage.fxml";
     private BKAccountPlanModel bkAccountPlanModel = new BKAccountPlanModel();
     @FXML
-    private TreeView<BKAccount> treeView = new TreeView<>();
+    private TreeView<BKAccountFX> treeView = new TreeView<>();
     private Stage thisStage = null;
 
 
@@ -36,7 +38,21 @@ public class BookKeepingAccountPlanStageController {
             throw new RuntimeException(e);
         }
 
-        treeView.setRoot(bkAccountPlanModel.getTreeItemRoot());
+        treeView.setRoot(bkAccountPlanModel.buildTree());
+
+        treeView.setCellFactory(tv -> new javafx.scene.control.TreeCell<BKAccountFX>() {
+            @Override
+            protected void updateItem(BKAccountFX item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    // Wyświetlamy np. "100 - Kasa"
+                    setText(item.getAccount() + " - " + item.getDescription());
+                }
+            }
+        });
+
         expandTreeView(treeView.getRoot());
 
     }
@@ -55,8 +71,8 @@ public class BookKeepingAccountPlanStageController {
 
     public void editOnAction() {
         if (treeView.getSelectionModel().getSelectedItem() != null) {
-            BKAccount bkAccount = treeView.getSelectionModel().getSelectedItem().getValue();
-            bkAccountPlanModel.setBkAccountEdit(bkAccount);
+            BKAccountFX bkAccount = treeView.getSelectionModel().getSelectedItem().getValue();
+            bkAccountPlanModel.setBkAccountEdit(BKAccountConverter.convertToBKAccount(bkAccount));
 
 
             int response = 0;
@@ -90,10 +106,11 @@ public class BookKeepingAccountPlanStageController {
         }
     }
 
+    //
     public void deleteOnAction() {
         if (treeView.getSelectionModel().getSelectedItem() != null) {
-            BKAccount bkAccount = treeView.getSelectionModel().getSelectedItem().getValue();
-            bkAccountPlanModel.setBkAccountEdit(bkAccount);
+            BKAccountFX bkAccount = treeView.getSelectionModel().getSelectedItem().getValue();
+            bkAccountPlanModel.setBkAccountEdit(BKAccountConverter.convertToBKAccount(bkAccount));
 
             try {
                 int answer = bkAccountPlanModel.delete();
@@ -111,41 +128,29 @@ public class BookKeepingAccountPlanStageController {
 
     public void addOnAction() {
         if (treeView.getSelectionModel().getSelectedItem() != null) {
-            BKAccount bkAccount = treeView.getSelectionModel().getSelectedItem().getValue();
-            bkAccountPlanModel.setBkAccountEdit(bkAccount);
+            BKAccountFX bkAccount = treeView.getSelectionModel().getSelectedItem().getValue();
+            bkAccountPlanModel.setBkAccountEdit(BKAccountConverter.convertToBKAccount(bkAccount));
 
-            int response = 0;
-
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ACCOUNT_PLAN_ADD_STAGE_FXML));
+            fxmlLoader.setResources(Utils.getResourceBundle());
+            Scene scene = null;
             try {
-                response = bkAccountPlanModel.checkLevel();
-
-            } catch (SQLException e) {
+                scene = new Scene(fxmlLoader.load());
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            if (response < 3) {
-                FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ACCOUNT_PLAN_ADD_STAGE_FXML));
-                fxmlLoader.setResources(Utils.getResourceBundle());
-                Scene scene = null;
-                try {
-                    scene = new Scene(fxmlLoader.load());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                Stage stage1 = new Stage();
-                stage1.setScene(scene);
-                stage1.setTitle(Utils.getResourceBundle().getString("bookkeeping.account.edit.addAccount"));
-                stage1.initModality(Modality.APPLICATION_MODAL);
-                stage1.setResizable(false);
-                BKAccountPlanAddStageController bkAccountPlanEditStageController = fxmlLoader.getController();
-                bkAccountPlanEditStageController.setThisStage(stage1);
-                bkAccountPlanEditStageController.setBkAccountPlanModel(bkAccountPlanModel);
-                bkAccountPlanEditStageController.init();
-                stage1.showAndWait();
-                init();
-            } else {
-                DialogUtil.errorAboutApplication("dialog.title", "error.header", "dialog.accountPlan.level.root");
+            Stage stage1 = new Stage();
+            stage1.setScene(scene);
+            stage1.setTitle(Utils.getResourceBundle().getString("bookkeeping.account.edit.addAccount"));
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.setResizable(false);
+            BKAccountPlanAddStageController bkAccountPlanEditStageController = fxmlLoader.getController();
+            bkAccountPlanEditStageController.setThisStage(stage1);
+            bkAccountPlanEditStageController.setBkAccountPlanModel(bkAccountPlanModel);
+            bkAccountPlanEditStageController.init();
+            stage1.showAndWait();
+            init();
 
-            }
         }
     }
 

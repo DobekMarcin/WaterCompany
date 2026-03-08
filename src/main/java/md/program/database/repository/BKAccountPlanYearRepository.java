@@ -1,9 +1,8 @@
 package md.program.database.repository;
 
-import md.program.database.model.BKAccount;
+
 import md.program.database.model.BKAccountYear;
-import md.program.modelFX.BKAccountFX;
-import md.program.modelFX.BKAccountYearFX;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,8 +45,8 @@ public class BKAccountPlanYearRepository {
         // Mapa pomocnicza: Nowe ID -> Stare ID Rooota (do późniejszej aktualizacji)
         Map<Integer, Integer> newIdToOldRootMap = new HashMap<>();
 
-        String insertSql = "INSERT INTO md.account_plan_year (year, account, description, syn, full_name) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String insertSql = "INSERT INTO md.account_plan_year (year, account, description, syn, full_name,credit,debit) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         String updateRootSql = "UPDATE md.account_plan_year SET root = ? WHERE id = ?";
 
         try {
@@ -67,6 +66,8 @@ public class BKAccountPlanYearRepository {
                     insertStmt.setString(3, rs.getString("description"));
                     insertStmt.setBoolean(4, rs.getBoolean("syn"));
                     insertStmt.setString(5, rs.getString("full_name"));
+                    insertStmt.setDouble(6,0);
+                    insertStmt.setDouble(7,0);
                     insertStmt.executeUpdate();
 
                     // Pobieramy nowe ID wygenerowane przez Postgresa
@@ -117,21 +118,23 @@ public class BKAccountPlanYearRepository {
     }
 
 
-    public void insertNewAccount(List<BKAccount> bkAccountList, int year) throws SQLException {
-        String sql = "INSERT INTO md.account_plan_year(year, root, account, description, syn, full_name) VALUES (?,?,?,?,?,?)";
+    public void insertNewAccount(List<BKAccountYear> bkAccountList, int year) throws SQLException {
+        String sql = "INSERT INTO md.account_plan_year(year, root, account, description, syn, full_name,credit,debit) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             connection.setAutoCommit(false);
 
-            for (BKAccount account : bkAccountList) {
+            for (BKAccountYear account : bkAccountList) {
                 statement.setInt(1, year);
                 statement.setInt(2, account.getRoot());
                 statement.setString(3, account.getAccount());
                 statement.setString(4, account.getDescription());
                 statement.setBoolean(5, account.getSyn());
                 statement.setString(6, account.getFullName());
+                statement.setDouble(7,account.getCredit());
+                statement.setDouble(8,account.getDebit());
 
                 statement.addBatch();
             }
@@ -147,7 +150,7 @@ public class BKAccountPlanYearRepository {
         Connection connection = getConnection();
         List<BKAccountYear> accountPlanList=new ArrayList<>();
         BKAccountYear temp = null;
-        statement = connection.prepareStatement("SELECT id,year, root, account, description,syn,full_name FROM md.account_plan_year where year=?  order by account;");
+        statement = connection.prepareStatement("SELECT id,year, root, account, description,syn,full_name,credit,debit FROM md.account_plan_year where year=?  order by account;");
         statement.setInt(1,year);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
@@ -159,55 +162,8 @@ public class BKAccountPlanYearRepository {
             temp.setDescription(rs.getString("description"));
             temp.setSyn(rs.getBoolean("syn"));
             temp.setFullName(rs.getString("full_name"));
-            accountPlanList.add(temp);
-        }
-        connection.close();
-        return accountPlanList;
-    }
-
-    public List<BKAccountYear> getAllAccountLevel0(int year) throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        List<BKAccountYear> accountPlanList=new ArrayList<>();
-        BKAccountYear temp = null;
-        statement = connection.prepareStatement("SELECT id,year, root, account, description,syn,full_name FROM md.account_plan_year where root=0 and year=?  order by account;");
-           statement.setInt(1,year);
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            temp = new BKAccountYear();
-            temp.setId(rs.getInt("id"));
-            temp.setYear(rs.getInt("year"));
-            temp.setAccount(rs.getString("account"));
-            temp.setRoot(rs.getInt("root"));
-            temp.setDescription(rs.getString("description"));
-            temp.setSyn(rs.getBoolean("syn"));
-            temp.setFullName(rs.getString("full_name"));
-            accountPlanList.add(temp);
-        }
-        connection.close();
-        return accountPlanList;
-    }
-
-
-
-    public List<BKAccountYear> getAllAccountLevel(BKAccountYear level0, int year) throws SQLException {
-        PreparedStatement statement = null;
-        Connection connection = getConnection();
-        List<BKAccountYear> accountPlanList=new ArrayList<>();
-        BKAccountYear temp = null;
-        statement = connection.prepareStatement("SELECT year, root, account, description,syn,full_name FROM md.account_plan_year where root=? and year=?  order by account;");
-        statement.setInt(1,level0.getId());
-        statement.setInt(2,year);
-        ResultSet rs = statement.executeQuery();
-        while (rs.next()) {
-            temp = new BKAccountYear();
-            temp.setId(rs.getInt("year"));
-            temp.setAccount(rs.getString("account"));
-            temp.setRoot(rs.getInt("root"));
-            temp.setDescription(rs.getString("description"));
-            temp.setSyn(rs.getBoolean("syn"));
-            temp.setFullName(rs.getString("full_name"));
-
+            temp.setCredit(rs.getDouble("credit"));
+            temp.setDebit(rs.getDouble("debit"));
             accountPlanList.add(temp);
         }
         connection.close();

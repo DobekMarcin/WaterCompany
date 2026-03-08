@@ -53,7 +53,7 @@
                         <Button mnemonicParsing="false" onAction="#addYearButtonOnAction" prefWidth="90.0" styleClass="button-success" text="%partner.table.add" />
                         <Button mnemonicParsing="false" onAction="#deleteYearButtonOnAction" prefWidth="90.0" styleClass="button-danger" text="%rate.table.delete" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#closeButtonOnAction" prefWidth="90.0" text="%rate.table.close" />
+                        <Button mnemonicParsing="false" onAction="#closeButtonOnAction" prefWidth="100.0" text="%rate.table.close" />
                     </children>
                     <padding>
                         <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />

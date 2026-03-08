@@ -75,11 +75,17 @@ public class BKAccountYear {
 
     @Override
     public String toString() {
-        if(syn == true){
-            return account +" - S - "+ description;
-        }else
-
-        return account +" - A - "+ description;
+        return "BKAccountYear{" +
+                "id=" + id +
+                ", year=" + year +
+                ", root=" + root +
+                ", account='" + account + '\'' +
+                ", description='" + description + '\'' +
+                ", syn=" + syn +
+                ", fullName='" + fullName + '\'' +
+                ", credit=" + credit +
+                ", debit=" + debit +
+                '}';
     }
 
     public String getFullName() {

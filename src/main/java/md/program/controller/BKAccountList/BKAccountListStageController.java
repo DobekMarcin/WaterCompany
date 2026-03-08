@@ -23,15 +23,15 @@ public class BKAccountListStageController {
     private static final String FXML_ADD_NEW_ACCOUNT = "/FXML/BKAccountAddListStage.fxml";
 
     @FXML
-    private TreeTableView<BKAccountYear> treeTable;
+    private TreeTableView<BKAccountYearFX> treeTable;
     @FXML
-    private TreeTableColumn<BKAccountYear, String> accountColumn;
+    private TreeTableColumn<BKAccountYearFX, String> accountColumn;
     @FXML
-    private TreeTableColumn<BKAccountYear, String> descColumn;
+    private TreeTableColumn<BKAccountYearFX, String> descColumn;
     @FXML
-    private TreeTableColumn<BKAccountYear,Double> creditColumn;
+    private TreeTableColumn<BKAccountYearFX, Double> creditColumn;
     @FXML
-    private TreeTableColumn<BKAccountYear,Double> debitColumn;
+    private TreeTableColumn<BKAccountYearFX, Double> debitColumn;
     @FXML
     private ComboBox<Integer> yearComboBox; // Dodano typ generyczny <Integer>
     private Stage stage;
@@ -51,38 +51,14 @@ public class BKAccountListStageController {
      * Konfiguracja fabryk wartości dla kolumn (tylko raz przy starcie)
      */
     private void configureColumns() {
-        accountColumn.setCellValueFactory(param ->
-                new SimpleStringProperty(param.getValue().getValue().getAccount()));
 
-        descColumn.setCellValueFactory(param ->
-                new SimpleStringProperty(param.getValue().getValue().getDescription()));
-        creditColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getValue().getCredit()));
+        accountColumn.setCellValueFactory(param -> param.getValue().getValue().accountProperty());
+        descColumn.setCellValueFactory(param -> param.getValue().getValue().descriptionProperty());
 
-        creditColumn.setCellFactory(column -> new TreeTableCell<BKAccountYear, Double>() {
-            @Override
-            protected void updateItem(Double item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(String.format("%.2f", item));
-                }
-            }
-        });
 
-        debitColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getValue().getDebit()));
+        creditColumn.setCellValueFactory(param -> param.getValue().getValue().creditProperty().asObject());
+        debitColumn.setCellValueFactory(param -> param.getValue().getValue().debitProperty().asObject());
 
-        debitColumn.setCellFactory(column -> new TreeTableCell<BKAccountYear, Double>() {
-            @Override
-            protected void updateItem(Double item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(String.format("%.2f", item));
-                }
-            }
-        });
     }
 
     /**
@@ -93,7 +69,7 @@ public class BKAccountListStageController {
             yearComboBox.setItems(bkAccountListYearModel.getAllYear());
         } catch (SQLException e) {
             e.printStackTrace();
-            DialogUtil.errorAboutApplication("Błąd", "Błąd bazy", "Nie udało się pobrać listy lat.");
+            DialogUtil.errorAboutApplication("bookkeeping.error", "bookkeeping.error", "bookkeeping.year.list.error");
         }
     }
 
@@ -129,7 +105,7 @@ public class BKAccountListStageController {
                 renderTree();
             } catch (SQLException e) {
                 e.printStackTrace();
-                DialogUtil.errorAboutApplication("Błąd", "Błąd", "Nie udało się załadować planu kont dla roku " + selectedYear);
+                DialogUtil.errorAboutApplication("bookkeeping.error", "bookkeeping.error", "bookkeeping.year.list.error2" + selectedYear);
             }
         }
     }
@@ -138,35 +114,73 @@ public class BKAccountListStageController {
      * Odświeżenie/Budowa struktury drzewiastej w tabeli
      */
     private void renderTree() {
-        TreeItem<BKAccountYear> root = bkAccountListYearModel.buildTree();
+        TreeItem<BKAccountYearFX> root = bkAccountListYearModel.buildTree();
         treeTable.setRoot(root);
         treeTable.setShowRoot(false);
     }
+
     @FXML
     public void addAccountOnAction() {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ADD_NEW_ACCOUNT));
-        fxmlLoader.setResources(Utils.getResourceBundle());
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (treeTable.getSelectionModel().getSelectedItem() != null) {
+            BKAccountYearFX bkAccountYear = treeTable.getSelectionModel().getSelectedItem().getValue();
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ADD_NEW_ACCOUNT));
+            fxmlLoader.setResources(Utils.getResourceBundle());
+            Scene scene = null;
+            try {
+                scene = new Scene(fxmlLoader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage1 = new Stage();
+            stage1.setScene(scene);
+            stage1.setTitle("Dodaj konto");
+            stage1.initModality(Modality.APPLICATION_MODAL);
+            stage1.setResizable(false);
+            BKAccountAddListStageController bkAccountAddListStageController = fxmlLoader.getController();
+            bkAccountAddListStageController.init();
+            bkAccountAddListStageController.setThisStage(stage1);
+            bkAccountAddListStageController.setBkAccountYear(bkAccountYear);
+            bkAccountAddListStageController.setBkAccountListYearModel(bkAccountListYearModel);
+            bkAccountAddListStageController.setControllAdd(false);
+            stage1.showAndWait();
+            init();
+            treeTable.getSelectionModel().selectLast();
+            treeTable.scrollTo(treeTable.getSelectionModel().getSelectedIndex());
+        } else {
+            if (yearComboBox.getSelectionModel().getSelectedItem() != null) {
+                FXMLLoader fxmlLoader = new FXMLLoader(LoginStage.class.getResource(FXML_ADD_NEW_ACCOUNT));
+                fxmlLoader.setResources(Utils.getResourceBundle());
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage1 = new Stage();
+                stage1.setScene(scene);
+                stage1.setTitle("Dodaj konto");
+                stage1.initModality(Modality.APPLICATION_MODAL);
+                stage1.setResizable(false);
+                BKAccountAddListStageController bkAccountAddListStageController = fxmlLoader.getController();
+                bkAccountAddListStageController.init();
+                bkAccountAddListStageController.setThisStage(stage1);
+                bkAccountAddListStageController.setBkAccountListYearModel(bkAccountListYearModel);
+                bkAccountAddListStageController.setControllAdd(true);
+                bkAccountAddListStageController.setCurrentYear(yearComboBox.getSelectionModel().getSelectedItem());
+                stage1.showAndWait();
+                init();
+                treeTable.getSelectionModel().selectLast();
+                treeTable.scrollTo(treeTable.getSelectionModel().getSelectedIndex());
+            }
         }
-        Stage stage1 = new Stage();
-        stage1.setScene(scene);
-        stage1.setTitle(Utils.getResourceBundle().getString("company.table.add.title"));
-        stage1.initModality(Modality.APPLICATION_MODAL);
-        stage1.setResizable(false);
-        BKAccountAddListStageController bkAccountAddListStageController = fxmlLoader.getController();
-        bkAccountAddListStageController.init();
-        bkAccountAddListStageController.setThisStage(stage1);
-        stage1.showAndWait();
-        init();
-        treeTable.getSelectionModel().selectLast();
-        treeTable.scrollTo(treeTable.getSelectionModel().getSelectedIndex());
     }
 
     // Gettery i Settery
-    public Stage getStage() { return stage; }
-    public void setStage(Stage stage) { this.stage = stage; }
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 }
