@@ -68,6 +68,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="12.0" style="-fx-background-color: #f8f9fa;">
                     <children>
                         <Button mnemonicParsing="false" onAction="#addAccountOnAction" prefWidth="110.0" styleClass="button-success" text="%partner.table.add" />
+                  <Button mnemonicParsing="false" onAction="#deleteAccountOnAction" prefWidth="110.0" text="%partner.table.delete" />
 
                         <Region HBox.hgrow="ALWAYS" />
 

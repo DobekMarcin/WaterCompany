@@ -92,4 +92,13 @@ public class BKAccountListYearModel {
         list.add(bkAccountYear);
         bkAccountPlanYearRepository.insertNewAccount(list, bkAccountYear.getYear());
     }
+
+    public void deleteById(BKAccountYearFX bkAccountFX) throws SQLException {
+        bkAccountPlanYearRepository.deleteByID(bkAccountFX.getId());
+    }
+
+    public boolean hasChildren(BKAccountYearFX bkAccountYearFX) throws SQLException {
+    return bkAccountPlanYearRepository.hasChildren(bkAccountYearFX.getId());
+    }
+
 }

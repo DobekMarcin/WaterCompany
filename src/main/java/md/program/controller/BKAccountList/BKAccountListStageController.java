@@ -2,6 +2,7 @@ package md.program.controller.BKAccountList;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -183,4 +184,47 @@ public class BKAccountListStageController {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    public void deleteAccountOnAction() {
+        TreeItem<BKAccountYearFX> selectedItem = treeTable.getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null || selectedItem.getValue() == null) {
+            DialogUtil.errorAboutApplication("bookkeeping.error", "bookkeeping.error", "bookkeeping.account.delete");
+            return;
+        }
+
+        BKAccountYearFX accountFX = selectedItem.getValue();
+
+        try {
+            // --- KLUCZOWE SPRAWDZENIE ---
+            // Pytamy model (który zapyta repozytorium), czy są subkonta
+            boolean hasChildren = bkAccountListYearModel.hasChildren(accountFX);
+
+            if (hasChildren) {
+                DialogUtil.errorAboutApplication(
+                        "bookkeeping.error",
+                        "bookkeeping.error",
+                        "bookkeeping.account.delete.haschildren"
+                );
+                return; // Przerywamy usuwanie
+            }
+
+            // Jeśli nie ma dzieci, możemy bezpiecznie usunąć
+            bkAccountListYearModel.deleteById(accountFX);
+
+            // Usuwamy z widoku UI
+            TreeItem<BKAccountYearFX> parent = selectedItem.getParent();
+            if (parent != null) {
+                parent.getChildren().remove(selectedItem);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+
+    }
+
+
 }

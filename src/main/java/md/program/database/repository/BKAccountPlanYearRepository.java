@@ -66,8 +66,8 @@ public class BKAccountPlanYearRepository {
                     insertStmt.setString(3, rs.getString("description"));
                     insertStmt.setBoolean(4, rs.getBoolean("syn"));
                     insertStmt.setString(5, rs.getString("full_name"));
-                    insertStmt.setDouble(6,0);
-                    insertStmt.setDouble(7,0);
+                    insertStmt.setDouble(6, 0);
+                    insertStmt.setDouble(7, 0);
                     insertStmt.executeUpdate();
 
                     // Pobieramy nowe ID wygenerowane przez Postgresa
@@ -133,8 +133,8 @@ public class BKAccountPlanYearRepository {
                 statement.setString(4, account.getDescription());
                 statement.setBoolean(5, account.getSyn());
                 statement.setString(6, account.getFullName());
-                statement.setDouble(7,account.getCredit());
-                statement.setDouble(8,account.getDebit());
+                statement.setDouble(7, account.getCredit());
+                statement.setDouble(8, account.getDebit());
 
                 statement.addBatch();
             }
@@ -144,14 +144,24 @@ public class BKAccountPlanYearRepository {
         }
     }
 
+    public void deleteByID(int id) throws SQLException {
+        String sql = "DELETE FROM md.account_plan_year WHERE id = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+            int affectedRows = statement.executeUpdate();
+        }
+    }
 
     public List<BKAccountYear> getAllAccount(int year) throws SQLException {
         PreparedStatement statement = null;
         Connection connection = getConnection();
-        List<BKAccountYear> accountPlanList=new ArrayList<>();
+        List<BKAccountYear> accountPlanList = new ArrayList<>();
         BKAccountYear temp = null;
         statement = connection.prepareStatement("SELECT id,year, root, account, description,syn,full_name,credit,debit FROM md.account_plan_year where year=?  order by account;");
-        statement.setInt(1,year);
+        statement.setInt(1, year);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             temp = new BKAccountYear();
@@ -190,5 +200,23 @@ public class BKAccountPlanYearRepository {
         return deletedRows;
     }
 
+
+    public boolean hasChildren(int id) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM md.account_plan_year WHERE root = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    // Jeśli licznik jest większy od 0, to znaczy że są subkonta
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
 
 }

@@ -11,15 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8dfd2f96-344f-42a2-ba64-f3e0bfd059f2" name="Changes" comment="v18">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountList/BKAccountAddListStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountList/BKAccountAddListStageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountList/BKAccountListStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountList/BKAccountListStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountPlan/BookKeepingAccountPlanStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/controller/BKAccountPlan/BookKeepingAccountPlanStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/model/BKAccountYear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/model/BKAccountYear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanYearRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/database/repository/BKAccountPlanYearRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountListYearModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountListYearModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountPlanModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/md/program/modelFX/BKAccountPlanModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/BKInitializeYearTableStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/BKInitializeYearTableStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/BKAccountListStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/BKAccountListStage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bundles/messages_pl_PL.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
